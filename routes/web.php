@@ -146,3 +146,6 @@ Route::get('/updateapp', function() {
 
 
 //salam farmande
+
+// git remote set-url origin "https://mostafayosefi@github.com/mostafayosefi/payment.git"
+
