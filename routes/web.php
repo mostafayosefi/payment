@@ -143,3 +143,6 @@ Route::get('/updateapp', function() {
     exec('composer dump-autoload');
     echo 'composer dump-autoload complete';
 });
+
+
+//salam farmande
