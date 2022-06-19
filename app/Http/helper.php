@@ -363,6 +363,16 @@ if(! function_exists('getStatusEmployerPackage') ) {
 
 
 
+if(! function_exists('priority') ) {
+    // function priority($id_link, $id , $up_down , $pri_name)
+    function priority($priority)
+    {
+
+return $priority['id'];
+
+    }
+}
+
 
 if(! function_exists('update_lastlogin') ) {
     function update_lastlogin($id, $key)

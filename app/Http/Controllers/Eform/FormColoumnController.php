@@ -14,8 +14,8 @@ class FormColoumnController extends Controller
 
 
     public function index(){
-        $form_columns= FormColoumn::all();
-        return view('admin.Eform.form_coloumn.index' , compact(['form_columns'  ]));
+        $form_coloumns= FormColoumn::all();
+        return view('admin.Eform.form_coloumn.index' , compact(['form_coloumns'  ]));
     }
 
 
@@ -30,15 +30,29 @@ class FormColoumnController extends Controller
         return view('admin.Eform.form_coloumn.edit' , compact(['value'  ]));
     }
 
+    public function priority($id,$up_down){
+
+        
+    }
+
 
     public function store(Request $request)
     {
         $request->validate([
+            'form_id' => 'required',
             'name' => 'required',
-            'text' => 'required',
+            'place' => 'required',
+            'form_field_id' => 'required',
         ]);
         $data = $request->all();
-        $data['image']  =  uploadFile($request->file('image'),'images/form_columns','');
+
+        $data['priority']='0';
+        $priority['id_link']=$data['form_id'];
+        $priority['up_down']='insert';
+        $priority['pri_name']='coloumn';
+        $priority['id']= FormColoumn::create($data);
+        $m=priority($priority);
+        // dd($m);
 
        FormColoumn::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');

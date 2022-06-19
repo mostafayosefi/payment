@@ -20,26 +20,31 @@
           <h6 class="card-title">لیست زیرگروهها</h6>
           <div class="table-responsive">
 
-@if($form_subcategories)
+@if($form_coloumns)
             <table id="dataTableExample" class="table">
               <thead>
                 <tr>
                   <th>ردیف</th>
-                  <th> گروه</th>
-                  <th> زیرگروه</th>
+                  <th> فرم</th>
+                  <th> ورودی</th>
+                  <th> نوع ورودی</th>
+                  <th> اولویت</th>
                   <th>تاریخ ایجاد</th>
                   <th>  وضعیت</th>
+                  <th>  بالا</th>
                   <th>مشاهده جلسات</th>
                 </tr>
               </thead>
               <tbody>
 
 
-@foreach($form_subcategories as $key => $admin)
+@foreach($form_coloumns as $key => $admin)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{$admin->form_category->name}}</td>
+                    <td>{{$admin->form->name}}</td>
 <td>{{$admin->name}}</td>
+<td>{{$admin->form_field->name}}</td>
+<td>{{$admin->priority}}</td>
 
 <td>{{ date_frmat($admin->created_at) }}</td>
 
@@ -48,6 +53,26 @@
     @include('admin.layouts.table.statusacount', [$admin ,'route' =>
     route('admin.form.form_subcategory.status', $admin->id ) , 'myname' => ' زیرگروه '.$admin->name.' ' ])
 </td>
+
+<td>
+@if ($key!='0')
+<a href="{{route('admin.form.form_coloumn.priority',[$admin->id , 'up'])}}" >
+@endif
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-arrow-up-circle"><circle cx="12" cy="12" r="10"></circle>
+          <polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg> بالا {{$key}}
+
+@if ($key!='0')</a> @endif
+    <a href="{{route('admin.form.form_coloumn.priority',[$admin->id , 'down'])}}" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle>
+            <polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg>  پایین
+        </a>
+</td>
+
+
 
  <td>
 <a href="{{ route('admin.form.form_subcategory.show', $admin) }}">

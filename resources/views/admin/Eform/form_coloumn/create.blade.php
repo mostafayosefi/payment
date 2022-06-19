@@ -29,7 +29,7 @@
 
                               @include('admin.layouts.errors')
 
-  <form class="forms-sample" method="POST" action="{{ route('admin.form.form_subcategory.store') }}"
+  <form class="forms-sample" method="POST" action="{{ route('admin.form.form_coloumn.store') }}"
   enctype="multipart/form-data" onsubmit="return Validate(this);">
                                   @csrf
                                   <div class="row">

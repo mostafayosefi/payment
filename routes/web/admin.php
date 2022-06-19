@@ -256,6 +256,7 @@ Route::prefix('form')->name('form.')->group(function () {
         Route::put('/{id}', [FormColoumnController::class, 'update'])->name('update');
         Route::delete('/{id}', [FormColoumnController::class, 'destroy'])->name('destroy');
         Route::put('/{id}/status', [FormColoumnController::class, 'status'])->name('status');
+        Route::get('/{id}/priority/{up_down}', [FormColoumnController::class, 'priority'])->name('priority');
     });
 
 
