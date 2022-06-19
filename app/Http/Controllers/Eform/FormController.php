@@ -28,7 +28,9 @@ class FormController extends Controller
 
     public function edit($id){
         $form=Form::find($id);
-        return view('admin.Eform.form.edit' , compact(['form'  ]));
+        $form_categories= FormCategory::all();
+        $form_subcategories= FormSubcategory::all();
+        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories'  ]));
     }
 
 
@@ -60,8 +62,11 @@ class FormController extends Controller
 
     public function update(Request $request, $id , Form $form){
         $request->validate([
+            'form_subcategory_id' => 'required',
+            'group' => 'required',
+            'subgroup' => 'required',
             'name' => 'required',
-            'text' => 'required',
+            'link' => 'required',
         ]);
         $form=Form::find($id);
         $data = $request->all();

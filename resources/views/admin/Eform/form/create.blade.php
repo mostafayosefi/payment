@@ -65,30 +65,13 @@
 
 
 
-
-                                        <div class="col-md-12">
-                                            <label for="categorybrand">   دسته بندی فرم     </label>
-                                            <select name="form_category_id" id="form_category_id"
-                                            class="elementor-field elementor-size-sm  elementor-field-textual"
-                                            placeholder=""   aria-required="true"  onchange="fetch_myselect_4(this.value);"   style="font-size: 18px;"   >
-                                             <option value="">لطفا دسته فرم را انتخاب نمایید  </option>
-                                             @foreach ($form_categories as $form_category  )
-                                            <option value="{{$form_category->id}}"
-                                                   >{{$form_category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        </div>
+  @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_categories ,  'input_name' => 'name'  ,  'name_select' => ' گروه فرم ' ,  'value' =>   old('form_category_id') , 'required'=>'required'  , 'index_id'=>'form_category_id' ])
+  @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => 'زیرگروه ' ,  'value' =>   old('form_subcategory_id') , 'required'=>'required'  , 'index_id'=>'form_subcategory_id' ])
 
 
-                                        <div class="col-md-12">
-                                            <label for="categorybrand">   زیرگروه   </label>
-                                            <select name="form_subcategory_id" id="form_subcategory_id"
-                                            class="elementor-field elementor-size-sm  elementor-field-textual"
-                                            placeholder=""   aria-required="true"    style="font-size: 18px;"   >
-                                             <option value="">لطفا زیرگروه را انتخاب نمایید  </option>
 
-                                        </select>
-                                        </div>
+
+
 
 
                                           <div class="form-group">

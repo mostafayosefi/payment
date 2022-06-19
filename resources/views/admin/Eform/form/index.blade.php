@@ -32,7 +32,7 @@
                   <th>تاریخ ایجاد</th>
                   <th>وضعیت</th>
                   <th>ویرایش</th>
-                  <th>مشاهده زیرگروه</th>
+                  <th>مشاهده جزییات فرم</th>
                   <th>حذف</th>
                 </tr>
               </thead>
@@ -50,24 +50,24 @@
 
 <td>
     @include('admin.layouts.table.statusacount', [$admin ,'route' =>
-    route('admin.form.form_category.status', $admin->id ) , 'myname' => ' گروه '.$admin->name.' ' ])
+    route('admin.form.form.status', $admin->id ) , 'myname' => ' گروه '.$admin->name.' ' ])
 </td>
 
  <td>
-<a href="{{ route('admin.form.form_category.edit', $admin) }}">
+<a href="{{ route('admin.form.form.edit', $admin) }}">
 <span class="btn btn-success" >  <i data-feather="edit"></i></span>
 </a>
 </td>
 
 
  <td>
-<a href="{{ route('admin.form.form_category.show', $admin) }}">
+<a href="{{ route('admin.form.form.show', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="eye"></i></span>
 </a>
 </td>
 
 <td>
-@include('admin.layouts.table.modal', [$admin ,'route' => route('admin.form.form_category.destroy', $admin) , 'myname' => $admin->name ])
+@include('admin.layouts.table.modal', [$admin ,'route' => route('admin.form.form.destroy', $admin) , 'myname' => $admin->name ])
 </td>
 
                 </tr>
