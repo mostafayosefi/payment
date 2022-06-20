@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
       'title' => 'ثبت فیلد',
       'tabTitle' => 'ثبت فیلد',
-      'breadcrumb' => [['title' => 'لیست فیلدها ', 'url' => route('admin.form.form_subcategory.index')], ['title' => 'ثبت فیلد',
+      'breadcrumb' => [['title' => 'لیست فیلدها ', 'url' => route('admin.form.form_coloumn.index')], ['title' => 'ثبت فیلد',
       'class' => 'active']],
       ])
 
@@ -44,7 +44,7 @@
 
 
                                           <div class="card-footer">
-                                              <a href="{{ route('admin.form.form_subcategory.index') }}" class="btn btn-danger">بازگشت</a>
+                                              <a href="{{ route('admin.form.form_coloumn.index') }}" class="btn btn-danger">بازگشت</a>
                                               <button type="submit" class="btn btn-primary float-right">ثبت</button>
                                           </div>
 

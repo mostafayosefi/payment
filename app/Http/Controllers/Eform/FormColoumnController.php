@@ -14,7 +14,7 @@ class FormColoumnController extends Controller
 
 
     public function index(){
-        $form_coloumns= FormColoumn::all();
+        $form_coloumns= FormColoumn::orderBy('priority','asc')->get();
         return view('admin.Eform.form_coloumn.index' , compact(['form_coloumns'  ]));
     }
 
@@ -41,7 +41,6 @@ class FormColoumnController extends Controller
         $request->validate([
             'form_id' => 'required',
             'name' => 'required',
-            'place' => 'required',
             'form_field_id' => 'required',
         ]);
         $data = $request->all();
@@ -51,11 +50,11 @@ class FormColoumnController extends Controller
         $priority['up_down']='insert';
         $priority['pri_name']='coloumn';
         $priority['my_priority']='0';
-        $priority['id']= FormColoumn::create($data);
+        $modal= FormColoumn::create($data);
+        $priority['id']= $modal->id;
+        $priority['my_priority']='0';
         $m=priority($priority);
-        // dd($m);
 
-       FormColoumn::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
         return redirect()->route('admin.form.form_coloumn.index');
     }
@@ -69,8 +68,9 @@ class FormColoumnController extends Controller
 
     public function update(Request $request, $id , FormColoumn $value){
         $request->validate([
+            'form_id' => 'required',
             'name' => 'required',
-            'text' => 'required',
+            'form_field_id' => 'required',
         ]);
         $value=FormColoumn::find($id);
         $data = $request->all();
@@ -83,7 +83,18 @@ class FormColoumnController extends Controller
 
 
     public function destroy($id , Request $request){
-        FormColoumn::destroy($request->id);
+        $modal=FormColoumn::find($request->id);
+        $priority['id_link']=$modal->form_id;
+         FormColoumn::destroy($request->id);
+
+        $data['priority']='0';
+        $priority['up_down']='delete';
+        $priority['pri_name']='coloumn';
+        $priority['my_priority']='0';
+        $priority['id']= $request->id;
+        $m=priority($priority);
+
+
         Alert::info('با موفقیت حذف شد', 'اطلاعات با موفقیت حذف شد');
         return back();
     }
