@@ -32,7 +32,7 @@ class FormColoumnController extends Controller
 
     public function priority($id,$up_down){
 
-        
+
     }
 
 
@@ -50,6 +50,7 @@ class FormColoumnController extends Controller
         $priority['id_link']=$data['form_id'];
         $priority['up_down']='insert';
         $priority['pri_name']='coloumn';
+        $priority['my_priority']='0';
         $priority['id']= FormColoumn::create($data);
         $m=priority($priority);
         // dd($m);

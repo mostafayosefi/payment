@@ -4,6 +4,7 @@ use App\Models\Course\Course;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Wallet;
+use App\Models\Eform\FormColoumn;
 
 use App\Models\Setting;
 
@@ -367,6 +368,59 @@ if(! function_exists('priority') ) {
     // function priority($id_link, $id , $up_down , $pri_name)
     function priority($priority)
     {
+
+
+        $id_link = $priority['id_link'] ;
+        $up_down = $priority['up_down'] ;
+        $pri_name = $priority['pri_name'] ;
+        $my_priority = $priority['my_priority'] ;
+        $id = $priority['id'] ;
+
+        if($pri_name=='coloumn'){
+            $query=FormColoumn::query()->where([
+                ['id' , '<>' , 0],
+            ]);
+            $count = $query->where([
+                ['form_id' , '=' , $id_link ],
+            ])->count();
+
+
+            if($up_down=='up'){ $new_priority=$my_priority-1; $default_priority=100; }
+            if($up_down=='down'){ $new_priority=$my_priority+1; $default_priority=100; }
+            if($up_down=='insert'){ $new_priority=$count+1;   }
+
+
+            if(($up_down=='up')||($up_down=='down')){
+
+//            3=>100
+            $query->where([
+                ['priority' , '=' , $my_priority ],
+            ])->update(['priority' => $default_priority]);
+//            2=>3
+            $query->where([
+                ['priority' , '=' , $new_priority ],
+            ])->update(['priority' => $my_priority]);
+//            100=2
+            $query->where([
+                ['priority' , '=' , $default_priority ],
+            ])->update(['priority' => $new_priority]);
+
+            }
+
+            if($up_down=='insert'){
+                $query->where([
+                    ['id' , '=' , $id ],
+                ])->update(['priority' => $new_priority]);
+            }
+
+
+
+
+        }
+
+
+
+
 
 return $priority['id'];
 
