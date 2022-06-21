@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
 use App\Models\Eform\Form;
-use App\Models\Eform\FormCategory;
-use App\Models\Eform\FormSubcategory;
 use Illuminate\Http\Request;
+use App\Models\Eform\FormField;
+use App\Models\Eform\FormCategory;
+use App\Http\Controllers\Controller;
+use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormController extends Controller
@@ -54,8 +55,10 @@ class FormController extends Controller
     public function show($id)
     {
 
+        $form_fields= FormField::all();
+        $forms= Form::all();
         $form=Form::find($id);
-        return view('admin.Eform.form.show' , compact(['form'  ]));
+        return view('admin.Eform.form.show' , compact(['forms' , 'form' , 'form_fields' ]));
     }
 
 

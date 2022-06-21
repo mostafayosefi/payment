@@ -18,7 +18,7 @@ class FormColoumnMult extends Model
     }
 
 
-    public function form_coloumn_mult(){
+    public function form_data_mult(){
         return $this->hasOne(FormDataMult::class , 'form_coloumn_mult_id');
     }
 

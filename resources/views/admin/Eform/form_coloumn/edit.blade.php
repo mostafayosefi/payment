@@ -1,11 +1,11 @@
   @component('admin.layouts.content', [
-      'title' => 'ویرایش زیرگروه',
-      'tabTitle' => ' ویرایش زیرگروه',
+      'title' => 'ویرایش فیلد',
+      'tabTitle' => ' ویرایش فیلد',
       'breadcrumb' => [
-        ['title' => 'لیست گروه ها', 'url' => route('admin.form.form_category.index')],
-        ['title' => $form_subcategory->form_category->name , 'url' => route('admin.form.form_category.show', $form_subcategory->form_category )],
-        ['title' => $form_subcategory->name , 'class' => 'active'],
-        ['title' => 'ویرایش زیرگروه  ', 'class' => 'active'],
+        ['title' => 'لیست فرم ها', 'url' => route('admin.form.form.index')],
+        ['title' => $form_coloumn->form->name , 'url' => route('admin.form.form.show', $form_coloumn->form )],
+        ['title' => $form_coloumn->name , 'class' => 'active'],
+        ['title' => 'ویرایش فیلد  ', 'class' => 'active'],
     ],
       ])
 
@@ -22,7 +22,7 @@
                           <div class="card-body">
 
                               <div class="card-header card-header-border-bottom">
-                                  <h4>ویرایش زیرگروه </h4>
+                                  <h4>ویرایش فیلد </h4>
                               </div>
 
                               <br>
@@ -31,7 +31,7 @@
                               @include('admin.layouts.errors')
 
 
-                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form_subcategory.update', $form_subcategory) }}"
+                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form_coloumn.update', $form_coloumn) }}"
                                   enctype="multipart/form-data" onsubmit="return Validate(this);">
                                   @csrf
                                   <div class="row">
@@ -42,24 +42,24 @@
 
 
                                         <div class="form-group">
-                                            <label for="name">گروه  </label>
+                                            <label for="name">فرم  </label>
                                             <input type="text" class="form-control" id="name" autocomplete="off"
-                                                placeholder="   گروه  " name="course_name" value="{{$form_subcategory->form_category->name}}" disabled >
+                                                placeholder="   فرم  " name="course_name" value="{{$form_coloumn->form->name}}" disabled >
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label for="name">نام زیرگروه</label>
+                                            <label for="name">نام فیلد</label>
                                             <input type="text" class="form-control" id="name" autocomplete="off"
-                                                placeholder=" نام زیرگروه  " name="name" value="{{$form_subcategory->name}}">
+                                                placeholder=" نام فیلد  " name="name" value="{{$form_coloumn->name}}">
                                         </div>
 
 
 
                                         <div class="form-group">
-                                            <label for="link">لینک زیرگروه</label>
+                                            <label for="link">لینک فیلد</label>
                                             <input type="text" class="form-control" id="link" autocomplete="off"
-                                                placeholder=" لینک زیرگروه  " name="link" value="{{$form_subcategory->link}}">
+                                                placeholder=" لینک فیلد  " name="link" value="{{$form_coloumn->link}}">
                                         </div>
 
 
@@ -69,7 +69,7 @@
                                           @method('PUT')
 
                                           <div class="card-footer">
-                                              <a href="{{route('admin.form.form_category.show', $form_subcategory->form_category )}}" class="btn btn-danger">بازگشت</a>
+                                              <a href="{{route('admin.form.form.show', $form_coloumn->form )}}" class="btn btn-danger">بازگشت</a>
                                               <button type="submit" class="btn btn-primary float-right">ویرایش</button>
                                           </div>
 

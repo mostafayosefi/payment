@@ -1,8 +1,8 @@
 @component('admin.layouts.content',[
-    'title'=>'مشاهده زیرگروهها',
-    'tabTitle'=>'مشاهده زیرگروهها ',
+    'title'=>'مشاهده فیلدها',
+    'tabTitle'=>'مشاهده فیلدها ',
     'breadcrumb'=>[
-            ['title'=>'مشاهده زیرگروهها','class' => 'active']
+            ['title'=>'مشاهده فیلدها','class' => 'active']
     ]])
 
 
@@ -17,7 +17,7 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">لیست زیرگروهها</h6>
+          <h6 class="card-title">لیست فیلدها</h6>
           <div class="table-responsive">
 
 @if($form_coloumns)
@@ -32,7 +32,8 @@
                   <th>تاریخ ایجاد</th>
                   <th>  وضعیت</th>
                   <th>  بالا</th>
-                  <th>مشاهده جلسات</th>
+                  <th> فیلدها</th>
+                  <th> جزییات</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +52,7 @@
 
 <td>
     @include('admin.layouts.table.statusacount', [$admin ,'route' =>
-    route('admin.form.form_subcategory.status', $admin->id ) , 'myname' => ' زیرگروه '.$admin->name.' ' ])
+    route('admin.form.form_coloumn.status', $admin->id ) , 'myname' => ' زیرگروه '.$admin->name.' ' ])
 </td>
 
 <td>
@@ -75,11 +76,14 @@
 
 
  <td>
-<a href="{{ route('admin.form.form_subcategory.show', $admin) }}">
+<a href="{{ route('admin.form.form_coloumn.show', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="eye"></i></span>
 </a>
 </td>
 
+<td>
+    @include('admin.layouts.table.modal', [$admin ,'route' => route('admin.form.form_coloumn.destroy', $admin) , 'myname' => $admin->name ])
+    </td>
                 </tr>
 @endforeach
 

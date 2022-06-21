@@ -376,9 +376,12 @@ if(! function_exists('priority') ) {
         $my_priority = $priority['my_priority'] ;
         $id = $priority['id'] ;
 
+        // dd($priority);
+
         if($pri_name=='coloumn'){
             $query=FormColoumn::query()->where([
                 ['id' , '<>' , 0],
+                ['form_id' , '=' , $id_link ],
             ]);
             $count = $query->where([
                 ['form_id' , '=' , $id_link ],
@@ -387,7 +390,7 @@ if(! function_exists('priority') ) {
 
             if($up_down=='up'){ $new_priority=$my_priority-1; $default_priority=100; }
             if($up_down=='down'){ $new_priority=$my_priority+1; $default_priority=100; }
-            if($up_down=='insert'){ $new_priority=$count+1;   }
+            if($up_down=='insert'){ $new_priority=$count;   }
 
 
             if(($up_down=='up')||($up_down=='down')){
@@ -414,7 +417,32 @@ if(! function_exists('priority') ) {
             }
 
 
+            if($up_down=='sort'){
+                $form_coloumns= $query->orderBy('priority','asc')->get();
 
+$i=0;
+                if($form_coloumns){
+                    foreach($form_coloumns as   $mtcoloumn){
+$i++;
+                        $query->where([
+                            ['form_id' , '=' , $id_link ],
+                            ['priority' , '=' , $mtcoloumn->priority ],
+                        ])->update(['priority' => $i]);
+
+                        // echo $mtcoloumn->id.'<br>';
+                        // echo $m.'<br>';
+
+                    }
+                }
+            }
+
+
+
+
+
+
+
+            // 966*0905*5022-2910-8959-5993
 
         }
 
@@ -422,7 +450,6 @@ if(! function_exists('priority') ) {
 
 
 
-return $priority['id'];
 //        git remote set-url origin "https://mostafayosefi@github.com/mostafayosefi/payment.git"
 
     }
