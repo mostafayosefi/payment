@@ -32,7 +32,8 @@
                   <th>تاریخ ایجاد</th>
                   <th>وضعیت</th>
                   <th>ویرایش</th>
-                  <th>مشاهده جزییات فرم</th>
+                  <th>مشاهده فرم</th>
+                  <th>  فیلدها</th>
                   <th>حذف</th>
                 </tr>
               </thead>
@@ -63,6 +64,11 @@
  <td>
 <a href="{{ route('admin.form.form.show', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="eye"></i></span>
+</a>
+</td>
+ <td>
+<a href="{{ route('admin.form.form_coloumn.index', $admin->id) }}">
+<span class="btn btn-primary" >  <i data-feather="align-justify"></i></span>
 </a>
 </td>
 

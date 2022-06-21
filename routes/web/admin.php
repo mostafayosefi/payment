@@ -250,7 +250,7 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_coloumn')
     ->name('form_coloumn.')->group(function () {
-        Route::get('/index_form_coloumn', [FormColoumnController::class, 'index'])->name('index');
+        Route::get('/index/{id?}/index_form_coloumn', [FormColoumnController::class, 'index'])->name('index');
         Route::get('/create_form_coloumn', [FormColoumnController::class, 'create'])->name('create');
         Route::post('/', [FormColoumnController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormColoumnController::class, 'show'])->name('show');

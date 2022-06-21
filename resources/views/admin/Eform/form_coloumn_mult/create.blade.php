@@ -8,17 +8,17 @@
       @slot('style')
 
           <script>
-              function fetch_form(vall){
+              function fetch_form(val){
                   var vall = document.getElementById("form_id").value;$.ajax({
                       type: 'get',
-                      url: '../../../admin/fetch/form/'+vall+'',
-                      data: {get_option:vall},
+                      url: '../../../admin/fetch/form/'+val+'',
+                      data: {get_option:val},
                       success: function (response) {document.getElementById("form_coloumn_id").innerHTML=response;}
                   });
               }
           </script>
           <script>
-              function fetch_form(vall){
+              function fetch_form_coloumn(vall){
                   var vall = document.getElementById("form_coloumn_id").value;$.ajax({
                       type: 'get',
                       url: '../../../admin/fetch/form_coloumn/'+vall+'',
@@ -63,7 +63,7 @@
 
 
 @include('admin.layouts.table.selectbox', [ 'allforeachs' => $forms ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
-@include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_coloumns ,  'input_name' => 'name'  ,  'name_select' => '  فیلد   ' ,  'value' =>   old('form_coloumn_id') , 'required'=>'required'  , 'index_id'=>'form_coloumn_id' ])
+@include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => '  فیلد   ' ,  'value' =>   old('form_coloumn_id') , 'required'=>'required'  , 'index_id'=>'form_coloumn_id' ])
 
                                           <div id="form_coloumn_mults" >
 

@@ -39,7 +39,7 @@
                                       <div class="col-sm-12">
 
 
-
+<input type="hidden" name="form_id"  value="{{$form_coloumn->form->id}}" >
 
                                         <div class="form-group">
                                             <label for="name">فرم  </label>
@@ -47,6 +47,7 @@
                                                 placeholder="   فرم  " name="course_name" value="{{$form_coloumn->form->name}}" disabled >
                                         </div>
 
+                                        @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_fields ,  'input_name' => 'name'  ,  'name_select' => '  نوع فیلد   ' ,  'value' =>   $form_coloumn->form_field_id  , 'required'=>'required'  , 'index_id'=>'form_field_id' ])
 
                                         <div class="form-group">
                                             <label for="name">نام فیلد</label>
@@ -54,14 +55,12 @@
                                                 placeholder=" نام فیلد  " name="name" value="{{$form_coloumn->name}}">
                                         </div>
 
-
-
+ 
                                         <div class="form-group">
-                                            <label for="link">لینک فیلد</label>
+                                            <label for="place">متن plac </label>
                                             <input type="text" class="form-control" id="link" autocomplete="off"
-                                                placeholder=" لینک فیلد  " name="link" value="{{$form_coloumn->link}}">
+                                                placeholder=" متن plac   " name="place" value="{{$form_coloumn->place}}">
                                         </div>
-
 
 
 

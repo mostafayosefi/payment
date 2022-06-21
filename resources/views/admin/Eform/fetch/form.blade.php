@@ -1,5 +1,5 @@
-@foreach ($forms as $form)
-    <option value="{{ $form->id }}"
-        {{ old('form_id') == $form->id ? 'selected' : '' }}>{{ $form->name }}
+@foreach ($form_coloumns as $form_coloumn)
+    <option value="{{ $form_coloumn->id }}"
+        {{ old('form_coloumns_id') == $form_coloumn->id ? 'selected' : '' }}>{{ $form_coloumn->name }}
     </option>
 @endforeach

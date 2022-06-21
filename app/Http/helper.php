@@ -396,17 +396,36 @@ if(! function_exists('priority') ) {
             if(($up_down=='up')||($up_down=='down')){
 
 //            3=>100
-            $query->where([
-                ['priority' , '=' , $my_priority ],
-            ])->update(['priority' => $default_priority]);
+            // $query->where([
+            //     ['priority' , '=' , $my_priority ],
+            // ])->update(['priority' => $default_priority]);
+
+
+            $UpdateDetails = FormColoumn::where( 'priority' ,   $my_priority)->first();
+            $UpdateDetails->priority = $default_priority;
+            $UpdateDetails->save();
+
+
 //            2=>3
-            $query->where([
-                ['priority' , '=' , $new_priority ],
-            ])->update(['priority' => $my_priority]);
+            // $query->where([
+            //     ['priority' , '=' , $new_priority ],
+            // ])->update(['priority' => $my_priority]);
+
+            $UpdateDetails = FormColoumn::where( 'priority' ,   $new_priority)->first();
+            $UpdateDetails->priority = $my_priority;
+            $UpdateDetails->save();
+
+
 //            100=2
-            $query->where([
-                ['priority' , '=' , $default_priority ],
-            ])->update(['priority' => $new_priority]);
+            // $query->where([
+            //     ['priority' , '=' , $default_priority ],
+            // ])->update(['priority' => $new_priority]);
+
+
+            $UpdateDetails = FormColoumn::where( 'priority' ,   $default_priority)->first();
+            $UpdateDetails->priority = $new_priority;
+            $UpdateDetails->save();
+
 
             }
 
@@ -420,22 +439,25 @@ if(! function_exists('priority') ) {
             if($up_down=='sort'){
 
                 $form_coloumns= $query->orderBy('priority','asc')->get();
-
-$i=0;
+                $i=0;
                 if($form_coloumns){
                     foreach($form_coloumns as   $mtcoloumn){
-$i++;
-                        $query->where([
-                            ['form_id' , '=' , $id_link ],
-                             ['priority' , '=' , $mtcoloumn->priority ],
+                        $i++;
+                        $UpdateDetails = FormColoumn::where( 'priority' ,   $mtcoloumn->priority )->first();
+                        $UpdateDetails->new_priority = $i;
+                        $UpdateDetails->save();
+                    }}
 
-                        ])->update(['priority' => $i]);
-
-                        // echo $mtcoloumn->id.'<br>';
-                        // echo $m.'<br>';
-
+                    $form_coloumns= $query->orderBy('id','asc')->get();
+                if($form_coloumns){
+                    foreach($form_coloumns as   $mtcoloumn){
+                        $UpdateDetails = FormColoumn::where( 'id' ,   $mtcoloumn->id )->first();
+                        $UpdateDetails->priority = $mtcoloumn->new_priority;
+                        $UpdateDetails->save();
                     }
                 }
+
+
             }
 
 

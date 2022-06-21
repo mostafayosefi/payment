@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
+use App\Models\Eform\Form;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Eform\FormColoumn;
+use App\Http\Controllers\Controller;
 use App\Models\Eform\FormColoumnMult;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FormColoumnMultController extends Controller
 {
@@ -22,7 +24,11 @@ class FormColoumnMultController extends Controller
 
 
     public function create(){
-        return view('admin.Eform.form_coloumn_mult.create' );
+
+        $forms= Form::all();
+        $form_coloumns= FormColoumn::all();
+
+        return view('admin.Eform.form_coloumn_mult.create', compact(['forms' , 'form_coloumns' ] ));
     }
 
     public function edit($id){
@@ -34,8 +40,7 @@ class FormColoumnMultController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'text' => 'required',
+            'name' => 'required', 
         ]);
         $data = $request->all();
         $data['image']  =  uploadFile($request->file('image'),'images/form_coloumn_mults','');
@@ -52,7 +57,7 @@ class FormColoumnMultController extends Controller
 
 
 
-    public function update(Request $request, $id , Value $form_coloumn_mult){
+    public function update(Request $request, $id , FormColoumnMult $form_coloumn_mult){
         $request->validate([
             'name' => 'required',
             'text' => 'required',

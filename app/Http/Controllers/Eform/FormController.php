@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Eform;
 use App\Models\Eform\Form;
 use Illuminate\Http\Request;
 use App\Models\Eform\FormField;
+use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormSubcategory;
@@ -58,7 +59,11 @@ class FormController extends Controller
         $form_fields= FormField::all();
         $forms= Form::all();
         $form=Form::find($id);
-        return view('admin.Eform.form.show' , compact(['forms' , 'form' , 'form_fields' ]));
+        $form_coloumns= FormColoumn::where([ [ 'form_id',$id ] ])->orderBy('priority','asc')->get();
+
+        $count = $form->form_coloumns->count();
+        $count--;
+        return view('admin.Eform.form.show' , compact(['forms' , 'form_coloumns' , 'form' , 'form_fields', 'count' ]));
     }
 
 

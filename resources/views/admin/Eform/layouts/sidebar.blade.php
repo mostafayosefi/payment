@@ -75,3 +75,23 @@
               </ul>
             </div>
           </li>
+
+
+          <li class="nav-item  {{ isActive(['admin.form.form_coloumn_mult.create' , 'admin.form.form_coloumn_mult.index' , 'admin.form.form_coloumn_mult.edit'])}}  ">
+            <a class="nav-link" data-toggle="collapse" href="#form_coloumn_mult" role="button" aria-expanded="false" aria-controls="form_coloumn_mult">
+              <i class="link-icon" data-feather="list"></i>
+              <span class="link-title">  مدیریت پارامترهای فیلد   </span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse  {{ isShow(['admin.form.form_coloumn_mult.create' , 'admin.form.form_coloumn_mult.index', 'admin.form.form_coloumn_mult.edit'])}}   "  id="form_coloumn_mult">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+ <a href="{{ route('admin.form.form_coloumn_mult.create') }}" class="nav-link   {{ isActive(['admin.form.form_coloumn_mult.create']) }}  ">ایجاد پارامتر</a>
+                </li>
+                <li class="nav-item">
+ <a href="{{ route('admin.form.form_coloumn_mult.index') }}" class="nav-link   {{ isActive(['admin.form.form_coloumn_mult.index', 'admin.form.form_coloumn_mult.edit']) }}  ">    مدیریت پارامترها </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+

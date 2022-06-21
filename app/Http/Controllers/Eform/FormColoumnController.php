@@ -13,9 +13,22 @@ class FormColoumnController extends Controller
 {
 
 
-    public function index(){
-        $form_coloumns= FormColoumn::orderBy('priority','asc')->get();
-        return view('admin.Eform.form_coloumn.index' , compact(['form_coloumns'  ]));
+    public function index($id){
+
+        if($id){
+            $form_coloumns= FormColoumn::where([ ['form_id' , $id] ])->orderBy('priority','asc')->get();
+            $count= FormColoumn::where([ ['form_id' , $id] ])->orderBy('priority','asc')->count();
+        }else{
+
+            $form_coloumns= FormColoumn::orderBy('priority','asc')->get();
+            $count= FormColoumn::orderBy('priority','asc')->count();
+        }
+
+
+
+
+        $count--;
+        return view('admin.Eform.form_coloumn.index' , compact(['form_coloumns' ,'count'  ]));
     }
 
 
@@ -27,12 +40,9 @@ class FormColoumnController extends Controller
 
     public function edit($id){
         $form_coloumn=FormColoumn::find($id);
-        return view('admin.Eform.form_coloumn.edit' , compact(['form_coloumn'  ]));
-    }
+        $form_fields= FormField::all();
 
-    public function priority($id,$up_down){
-
-
+        return view('admin.Eform.form_coloumn.edit' , compact(['form_coloumn', 'form_fields'    ]));
     }
 
 
@@ -56,12 +66,28 @@ class FormColoumnController extends Controller
         $m=priority($priority);
 
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
-        return redirect()->route('admin.form.form_coloumn.index');
+        return redirect()->route('admin.form.form_coloumn.index' , $data['form_id'] );
     }
 
     public function show($id)
     {
-        //
+
+        $form_coloumn=FormColoumn::find($id);
+        return view('admin.Eform.form_coloumn.show' , compact(['form_coloumn'  ]));
+    }
+
+    public function priority($id , $up_down)
+    {
+
+        $modal=FormColoumn::find($id);
+        $priority['id_link']=$modal->form_id;
+        $priority['up_down']=$up_down;
+        $priority['pri_name']='coloumn';
+        $priority['my_priority']=$modal->priority;
+        $priority['id']= $modal->id;
+        $m=priority($priority);
+        return back();
+
     }
 
 
@@ -88,13 +114,11 @@ class FormColoumnController extends Controller
          FormColoumn::destroy($request->id);
 
         $data['priority']='0';
-
         $priority['up_down']='sort';
-
         $priority['pri_name']='coloumn';
         $priority['my_priority']='0';
         $priority['id']= $request->id;
-        $m=priority($priority);
+              priority($priority);
 
 
         Alert::info('با موفقیت حذف شد', 'اطلاعات با موفقیت حذف شد');

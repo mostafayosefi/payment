@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
       'title' => 'مدیریت فیلدهای فرم',
       'tabTitle' => ' مدیریت فیلدهای فرم',
-      'breadcrumb' => [['title' => 'لیست دسته بندی ها', 'url' => route('admin.form.form_coloumn.index')], ['title' => 'مدیریت فیلدهای فرم  ',
+      'breadcrumb' => [['title' => 'لیست فرم ها', 'url' => route('admin.form.form_coloumn.index')], ['title' => 'مدیریت فیلدهای فرم  ',
       'class' => 'active']],
       ])
 
@@ -28,8 +28,41 @@
 
                                     <div class="col-lg-12 col-md-12 col-md-12 ">
 
+
+
+
+
+
+
+
+  <div class="form-group">
+    <label for="group">گروه فرم</label>
+    <input type="text" class="form-control" id="group" autocomplete="off"
+        placeholder="group " name="group" value="{{$form->form_subcategory->form_category->name}}" disabled>
+</div>
+  <div class="form-group">
+    <label for="group">زیرگروه</label>
+    <input type="text" class="form-control" id="group" autocomplete="off"
+        placeholder="group " name="group" value="{{$form->form_subcategory->name}}" disabled>
+</div>
+
+  <div class="form-group">
+    <label for="group">group</label>
+    <input type="text" class="form-control" id="group" autocomplete="off"
+        placeholder="group " name="group" value="{{$form->group}}" disabled>
+</div>
+
+<div class="form-group">
+    <label for="subgroup">subgroup</label>
+    <input type="text" class="form-control" id="subgroup" autocomplete="off"
+        placeholder="subgroup " name="subgroup" value="{{$form->subgroup}}" disabled>
+</div>
+
+
+
+
                                         <div class="form-group">
-                                            <label for="name">نام دسته بندی</label>
+                                            <label for="name">نام فرم  </label>
                                             <input type="text" class="form-control" id="name" autocomplete="off"
                                                  name="name" value="{{$form->name}}"  disabled >
                                         </div>
@@ -45,7 +78,7 @@
 
 
                                           <div class="card-footer">
-                                              <a href="{{ route('admin.form.form.index') }}" class="btn btn-danger">  مشاهده دسته بندی ها</a>
+                                              <a href="{{ route('admin.form.form.index') }}" class="btn btn-danger">  مدیریت فرمها </a>
                                           </div>
 
 
@@ -71,9 +104,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            @include('admin.Eform.form_coloumn.table_index', [ 'form' => $form   ])
+                            @include('admin.Eform.form_coloumn.table_index', [ 'form_coloumns' => $form_coloumns  , $count ])
 
-                            @include('admin.Eform.form_coloumn.modal_create', [ 'form' => $form  ,  'form_fields' => $form_fields  , 'route' => route('admin.form.form_coloumn.store') ])
+                            @include('admin.Eform.form_coloumn.modal_create', [ 'form_coloumns' => $form_coloumns  ,  'form_fields' => $form_fields  , 'route' => route('admin.form.form_coloumn.store') ])
 
 
                         </div>
