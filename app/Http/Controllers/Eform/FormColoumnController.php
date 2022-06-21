@@ -88,11 +88,9 @@ class FormColoumnController extends Controller
          FormColoumn::destroy($request->id);
 
         $data['priority']='0';
-<<<<<<< HEAD
+
         $priority['up_down']='sort';
-=======
-        $priority['up_down']='delete';
->>>>>>> origin
+
         $priority['pri_name']='coloumn';
         $priority['my_priority']='0';
         $priority['id']= $request->id;
