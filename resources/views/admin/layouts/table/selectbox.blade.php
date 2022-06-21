@@ -2,6 +2,8 @@
     <div class="form-group" >
         <label for="{{$index_id}}">{{$name_select}}</label>
             <select  class="js-example-basic-single w-100"     name="{{$index_id}}"   style="font-size: 18px;" {{$required}}
+             @if($index_id=='form_id') id="form_id"  onchange="fetch_form(this.value);"   @endif
+            @if($index_id=='form_coloumn_id') id="form_coloumn_id"  onchange="fetch_form_coloumn(this.value);"    @endif
              @if($index_id=='form_category_id') id="form_category_id"  onchange="fetch_myselect_4(this.value);"   @endif
              @if($index_id=='form_subcategory_id') id="form_subcategory_id"    @endif
               @if($index_id=='user_id') id="language"   onChange="totalIt()"  @endif

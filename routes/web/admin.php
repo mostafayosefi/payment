@@ -26,7 +26,9 @@ use App\Http\Controllers\Eform\FormSubcategoryController;
 use App\Http\Controllers\Admin\Course\CourseFileController;
 use App\Http\Controllers\Admin\Course\CourseTypeController;
 use App\Http\Controllers\Eform\FormColoumnController;
+use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormFieldController;
+use App\Http\Controllers\Eform\FormDataListController;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -260,6 +262,33 @@ Route::prefix('form')->name('form.')->group(function () {
     });
 
 
+    Route::prefix('form_coloumn_mult')
+    ->name('form_coloumn_mult.')->group(function () {
+        Route::get('/index_form_coloumn_mult/{form_coloumn_id?}', [FormColoumnMultController::class, 'index'])->name('index');
+        Route::get('/create_form_coloumn_mult', [FormColoumnMultController::class, 'create'])->name('create');
+        Route::post('/', [FormColoumnMultController::class, 'store'])->name('store');
+        Route::get('/{id}/show', [FormColoumnMultController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [FormColoumnMultController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [FormColoumnMultController::class, 'update'])->name('update');
+        Route::delete('/{id}', [FormColoumnMultController::class, 'destroy'])->name('destroy');
+        Route::put('/{id}/status', [FormColoumnMultController::class, 'status'])->name('status');
+        Route::get('/{id}/priority/{up_down}', [FormColoumnMultController::class, 'priority'])->name('priority');
+    });
+
+
+    Route::prefix('form_data_list')
+    ->name('form_data_list.')->group(function () {
+        Route::get('/index_form_data_list', [FormDataListController::class, 'index'])->name('index');
+        Route::get('/create_form_data_list', [FormDataListController::class, 'create'])->name('create');
+        Route::post('/', [FormDataListController::class, 'store'])->name('store');
+        Route::get('/{id}/show', [FormDataListController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [FormDataListController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [FormDataListController::class, 'update'])->name('update');
+        Route::delete('/{id}', [FormDataListController::class, 'destroy'])->name('destroy');
+        Route::put('/{id}/status', [FormDataListController::class, 'status'])->name('status');
+    });
+
+
 
 
 });
@@ -273,6 +302,8 @@ Route::prefix('fetch')
 ->name('fetch.')->group(function () {
 
     Route::get('/form_subcategory/{value}', [FetchController::class, 'form_subcategory'])->name('form_subcategory');
+    Route::get('/form/{value}', [FetchController::class, 'form'])->name('form');
+    Route::get('/form_coloumn/{value}', [FetchController::class, 'form_coloumn'])->name('form_coloumn');
 
 });
 

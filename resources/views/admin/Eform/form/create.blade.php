@@ -9,11 +9,6 @@
 
 @slot('style')
 
-
-
-
-
-
 <script>
     function fetch_myselect_4(vall){
         var vall = document.getElementById("form_category_id").value;$.ajax({
@@ -24,11 +19,6 @@
     });
         }
 </script>
-
-
-
-
-
 
 @endslot
 
