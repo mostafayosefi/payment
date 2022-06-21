@@ -417,7 +417,11 @@ if(! function_exists('priority') ) {
             }
 
 
+<<<<<<< HEAD
             if($up_down=='sort'){
+=======
+            if($up_down=='delete'){
+>>>>>>> origin
                 $form_coloumns= $query->orderBy('priority','asc')->get();
 
 $i=0;
@@ -426,7 +430,11 @@ $i=0;
 $i++;
                         $query->where([
                             ['form_id' , '=' , $id_link ],
+<<<<<<< HEAD
                             ['priority' , '=' , $mtcoloumn->priority ],
+=======
+                            ['id' , '=' , $mtcoloumn->id ],
+>>>>>>> origin
                         ])->update(['priority' => $i]);
 
                         // echo $mtcoloumn->id.'<br>';
