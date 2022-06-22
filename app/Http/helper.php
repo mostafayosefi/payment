@@ -476,7 +476,16 @@ if(! function_exists('priority') ) {
 //        git remote set-url origin "https://mostafayosefi@github.com/mostafayosefi/payment.git"
 //        git remote set-url origin "https://github.com/mostafayosefi/payment.git"
 
+
+//        git fetch
+//git merge
+//        git reset --hard
+
+
     }
+
+
+
 }
 
 

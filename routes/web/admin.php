@@ -29,6 +29,7 @@ use App\Http\Controllers\Eform\FormColoumnController;
 use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormFieldController;
 use App\Http\Controllers\Eform\FormDataListController;
+use App\Http\Controllers\Eform\FormDataController;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -286,6 +287,19 @@ Route::prefix('form')->name('form.')->group(function () {
         Route::put('/{id}', [FormDataListController::class, 'update'])->name('update');
         Route::delete('/{id}', [FormDataListController::class, 'destroy'])->name('destroy');
         Route::put('/{id}/status', [FormDataListController::class, 'status'])->name('status');
+    });
+
+
+    Route::prefix('form_data')
+    ->name('form_data.')->group(function () {
+        Route::get('/index_form_data_examp', [FormDataController::class, 'index'])->name('index');
+        Route::get('/create_form_data_examp', [FormDataController::class, 'create'])->name('create');
+        Route::post('/', [FormDataController::class, 'store'])->name('store');
+        Route::get('/{id}/show', [FormDataController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [FormDataController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [FormDataController::class, 'update'])->name('update');
+        Route::delete('/{id}', [FormDataController::class, 'destroy'])->name('destroy');
+        Route::put('/{id}/status', [FormDataController::class, 'status'])->name('status');
     });
 
 
