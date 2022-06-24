@@ -16,7 +16,9 @@ use Morilog\Jalali\Jalalian;
 
 use App\Models\Loginhistorie;
 use App\Models\Course\Teacher;
+use App\Models\Eform\Form;
 use App\Models\Eform\FormCategory;
+use App\Models\Eform\FormColoumnMult;
 use App\Models\Eform\FormSubcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -214,6 +216,26 @@ if(! function_exists('Change_status') ) {
         if($table=='form_subcategories'){
             $table= FormSubcategory::find($id);
             Alert::success('تغییر وضعیت زیرگروه با موفقیت انجام شد', 'تغییرات وضعیت زیرگروه با موفقیت انجام شد');
+        }
+
+
+
+        if($table=='forms'){
+            $table= Form::find($id);
+            Alert::success('تغییر وضعیت فرم با موفقیت انجام شد', 'تغییرات وضعیت فرم با موفقیت انجام شد');
+        }
+
+
+        if($table=='form_coloumns'){
+            $table= FormColoumn::find($id);
+            Alert::success('تغییر وضعیت فیلد با موفقیت انجام شد', 'تغییرات وضعیت فیلد با موفقیت انجام شد');
+        }
+
+
+
+        if($table=='form_coloumn_mults'){
+            $table= FormColoumnMult::find($id);
+            Alert::success('تغییر وضعیت پارامتر با موفقیت انجام شد', 'تغییرات وضعیت پارامتر با موفقیت انجام شد');
         }
 
 

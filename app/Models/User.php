@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Course\CourseRequest;
 use App\Models\Course\Exam;
 use App\Models\Course\ExamOnline;
+use App\Models\Eform\FormDataList;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,16 +59,12 @@ class User extends Authenticatable
     }
 
 
-    public function course_requests()
+    public function form_data_lists()
     {
-        return $this->hasMany(CourseRequest::class , 'user_id' );
+        return $this->hasMany(FormDataList::class , 'user_id' );
     }
- 
 
-    public function exam_onlines()
-    {
-        return $this->hasMany(ExamOnline::class , 'user_id' );
-    }
+
 
 
 

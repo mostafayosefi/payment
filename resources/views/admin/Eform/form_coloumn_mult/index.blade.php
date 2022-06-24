@@ -1,9 +1,27 @@
+@if ( $id!='all')
+@php  $breadcrumb   = [
+
+['title' => 'لیست فرم ها', 'url' => route('admin.form.form.index')],
+        ['title' => $form_coloumns->form->name , 'url' => route('admin.form.form.show',  $form_coloumns->form )],
+        ['title' => $form_coloumns->name , 'url' => route('admin.form.form_coloumn.index',  $form_coloumns->form )],
+        ['title' => $form_coloumns->name , 'class' => 'active'],
+        ['title' => 'ویرایش فیلد  ', 'class' => 'active'],
+
+        ]  ;  @endphp
+
+@else
+
+@php  $breadcrumb =  [
+        ['title' => 'ویرایش فیلد  ', 'class' => 'active']
+
+        ]  ;  @endphp
+@endif
+
+
 @component('admin.layouts.content',[
     'title'=>'مشاهده فیلدها',
     'tabTitle'=>'مشاهده فیلدها ',
-    'breadcrumb'=>[
-            ['title'=>'مشاهده فیلدها','class' => 'active']
-    ]
+    'breadcrumb'=>$breadcrumb
 
     ])
 

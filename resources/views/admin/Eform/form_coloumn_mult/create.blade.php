@@ -11,7 +11,7 @@
               function fetch_form(val){
                   var vall = document.getElementById("form_id").value;$.ajax({
                       type: 'get',
-                      url: '../../../admin/fetch/form/'+val+'',
+                      url: '../../../admin/fetch/form/'+val+'/1'+'',
                       data: {get_option:val},
                       success: function (response) {document.getElementById("form_coloumn_id").innerHTML=response;}
                   });
@@ -65,9 +65,6 @@
 @include('admin.layouts.table.selectbox', [ 'allforeachs' => $forms ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
 @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => '  فیلد   ' ,  'value' =>   old('form_coloumn_id') , 'required'=>'required'  , 'index_id'=>'form_coloumn_id' ])
 
-                                          <div id="form_coloumn_mults" >
-
-                                          </div>
      @include('admin.Eform.form_coloumn_mult.create_table', [ 'guard' =>   'admin' ])
 
 
@@ -86,6 +83,9 @@
                               </form>
 
 
+                              <div id="form_coloumn_mults" >
+
+                            </div>
 
                           </div>
                       </div>

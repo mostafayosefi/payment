@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
-use App\Models\Eform\FormDataList;
 use Illuminate\Http\Request;
+use App\Models\Eform\FormCategory;
+use App\Models\Eform\FormDataList;
+use App\Http\Controllers\Controller;
+use App\Models\Eform\FormSubcategory;
+use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormDataListController extends Controller
@@ -18,7 +21,11 @@ class FormDataListController extends Controller
 
 
     public function create(){
-        return view('admin.Eform.form_data_list.create' );
+        $form_categories= FormCategory::all();
+        $form_subcategories= FormSubcategory::all();
+        $users= User::all();
+        return view('admin.Eform.form_data_list.create' , compact(['form_categories' , 'form_subcategories'  , 'users' ] ));
+
     }
 
     public function edit($id){
@@ -30,15 +37,14 @@ class FormDataListController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'text' => 'required',
+            'form_id' => 'required',
+            'user_id' => 'required',
         ]);
         $data = $request->all();
-        $data['image']  =  uploadFile($request->file('image'),'images/form_data_lists','');
 
        FormDataList::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
-        return redirect()->route('admin.Eform.form_data_list.index');
+        return redirect()->route('admin.form.form_data_list.index');
     }
 
     public function show($id)

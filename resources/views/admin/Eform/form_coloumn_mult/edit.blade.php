@@ -4,7 +4,7 @@
       'breadcrumb' => [
         ['title' => 'مشاهده فرم ها', 'url' => route('admin.form.form.index')],
         ['title' => $form_coloumn_mult->form_coloumn->form->name , 'url' => route('admin.form.form.show', $form_coloumn_mult->form_coloumn->form_id )],
-        ['title' => $form_coloumn_mult->form_coloumn->name , 'url' => route('admin.form.form_coloumn.show', $form_coloumn_mult->form_coloumn_id )],
+        ['title' => $form_coloumn_mult->form_coloumn->name , 'url' => route('admin.form.form_coloumn.index', $form_coloumn_mult->form_coloumn_id )],
         ['title' => $form_coloumn_mult->name , 'class' => 'active'],
         ['title' => 'ویرایش پارامتر  ', 'class' => 'active'],
     ],
@@ -44,8 +44,14 @@
 
                                         <div class="form-group">
                                             <label for="name">فرم  </label>
-                                            <input type="text" class="form-control" id="name" autocomplete="off"
-                                                placeholder="   فرم  " name="course_name" value="{{$form_coloumn_mult->form_coloumn->name}}" disabled >
+                                            <input type="text" class="form-control" id="form_id" autocomplete="off"
+                                                placeholder="   فرم  " name="form_id" value="{{$form_coloumn_mult->form_coloumn->form->name}}" disabled >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">فیلد  </label>
+                                            <input type="text" class="form-control" id="form_coloumn_id" autocomplete="off"
+                                                placeholder="   فیلد  " name="form_coloumn_id" value="{{$form_coloumn_mult->form_coloumn->name}}" disabled >
                                         </div>
 
 
@@ -55,13 +61,6 @@
                                                 placeholder=" نام پارامتر  " name="name" value="{{$form_coloumn_mult->name}}">
                                         </div>
 
-
-
-                                        <div class="form-group">
-                                            <label for="link">لینک پارامتر</label>
-                                            <input type="text" class="form-control" id="link" autocomplete="off"
-                                                placeholder=" لینک پارامتر  " name="link" value="{{$form_coloumn_mult->link}}">
-                                        </div>
 
 
 

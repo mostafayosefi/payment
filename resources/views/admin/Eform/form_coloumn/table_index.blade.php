@@ -40,7 +40,7 @@
 
 <td>
 @include('admin.layouts.table.statusacount', [$admin ,'route' =>
-route('admin.form.form_coloumn.status', $admin->id ) , 'myname' => ' زیرگروه '.$admin->name.' ' ])
+route('admin.form.form_coloumn.status', $admin->id ) , 'myname' => ' فیلد '.$admin->name.' ' ])
 </td>
 
 <td>

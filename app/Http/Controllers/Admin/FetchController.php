@@ -22,20 +22,32 @@ class FetchController extends Controller
 
 
     }
-    public function form(  $value){
+    public function form(  $value  , $multi ){
 
         $forms= Form::find($value);
         $form_coloumns= FormColoumn::where([ ['form_id' ,$value], ])->get();
-        return view('admin.Eform.fetch.form' , compact(['value' , 'forms' , 'form_coloumns'  ]));
+        return view('admin.Eform.fetch.form' , compact(['value' , 'forms' , 'form_coloumns'  , 'multi' ]));
 
 
     }
 
-    public function form_coloumn(  $value){
+    public function form_coloumn(  $value ){
 
         $form_coloumns= FormColoumn::find($value);
         $form_coloumn_mults= FormColoumnMult::where([ ['form_coloumn_id' ,$value], ])->get();
-        return view('admin.Eform.fetch.form_coloumn' , compact(['value' , 'form_coloumn_mults' , 'form_coloumns'  ]));
+        return view('admin.Eform.fetch.form_coloumn' , compact(['value' , 'form_coloumn_mults' , 'form_coloumns' ]));
+
+
+    }
+
+
+
+    public function form_fetch(  $value ){
+
+
+        $forms= Form::where([ ['form_subcategory_id' ,$value], ])->get();
+ 
+        return view('admin.Eform.fetch.form_fetch' , compact(['value' , 'forms'   ]));
 
 
     }

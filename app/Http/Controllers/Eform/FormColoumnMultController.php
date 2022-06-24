@@ -13,13 +13,16 @@ class FormColoumnMultController extends Controller
 {
 
 
-    public function index($form_coloumn_id=null){
-        if($form_coloumn_id==null){
-            $form_coloumn_mults= FormColoumnMult::orderBy('priority','asc')->get();
-        }else{
-            $form_coloumn_mults= FormColoumnMult::where( [ ['form_coloumn_id','=',$form_coloumn_id], ] )->orderBy('priority','asc')->get();
+    public function index($id){
+        $form_coloumn_mults= FormColoumnMult::orderBy('priority','asc')->get();
+        $form_coloumns= FormColoumn::orderBy('priority','asc')->get();
+        if($id!='all'){
+        $form_coloumn_mults= FormColoumnMult::where( [ ['form_coloumn_id','=',$id], ] )->orderBy('priority','asc')->get();
+        $form_coloumns= FormColoumn::find($id);
+
         }
-        return view('admin.Eform.form_coloumn_mult.index' , compact(['form_coloumn_mults'  ]));
+
+        return view('admin.Eform.form_coloumn_mult.index' , compact(['form_coloumn_mults' , 'id' , 'form_coloumns'  ]));
     }
 
 
@@ -39,15 +42,16 @@ class FormColoumnMultController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required', 
+         $request->validate([
+            'name' => 'required',
         ]);
         $data = $request->all();
         $data['image']  =  uploadFile($request->file('image'),'images/form_coloumn_mults','');
 
+        $data['priority']=1;
        FormColoumnMult::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
-        return redirect()->route('admin.Eform.form_coloumn_mult.index');
+        return redirect()->route('admin.form.form_coloumn_mult.index' , $request->form_coloumn_id);
     }
 
     public function show($id)
@@ -60,8 +64,7 @@ class FormColoumnMultController extends Controller
     public function update(Request $request, $id , FormColoumnMult $form_coloumn_mult){
         $request->validate([
             'name' => 'required',
-            'text' => 'required',
-        ]);
+         ]);
         $form_coloumn_mult=FormColoumnMult::find($id);
         $data = $request->all();
         $data['image']= $form_coloumn_mult->image;

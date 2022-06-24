@@ -1,8 +1,8 @@
 @component('admin.layouts.content',[
-    'title'=>'مشاهده فرمهای کاربران',
-    'tabTitle'=>'مشاهده فرمهای کاربران ',
+    'title'=>'مشاهده درخواستهای کاربران',
+    'tabTitle'=>'مشاهده درخواستهای کاربران ',
     'breadcrumb'=>[
-            ['title'=>'مشاهده فرمهای کاربران','class' => 'active']
+            ['title'=>'مشاهده درخواستهای کاربران','class' => 'active']
     ]])
 
 
@@ -17,10 +17,10 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">لیست فرمهای کاربران</h6>
+          <h6 class="card-title">لیست درخواستهای کاربران</h6>
           <div class="table-responsive">
 
-@if($form_categories)
+@if($form_data_lists)
             <table id="dataTableExample" class="table">
               <thead>
                 <tr>
@@ -28,36 +28,28 @@
                   <th>نام فرم</th>
                   <th>نام کاربر</th>
                   <th>تاریخ ایجاد</th>
-                  <th>وضعیت</th>
-                  <th>ویرایش</th>
-                  <th>مشاهده زیرگروه</th>
+                   <th>ویرایش درخواست</th>
+                   <th>مشاهده درخواست</th>
                   <th>حذف</th>
                 </tr>
               </thead>
               <tbody>
 
 
-@foreach($form_categories as $key => $admin)
+@foreach($form_data_lists as $key => $admin)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-<td>{{$admin->name}}</td>
-<td>{{$admin->link}}</td>
+<td>{{$admin->form->name}}</td>
+<td>{{$admin->user->name}}</td>
 <td>{{ date_frmat($admin->created_at) }}</td>
 
-<td>
-    @include('admin.layouts.table.statusacount', [$admin ,'route' =>
-    route('admin.form.form_category.status', $admin->id ) , 'myname' => ' گروه '.$admin->name.' ' ])
-</td>
-
  <td>
-<a href="{{ route('admin.form.form_category.edit', $admin) }}">
-<span class="btn btn-success" >  <i data-feather="edit"></i></span>
+<a href="{{ route('admin.form.form_data.edit', $admin) }}">
+<span class="btn btn-primary" >  <i data-feather="edit"></i></span>
 </a>
 </td>
-
-
  <td>
-<a href="{{ route('admin.form.form_category.show', $admin) }}">
+<a href="{{ route('admin.form.form_data.show', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="eye"></i></span>
 </a>
 </td>

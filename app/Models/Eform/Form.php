@@ -23,6 +23,13 @@ class Form extends Model
     }
 
 
+    public function form_data_lists()
+    {
+        return $this->hasMany(FormDataList::class , 'user_id' );
+    }
+
+
+
 
 
 

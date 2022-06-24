@@ -12,6 +12,7 @@
                                 <thead>
                                 <tr>
                                     <th>ردیف</th>
+                                    <th>فرم/فیلد  </th>
                                     <th>نام پارامتر</th>
                                     <th>وضعیت</th>
                                     <th>ویرایش</th>
@@ -21,9 +22,12 @@
                                 <tbody>
 
 
-                                @foreach ($form_coloumn_mults as $admin)
+                                @foreach ($form_coloumn_mults as $key => $admin)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
+                                        <td>{{$admin->form_coloumn->form->name}}/
+                                            {{$admin->form_coloumn->name}}
+                                        </td>
                                         <td>{{$admin->name}}</td>
 
                                         <td>

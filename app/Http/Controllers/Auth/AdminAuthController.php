@@ -63,6 +63,9 @@ return redirect()->route('admin.dashboard');
 //     'username' => 'admin' ,
 //     'email'=> 'admin@gmail.com',
 //     'password'=> Hash::make('123456'),
+//     'address'=> 'address',
+//     'image'=> 'image',
+//     'tell'=> 'tell',
 // ]);
 
         // dd('hi');

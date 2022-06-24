@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
-use App\Models\Eform\FormData;
 use Illuminate\Http\Request;
+use App\Models\Eform\FormData;
+use App\Models\Eform\FormDataList;
+use App\Http\Controllers\Controller;
+use App\Models\Eform\FormColoumn;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormDataController extends Controller
@@ -22,8 +24,13 @@ class FormDataController extends Controller
     }
 
     public function edit($id){
-        $form_data=FormData::find($id);
-        return view('admin.Eform.form_data.edit' , compact(['form_data'  ]));
+         $count=FormData::where([ ['form_data_list_id','=' , $id], ])->count();
+         $form_data=FormData::where([ ['form_data_list_id','=' , $id], ])->get();
+         $form_data_list=FormDataList::where([ ['id','=' , $id], ])->first();
+
+         $form_coloumns = FormColoumn::where([  ['form_id' , '=' , $form_data_list->form_id  ], ])->get();
+
+        return view('admin.Eform.form_data.edit' , compact(['form_data' , 'form_data_list' , 'form_coloumns' , 'id' ]));
     }
 
 
@@ -48,17 +55,45 @@ class FormDataController extends Controller
 
 
 
-    public function update(Request $request, $id , FormData $form_data){
-        $request->validate([
-            'name' => 'required',
-            'text' => 'required',
+    public function update(Request $request, $id  ){
+
+        $form_data_list=FormDataList::find($id);
+        $form_data=FormData::where([ [ 'form_data_list_id','=', $id ] ])->get();
+        $count=FormData::where([ [ 'form_data_list_id','=', $id ] ])->count();
+
+
+
+        foreach($form_data_list->form->form_coloumns as $admin){
+            $form_field_name = $admin->form_field->name;
+            $form_coloumn_id = $admin->id;
+
+            $m=$form_field_name.$form_coloumn_id;
+
+            if(($form_field_name=='input')||($form_field_name=='password')||($form_field_name=='textaria')||($form_field_name=='datepersian')){
+                $mydata = $request->$m;
+               }
+
+            if(($form_field_name=='select')||($form_field_name=='checkbox')||($form_field_name=='radiobox')){
+                foreach($admin->form_coloumn_mults as $mult){
+                    if($request->$m==$mult->id) {
+                    $mydata=$mult->id;
+                    }
+
+                }
+            }
+
+
+        $newUser = FormData::updateOrCreate([
+            'form_data_list_id'   => $id,
+            'form_coloumn_id'   => $form_coloumn_id,
+        ],[
+            'data'     => $mydata,
         ]);
-        $form_data=FormData::find($id);
-        $data = $request->all();
-        $data['image']= $form_data->image;
-        $data['image']  =  uploadFile($request->file('image'),'images/form_datas',$form_data->image);
-        $form_data->update($data);
-        Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
+
+
+        }
+
+        Alert::success('با موفقیت ویرایش شد', 'اطلاعات درخواست کاربر موفقیت ویرایش شد');
         return back();
     }
 

@@ -15,7 +15,7 @@ class FormColoumnController extends Controller
 
     public function index($id){
 
-        if($id){
+        if($id!='all'){
             $form_coloumns= FormColoumn::where([ ['form_id' , $id] ])->orderBy('priority','asc')->get();
             $count= FormColoumn::where([ ['form_id' , $id] ])->orderBy('priority','asc')->count();
         }else{
@@ -126,7 +126,7 @@ class FormColoumnController extends Controller
     }
 
     public function status(Request $request , $id){
-        $status=Change_status($id,'form_columns');
+        $status=Change_status($id,'form_coloumns');
         return back();
     }
 

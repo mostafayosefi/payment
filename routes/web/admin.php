@@ -197,8 +197,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_category')
     ->name('form_category.')->group(function () {
-        Route::get('/indexform_category', [FormCategoryController::class, 'index'])->name('index');
-        Route::get('/createform_category', [FormCategoryController::class, 'create'])->name('create');
+        Route::get('/indexformcategory', [FormCategoryController::class, 'index'])->name('index');
+        Route::get('/createformcategory', [FormCategoryController::class, 'create'])->name('create');
         Route::post('/', [FormCategoryController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormCategoryController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormCategoryController::class, 'edit'])->name('edit');
@@ -210,8 +210,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_subcategory')
     ->name('form_subcategory.')->group(function () {
-        Route::get('/indexform_subcategory', [FormSubcategoryController::class, 'index'])->name('index');
-        Route::get('/createform_subcategory', [FormSubcategoryController::class, 'create'])->name('create');
+        Route::get('/indexformsubcategory', [FormSubcategoryController::class, 'index'])->name('index');
+        Route::get('/createformsubcategory', [FormSubcategoryController::class, 'create'])->name('create');
         Route::post('/', [FormSubcategoryController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormSubcategoryController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormSubcategoryController::class, 'edit'])->name('edit');
@@ -226,8 +226,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_field')
     ->name('form_field.')->group(function () {
-        Route::get('/indexform_field', [FormFieldController::class, 'index'])->name('index');
-        Route::get('/createform_field', [FormFieldController::class, 'create'])->name('create');
+        Route::get('/indexformfield', [FormFieldController::class, 'index'])->name('index');
+        Route::get('/createformfield', [FormFieldController::class, 'create'])->name('create');
         Route::post('/', [FormFieldController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormFieldController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormFieldController::class, 'edit'])->name('edit');
@@ -238,8 +238,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form')
     ->name('form.')->group(function () {
-        Route::get('/index_form', [FormController::class, 'index'])->name('index');
-        Route::get('/create_form', [FormController::class, 'create'])->name('create');
+        Route::get('/indexform', [FormController::class, 'index'])->name('index');
+        Route::get('/createform', [FormController::class, 'create'])->name('create');
         Route::post('/', [FormController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormController::class, 'edit'])->name('edit');
@@ -251,8 +251,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_coloumn')
     ->name('form_coloumn.')->group(function () {
-        Route::get('/index/{id?}/index_form_coloumn', [FormColoumnController::class, 'index'])->name('index');
-        Route::get('/create_form_coloumn', [FormColoumnController::class, 'create'])->name('create');
+        Route::get('/index/{id?}/indexformcoloumn', [FormColoumnController::class, 'index'])->name('index');
+        Route::get('/createformcoloumn', [FormColoumnController::class, 'create'])->name('create');
         Route::post('/', [FormColoumnController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormColoumnController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormColoumnController::class, 'edit'])->name('edit');
@@ -265,8 +265,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_coloumn_mult')
     ->name('form_coloumn_mult.')->group(function () {
-        Route::get('/index_form_coloumn_mult/{form_coloumn_id?}', [FormColoumnMultController::class, 'index'])->name('index');
-        Route::get('/create_form_coloumn_mult', [FormColoumnMultController::class, 'create'])->name('create');
+        Route::get('/index/{id?}/indexformcoloumnmult', [FormColoumnMultController::class, 'index'])->name('index');
+        Route::get('/createformcoloumnmult', [FormColoumnMultController::class, 'create'])->name('create');
         Route::post('/', [FormColoumnMultController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormColoumnMultController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormColoumnMultController::class, 'edit'])->name('edit');
@@ -279,8 +279,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_data_list')
     ->name('form_data_list.')->group(function () {
-        Route::get('/index_form_data_list', [FormDataListController::class, 'index'])->name('index');
-        Route::get('/create_form_data_list', [FormDataListController::class, 'create'])->name('create');
+        Route::get('/indexformdatalist', [FormDataListController::class, 'index'])->name('index');
+        Route::get('/createformdatalist', [FormDataListController::class, 'create'])->name('create');
         Route::post('/', [FormDataListController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormDataListController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormDataListController::class, 'edit'])->name('edit');
@@ -292,8 +292,8 @@ Route::prefix('form')->name('form.')->group(function () {
 
     Route::prefix('form_data')
     ->name('form_data.')->group(function () {
-        Route::get('/index_form_data_examp', [FormDataController::class, 'index'])->name('index');
-        Route::get('/create_form_data_examp', [FormDataController::class, 'create'])->name('create');
+        Route::get('/indexformdataexamp', [FormDataController::class, 'index'])->name('index');
+        Route::get('/createformdataexamp', [FormDataController::class, 'create'])->name('create');
         Route::post('/', [FormDataController::class, 'store'])->name('store');
         Route::get('/{id}/show', [FormDataController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [FormDataController::class, 'edit'])->name('edit');
@@ -316,8 +316,9 @@ Route::prefix('fetch')
 ->name('fetch.')->group(function () {
 
     Route::get('/form_subcategory/{value}', [FetchController::class, 'form_subcategory'])->name('form_subcategory');
-    Route::get('/form/{value}', [FetchController::class, 'form'])->name('form');
+    Route::get('/form/{value}/{multi?}', [FetchController::class, 'form'])->name('form');
     Route::get('/form_coloumn/{value}', [FetchController::class, 'form_coloumn'])->name('form_coloumn');
+    Route::get('/form_fetch/{value}', [FetchController::class, 'form_fetch'])->name('form_fetch');
 
 });
 

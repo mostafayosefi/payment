@@ -10,11 +10,15 @@ class FormDataList extends Model
 {
 
     protected $fillable = [
-        'user_id',
+        'user_id','form_id',
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function form(){
+        return $this->belongsTo(Form::class);
     }
 
     public function form_datas(){
