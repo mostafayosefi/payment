@@ -13,5 +13,11 @@ class Currency extends Model
     ];
 
 
+    public function forms(){
+        return $this->hasMany(Form::class , 'currency_id');
+    }
+
+
+
 
 }

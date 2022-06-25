@@ -25,9 +25,14 @@ class Form extends Model
 
     public function form_data_lists()
     {
-        return $this->hasMany(FormDataList::class , 'user_id' );
+        return $this->hasMany(FormDataList::class , 'form_id' );
     }
 
+
+
+    public function currency(){
+        return $this->belongsTo(Currency::class);
+    }
 
 
 
