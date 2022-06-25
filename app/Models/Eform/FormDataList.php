@@ -10,7 +10,7 @@ class FormDataList extends Model
 {
 
     protected $fillable = [
-        'user_id','form_id',
+        'user_id','form_id','price','status',
     ];
 
     public function user(){

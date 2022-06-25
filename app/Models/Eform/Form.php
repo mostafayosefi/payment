@@ -9,7 +9,7 @@ class Form extends Model
 {
 
     protected $fillable = [
-        'name', 'form_subcategory_id', 'group', 'subgroup', 'status', 'link', 'image',
+        'name', 'form_subcategory_id', 'group', 'subgroup', 'status', 'link', 'image', 'currency_id', 'money', 'price',
     ];
 
 
