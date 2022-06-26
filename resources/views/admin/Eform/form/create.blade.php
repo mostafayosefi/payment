@@ -88,6 +88,7 @@
                                                   placeholder=" لینک فرم  " name="link" value="{{ old('link') }}"   >
                                           </div>
 
+                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>   old('form_template_id') , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
 
 
 

@@ -25,6 +25,22 @@
 
 
 
+          <li class="nav-item  ">
+              <a href="#" class="nav-link">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">گیفت کارت</span>
+              </a>
+          </li>
+
+
+
+          <li class="nav-item  ">
+              <a href="#" class="nav-link">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  پی پال/اسکریل/وب مانی</span>
+              </a>
+          </li>
+
 
 
 

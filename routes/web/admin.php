@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Eform\FormTemplateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PageController;
@@ -302,6 +303,17 @@ Route::prefix('form')->name('form.')->group(function () {
         Route::put('/{id}/status', [FormDataController::class, 'status'])->name('status');
     });
 
+
+    Route::prefix('form_template')
+        ->name('form_template.')->group(function () {
+            Route::get('/indexform_template', [FormTemplateController::class, 'index'])->name('index');
+            Route::get('/createform_template', [FormTemplateController::class, 'create'])->name('create');
+            Route::post('/', [FormTemplateController::class, 'store'])->name('store');
+            Route::get('/{id}', [FormTemplateController::class, 'show'])->name('show');
+            Route::get('/{id}/edit', [FormTemplateController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [FormTemplateController::class, 'update'])->name('update');
+            Route::delete('/{id}', [FormTemplateController::class, 'destroy'])->name('destroy');
+        });
 
 
 

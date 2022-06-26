@@ -9,7 +9,8 @@ class Form extends Model
 {
 
     protected $fillable = [
-        'name', 'form_subcategory_id', 'group', 'subgroup', 'status', 'link', 'image', 'currency_id', 'money', 'price',
+        'name', 'form_subcategory_id', 'group', 'subgroup', 'status', 'link',
+        'image', 'currency_id', 'money', 'price','form_template_id',
     ];
 
 
@@ -32,6 +33,10 @@ class Form extends Model
 
     public function currency(){
         return $this->belongsTo(Currency::class);
+    }
+
+    public function form_template(){
+        return $this->belongsTo(FormTemplate::class);
     }
 
 

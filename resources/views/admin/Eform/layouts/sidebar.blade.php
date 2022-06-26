@@ -2,6 +2,27 @@
 
           <li class="nav-item nav-category"> مدیریت فرم ها  </li>
 
+
+
+          <li class="nav-item  {{ isActive(['admin.form.form_template.create' , 'admin.form.form_template.index' , 'admin.form.form_template.edit'])}}  ">
+              <a class="nav-link" data-toggle="collapse" href="#form_template" role="button" aria-expanded="false" aria-controls="form_template">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  مدیریت قالبها </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse  {{ isShow(['admin.form.form_template.create' , 'admin.form.form_template.index', 'admin.form.form_template.edit'])}}   "  id="form_template">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="{{ route('admin.form.form_template.create') }}" class="nav-link   {{ isActive(['admin.form.form_template.create']) }}  ">ایجاد قالب</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="{{ route('admin.form.form_template.index') }}" class="nav-link   {{ isActive(['admin.form.form_template.index', 'admin.form.form_template.edit']) }}  ">مشاهده قالبها </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+
+
           <li class="nav-item  {{ isActive(['admin.form.form_category.index' , 'admin.form.form_category.create' , 'admin.form.form_category.edit' , 'admin.form.form_category.show' ,
            'admin.form.form_subcategory.index' , 'admin.form.form_subcategory.create' , 'admin.form.form_subcategory.edit'  , 'admin.form.form_subcategory.show' ])}}  ">
             <a class="nav-link" data-toggle="collapse" href="#form_category" role="button" aria-expanded="false" aria-controls="form_category">
@@ -130,3 +151,63 @@
             </div>
           </li>
 
+
+
+
+          <li class="nav-item nav-category"> مدیریت همه فرمهای سایت  </li>
+
+
+
+          <li class="nav-item   ">
+              <a class="nav-link" data-toggle="collapse" href="#giftcard" role="button" aria-expanded="false" aria-controls="giftcard">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  مدیریت گیفت کارتها </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse    "  id="giftcard">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link    ">درخواستهای گیفت کارت</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link     ">مشاهده گیفت کارتها </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+
+          <li class="nav-item   ">
+              <a class="nav-link" data-toggle="collapse" href="#paypal" role="button" aria-expanded="false" aria-controls="paypal">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  مدیریت پی پال </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse    "  id="paypal">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link    ">درخواستهای پی پال </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link     ">مشاهده پی پال  </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+
+          <li class="nav-item   ">
+              <a class="nav-link" data-toggle="collapse" href="#skrill" role="button" aria-expanded="false" aria-controls="skrill">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  مدیریت اسکریل   </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse    "  id="skrill">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="#" class="nav-link    ">درخواستهای اسکریل</a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link     ">مشاهده اسکریل  </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
