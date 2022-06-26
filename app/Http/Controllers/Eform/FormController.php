@@ -9,6 +9,7 @@ use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormSubcategory;
+use App\Models\Eform\FormTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormController extends Controller
@@ -25,14 +26,16 @@ class FormController extends Controller
 
         $form_categories= FormCategory::all();
         $form_subcategories= FormSubcategory::all();
-        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' ]));
+        $form_templates= FormTemplate::all();
+        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' , 'form_templates' ]));
     }
 
     public function edit($id){
         $form=Form::find($id);
         $form_categories= FormCategory::all();
         $form_subcategories= FormSubcategory::all();
-        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories'  ]));
+        $form_templates= FormTemplate::all();
+        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories', 'form_templates'   ]));
     }
 
 

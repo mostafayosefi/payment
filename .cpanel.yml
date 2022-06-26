@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/azmoonpte/public_html/newpayment
+    - export DEPLOYPATH=/home/tehranxe/public_html/payment
     - /bin/cp -r app $DEPLOYPATH
     - /bin/cp -r resources $DEPLOYPATH
     - /bin/cp -r routes $DEPLOYPATH
