@@ -92,9 +92,9 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', [AdminAuthController::class, 'getLogin'])->name('homepage');
+
+
 
 Auth::routes();
 
