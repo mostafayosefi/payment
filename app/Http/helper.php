@@ -16,6 +16,7 @@ use Morilog\Jalali\Jalalian;
 
 use App\Models\Loginhistorie;
 use App\Models\Course\Teacher;
+use App\Models\Eform\Currency;
 use App\Models\Eform\Form;
 use App\Models\Eform\FormCategory;
 use App\Models\Eform\FormColoumnMult;
@@ -236,6 +237,12 @@ if(! function_exists('Change_status') ) {
         if($table=='form_coloumn_mults'){
             $table= FormColoumnMult::find($id);
             Alert::success('تغییر وضعیت پارامتر با موفقیت انجام شد', 'تغییرات وضعیت پارامتر با موفقیت انجام شد');
+        }
+
+
+        if($table=='currencies'){
+            $table= Currency::find($id);
+            Alert::success('تغییر وضعیت ارز با موفقیت انجام شد', 'تغییرات وضعیت ارز با موفقیت انجام شد');
         }
 
 

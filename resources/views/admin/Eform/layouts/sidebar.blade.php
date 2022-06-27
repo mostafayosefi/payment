@@ -1,4 +1,28 @@
 
+          <li class="nav-item nav-category">   مدیریت مالی    </li>
+
+
+
+          <li class="nav-item  {{ isActive(['admin.form.currency.create' , 'admin.form.currency.index' , 'admin.form.currency.edit'])}}  ">
+              <a class="nav-link" data-toggle="collapse" href="#currency" role="button" aria-expanded="false" aria-controls="currency">
+                  <i class="link-icon" data-feather="list"></i>
+                  <span class="link-title">  مدیریت ارزها </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+              </a>
+              <div class="collapse  {{ isShow(['admin.form.currency.create' , 'admin.form.currency.index', 'admin.form.currency.edit'])}}   "  id="currency">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="{{ route('admin.form.currency.create') }}" class="nav-link   {{ isActive(['admin.form.currency.create']) }}  ">  ثبت ارز </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="{{ route('admin.form.currency.index') }}" class="nav-link   {{ isActive(['admin.form.currency.index', 'admin.form.currency.edit']) }}  ">مشاهده ارزها </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+
+
+
 
           <li class="nav-item nav-category"> مدیریت فرم ها  </li>
 

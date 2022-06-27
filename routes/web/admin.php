@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\Course\TeacherController;
 use App\Http\Controllers\Eform\FormSubcategoryController;
 use App\Http\Controllers\Admin\Course\CourseFileController;
 use App\Http\Controllers\Admin\Course\CourseTypeController;
+use App\Http\Controllers\Eform\CurrencyController;
 use App\Http\Controllers\Eform\FormColoumnController;
 use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormFieldController;
@@ -314,6 +315,21 @@ Route::prefix('form')->name('form.')->group(function () {
             Route::put('/{id}', [FormTemplateController::class, 'update'])->name('update');
             Route::delete('/{id}', [FormTemplateController::class, 'destroy'])->name('destroy');
         });
+
+
+
+Route::prefix('currency')
+->name('currency.')->group(function () {
+    Route::get('/indexcurrency', [CurrencyController::class, 'index'])->name('index');
+    Route::get('/createcurrency', [CurrencyController::class, 'create'])->name('create');
+    Route::post('/', [CurrencyController::class, 'store'])->name('store');
+    Route::get('/{id}', [CurrencyController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [CurrencyController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [CurrencyController::class, 'update'])->name('update');
+    Route::put('/{id}/status', [CurrencyController::class, 'status'])->name('status');
+    Route::delete('/{id}', [CurrencyController::class, 'destroy'])->name('destroy');
+});
+
 
 
 
