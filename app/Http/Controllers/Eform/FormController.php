@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Eform\FormField;
 use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
+use App\Models\Eform\Currency;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormSubcategory;
 use App\Models\Eform\FormTemplate;
@@ -27,7 +28,8 @@ class FormController extends Controller
         $form_categories= FormCategory::all();
         $form_subcategories= FormSubcategory::all();
         $form_templates= FormTemplate::all();
-        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' , 'form_templates' ]));
+        $currencies = Currency::all();
+        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' , 'form_templates'  , 'currencies' ]));
     }
 
     public function edit($id){
@@ -50,6 +52,8 @@ class FormController extends Controller
         ]);
         $data = $request->all();
         $data['image']  =  uploadFile($request->file('image'),'images/forms','');
+
+        $data['price'] = str_rep_price($data['price']);
 
        Form::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');

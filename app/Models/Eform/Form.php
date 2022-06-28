@@ -10,7 +10,7 @@ class Form extends Model
 
     protected $fillable = [
         'name', 'form_subcategory_id', 'group', 'subgroup', 'status', 'link',
-        'image', 'currency_id', 'money', 'price','form_template_id',
+        'image', 'currency_id', 'money', 'price','form_template_id', 'text' ,
     ];
 
 

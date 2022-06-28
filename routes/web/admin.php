@@ -27,6 +27,7 @@ use App\Http\Controllers\Eform\FormSubcategoryController;
 use App\Http\Controllers\Admin\Course\CourseFileController;
 use App\Http\Controllers\Admin\Course\CourseTypeController;
 use App\Http\Controllers\Eform\CurrencyController;
+use App\Http\Controllers\Eform\FormSettingController;
 use App\Http\Controllers\Eform\FormColoumnController;
 use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormFieldController;
@@ -197,6 +198,13 @@ Route::prefix('ticket')
 Route::prefix('form')->name('form.')->group(function () {
 
 
+    Route::prefix('form_seting')
+        ->name('form_seting.')->group(function () {
+            Route::get('/confirm_setting', [FormSettingController::class, 'index'])->name('index');
+            Route::post('/', [FormSettingController::class, 'store'])->name('store');
+        });
+
+
     Route::prefix('form_category')
     ->name('form_category.')->group(function () {
         Route::get('/indexformcategory', [FormCategoryController::class, 'index'])->name('index');
@@ -347,6 +355,7 @@ Route::prefix('fetch')
     Route::get('/form/{value}/{multi?}', [FetchController::class, 'form'])->name('form');
     Route::get('/form_coloumn/{value}', [FetchController::class, 'form_coloumn'])->name('form_coloumn');
     Route::get('/form_fetch/{value}', [FetchController::class, 'form_fetch'])->name('form_fetch');
+    Route::get('/form_currency/{value}', [FetchController::class, 'form_currency'])->name('form_currency');
 
 });
 

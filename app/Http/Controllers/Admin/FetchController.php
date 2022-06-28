@@ -8,6 +8,7 @@ use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormColoumnMult;
+use App\Models\Eform\Currency;
 use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -43,13 +44,14 @@ class FetchController extends Controller
 
 
     public function form_fetch(  $value ){
-
-
         $forms= Form::where([ ['form_subcategory_id' ,$value], ])->get();
- 
         return view('admin.Eform.fetch.form_fetch' , compact(['value' , 'forms'   ]));
+    }
 
 
+    public function form_currency(  $value ){
+        $currency= Currency::where([ ['id' ,$value], ])->first();
+        return view('admin.Eform.fetch.form_currency' , compact(['value' , 'currency'   ]));
     }
 
 

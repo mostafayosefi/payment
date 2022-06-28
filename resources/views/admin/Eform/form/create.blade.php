@@ -20,6 +20,17 @@
         }
 </script>
 
+<script>
+    function fetch_currency(vall){
+        var vall = document.getElementById("currency_id").value;$.ajax({
+            type: 'get',
+            url: '../../../admin/fetch/form_currency/'+vall+'',
+        data: {get_option:vall},
+        success: function (response) {document.getElementById("currency_name").innerHTML=response;}
+    });
+        }
+</script>
+
 @endslot
 
 
@@ -88,8 +99,29 @@
                                                   placeholder=" لینک فرم  " name="link" value="{{ old('link') }}"   >
                                           </div>
 
-                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>   old('form_template_id') , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
 
+                                          <div class="form-group">
+                                              <label for="text"> توضیحات فرم</label>
+                                              <textarea class="form-control" id="text" autocomplete="off"
+                                                        placeholder="توضیحات فرم" name="text" rows="6"
+                                              >{{ old('text') }}</textarea>
+                                          </div>
+
+
+                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>   old('form_template_id') , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
+                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>   old('currency_id') , 'required'=>'required'  , 'index_id'=>'currency_id' ])
+
+                                          <div id="currency_name"></div>
+                                          <hr>
+
+                                          @include('admin.layouts.table.java_price')
+
+                                          <div class="form-group">
+                                              <label for="price">هزینه فرم مربوطه (به ریال)</label>
+                                              <input type="text" class="form-control" id="price" autocomplete="off"
+                                                     placeholder="هزینه فرم مربوطه (به ریال)" name="price" value="{{ old('price') }}"
+                                                     onkeyup="separateNum(this.value,this);"  >
+                                          </div>
 
 
                                           <hr>
