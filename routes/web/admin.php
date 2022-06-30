@@ -33,6 +33,7 @@ use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormFieldController;
 use App\Http\Controllers\Eform\FormDataListController;
 use App\Http\Controllers\Eform\FormDataController;
+use App\Http\Controllers\Eform\PlaneController;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -339,6 +340,19 @@ Route::prefix('currency')
 });
 
 
+
+
+Route::prefix('plane')
+->name('plane.')->group(function () {
+    Route::get('/indexplane/{link}', [PlaneController::class, 'index'])->name('index');
+    Route::get('/createplane', [PlaneController::class, 'create'])->name('create');
+    Route::post('/', [PlaneController::class, 'store'])->name('store');
+    Route::get('/{id}/show', [PlaneController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [PlaneController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [PlaneController::class, 'update'])->name('update');
+    Route::delete('/{id}', [PlaneController::class, 'destroy'])->name('destroy');
+    Route::put('/{id}/status', [PlaneController::class, 'status'])->name('status');
+});
 
 
 });

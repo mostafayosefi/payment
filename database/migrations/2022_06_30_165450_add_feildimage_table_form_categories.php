@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTreefieldToForms extends Migration
+class AddFeildimageTableFormCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddTreefieldToForms extends Migration
      */
     public function up()
     {
-        Schema::table('forms', function (Blueprint $table) {
-            $table->string('money')->after('status')->nullable();
-            $table->string('price')->after('status')->default('0');
+        Schema::table('form_categories', function (Blueprint $table) {
+            $table->string('image')->after('status')->nullable();
         });
     }
 
@@ -26,9 +25,8 @@ class AddTreefieldToForms extends Migration
      */
     public function down()
     {
-        Schema::table('forms', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('price');
+        Schema::table('form_categories', function (Blueprint $table) {
+            $table->dropColumn('image');
         });
     }
 }

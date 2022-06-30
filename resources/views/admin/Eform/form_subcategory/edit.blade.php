@@ -63,6 +63,22 @@
                                         </div>
 
 
+                                        <div class="form-group">
+                                            <label for="text"> توضیحات </label>
+                                            <textarea class="form-control" id="text" autocomplete="off"
+                                                      placeholder="توضیحات " name="text" rows="6" >{{$form_subcategory->text}}</textarea>
+                                        </div>
+
+
+
+                                        @include('admin.layouts.table.avatarnul', [  'avatarimage' => $form_subcategory->image , 'class'=>'profile-pic' , 'style' => 'height: 100px;width: 100px;'  ])
+
+
+                                        <hr>
+                                        <div class="form-group" >
+                                        <label for="exampleInputUsername1"> آپلود عکس </label>
+                                        <input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
+                                        </div>
 
 
 

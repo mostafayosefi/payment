@@ -37,7 +37,8 @@ class FormController extends Controller
         $form_categories= FormCategory::all();
         $form_subcategories= FormSubcategory::all();
         $form_templates= FormTemplate::all();
-        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories', 'form_templates'   ]));
+        $currencies = Currency::all();
+        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories', 'form_templates'  , 'currencies'   ]));
     }
 
 
@@ -87,6 +88,11 @@ class FormController extends Controller
         $data = $request->all();
         $data['image']= $form->image;
         $data['image']  =  uploadFile($request->file('image'),'images/forms',$form->image);
+        $data['price'] = str_rep_price($data['price']);
+
+
+        // dd($data);
+
         $form->update($data);
         Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
         return back();

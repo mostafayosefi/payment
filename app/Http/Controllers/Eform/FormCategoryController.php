@@ -34,6 +34,7 @@ class FormCategoryController extends Controller
             'link' => 'required',
         ]);
         $data = $request->all();
+        $data['image']  =  uploadFile($request->file('image'),'images/form_categories','');
 
        FormCategory::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
@@ -59,7 +60,10 @@ class FormCategoryController extends Controller
         ]);
         $form_category=FormCategory::find($id);
         $data = $request->all();
+
         $data['image']= $form_category->image;
+        $data['image']  =  uploadFile($request->file('image'),'images/form_categories',$form_category->image);
+
         $form_category->update($data);
         Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
         return back();

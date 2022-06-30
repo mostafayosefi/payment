@@ -11,7 +11,7 @@ class FormSubcategory extends Model
 
 
     protected $fillable = [
-        'name', 'status', 'link','form_category_id',
+        'name', 'status', 'link', 'text', 'image','form_category_id',
     ];
 
 

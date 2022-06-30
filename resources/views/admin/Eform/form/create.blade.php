@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
       'title' => 'ایجاد فرم',
       'tabTitle' => 'ایجاد فرم',
-      'breadcrumb' => [['title' => 'لیست فرم ها', 'url' => route('admin.form.form_category.index')], ['title' => 'ایجاد فرم',
+      'breadcrumb' => [['title' => 'لیست فرم ها', 'url' => route('admin.form.form.index')], ['title' => 'ایجاد فرم',
       'class' => 'active']],
       ])
 
@@ -22,7 +22,7 @@
 
 <script>
     function fetch_currency(vall){
-        var vall = document.getElementById("currency_id").value;$.ajax({
+        var vall = document.getElementById("form_currency_id").value;$.ajax({
             type: 'get',
             url: '../../../admin/fetch/form_currency/'+vall+'',
         data: {get_option:vall},
@@ -109,7 +109,7 @@
 
 
                                           @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>   old('form_template_id') , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
-                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>   old('currency_id') , 'required'=>'required'  , 'index_id'=>'currency_id' ])
+                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>   old('form_currency_id') , 'required'=>'required'  , 'index_id'=>'form_currency_id' ])
 
                                           <div id="currency_name"></div>
                                           <hr>

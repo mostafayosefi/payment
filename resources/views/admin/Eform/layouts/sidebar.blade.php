@@ -194,7 +194,7 @@
                           <a href="#" class="nav-link    ">درخواستهای گیفت کارت</a>
                       </li>
                       <li class="nav-item">
-                          <a href="#" class="nav-link     ">مشاهده گیفت کارتها </a>
+                          <a href="{{ route('admin.form.plane.index' , 'giftcards') }}" class="nav-link     ">مشاهده گیفت کارتها </a>
                       </li>
                   </ul>
               </div>

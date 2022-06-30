@@ -6,7 +6,7 @@
             @if($index_id=='form_coloumn_id') id="form_coloumn_id"  onchange="fetch_form_coloumn(this.value);"    @endif
              @if($index_id=='form_category_id') id="form_category_id"  onchange="fetch_myselect_4(this.value);"   @endif
              @if($index_id=='form_subcategory_id') id="form_subcategory_id" onchange="fetch_form_fetch(this.value);"   @endif
-             @if($index_id=='currency_id') id="currency_id" onchange="fetch_currency(this.value);"   @endif
+             @if($index_id=='form_currency_id') id="form_currency_id" onchange="fetch_currency(this.value);"   @endif
               @if($index_id=='user_id') id="language"   onChange="totalIt()"  @endif
                >
             <option value="">لطفا {{$name_select}} مورد نظر را انتخاب نمایید</option>

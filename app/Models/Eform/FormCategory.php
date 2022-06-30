@@ -10,7 +10,7 @@ class FormCategory extends Model
 
 
     protected $fillable = [
-        'name', 'status', 'link',
+        'name', 'status', 'link', 'image','text',
     ];
 
 

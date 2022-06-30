@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
       'title' => 'مدیریت فیلدهای فرم',
       'tabTitle' => ' مدیریت فیلدهای فرم',
-      'breadcrumb' => [['title' => 'لیست فرم ها', 'url' => route('admin.form.form_coloumn.index')], ['title' => 'مدیریت فیلدهای فرم  ',
+      'breadcrumb' => [['title' => 'لیست فرم ها', 'url' => route('admin.form.form.index')], ['title' => 'مدیریت فیلدهای فرم  ',
       'class' => 'active']],
       ])
 

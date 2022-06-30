@@ -12,12 +12,24 @@
     function fetch_myselect_4(vall){
         var vall = document.getElementById("form_category_id").value;$.ajax({
             type: 'get',
-            url: '../../../admin/fetch/form_subcategory/'+vall+'',
+            url: '../../../../admin/fetch/form_subcategory/'+vall+'',
         data: {get_option:vall},
         success: function (response) {document.getElementById("form_subcategory_id").innerHTML=response;}
     });
         }
 </script>
+
+<script>
+    function fetch_currency(vall){
+        var vall = document.getElementById("form_currency_id").value;$.ajax({
+            type: 'get',
+            url: '../../../../admin/fetch/form_currency/'+vall+'',
+        data: {get_option:vall},
+        success: function (response) {document.getElementById("currency_name").innerHTML=response;}
+    });
+        }
+</script>
+
 @endslot
 
 
@@ -79,6 +91,59 @@
     <label for="link">لینک فرم</label>
     <input type="text" class="form-control" id="link" autocomplete="off"
         placeholder=" لینک فرم  " name="link" value="{{$form->link}}"   >
+</div>
+
+
+<div class="form-group">
+    <label for="text"> توضیحات فرم</label>
+    <textarea class="form-control" id="text" autocomplete="off"
+              placeholder="توضیحات فرم" name="text" rows="6" >{{$form->text}}</textarea>
+</div>
+
+
+
+
+@include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>  $form->form_template_id , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
+@include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>  $form->form_currency_id   , 'required'=>'required'  , 'index_id'=>'form_currency_id' ])
+
+<div id="currency_name">
+
+
+
+@if($form->form_currency_id)
+@foreach ($currencies as $currency )
+@if($form->form_currency_id==$currency->id)
+
+<div class="form-group">
+    <label for="group"> هزینه براساس {{$currency->name}}</label>
+    <input type="text" class="form-control" id="money" autocomplete="off"
+     name="money" placeholder=" هزینه براساس {{$currency->name}}"  value="{{$form->money}}">
+</div>
+
+@endif
+@endforeach
+@endif
+
+</div>
+<hr>
+
+@include('admin.layouts.table.java_price')
+
+<div class="form-group">
+    <label for="price">هزینه فرم مربوطه (به ریال)</label>
+    <input type="text" class="form-control" id="price" autocomplete="off"
+           placeholder="هزینه فرم مربوطه (به ریال)" name="price" value="{{$form->price}}"
+           onkeyup="separateNum(this.value,this);"  >
+</div>
+
+
+@include('admin.layouts.table.avatarnul', [  'avatarimage' => $form->image , 'class'=>'profile-pic' , 'style' => 'height: 100px;width: 100px;'  ])
+
+
+<hr>
+<div class="form-group" >
+<label for="exampleInputUsername1"> آپلود عکس </label>
+<input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
 </div>
 
 

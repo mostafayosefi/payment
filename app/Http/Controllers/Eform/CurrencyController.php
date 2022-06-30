@@ -58,8 +58,8 @@ class CurrencyController extends Controller
         ]);
         $currency=Currency::find($id);
         $data = $request->all();
-        $data['image']= $currency->image;
         $data['rate'] = str_rep_price($data['price']);
+        $data['image']= $currency->image;
         $data['image']  =  uploadFile($request->file('image'),'images/currencies',$currency->image);
         $currency->update($data);
         Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');

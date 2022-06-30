@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
-      'title' => 'ایجاد کتوگری فرم',
-      'tabTitle' => 'ایجاد کتوگری فرم',
-      'breadcrumb' => [['title' => 'لیست کتوگری ها', 'url' => route('admin.form.form_category.index')], ['title' => 'ایجاد کتوگری فرم',
+      'title' => 'ایجاد صفحه جدید',
+      'tabTitle' => 'ایجاد صفحه جدید',
+      'breadcrumb' => [['title' => 'لیست صفحات سایت', 'url' => route('admin.page.index')], ['title' => 'ایجاد صفحه جدید',
       'class' => 'active']],
       ])
 
@@ -18,7 +18,7 @@
                           <div class="card-body">
 
                               <div class="card-header card-header-border-bottom">
-                                  <h4> ایجاد کتوگری فرم </h4>
+                                  <h4> ایجاد صفحه جدید </h4>
                               </div>
 
                               <br>
@@ -27,7 +27,7 @@
                               @include('admin.layouts.errors')
 
 
-                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form_category.store') }}"
+                              <form class="forms-sample" method="POST" action="{{ route('admin.page.store') }}"
                                   enctype="multipart/form-data" onsubmit="return Validate(this);">
                                   @csrf
                                   <div class="row">
@@ -36,37 +36,30 @@
 
 
                                           <div class="form-group">
-                                              <label for="name">نام کتوگری</label>
-                                              <input type="text" class="form-control" id="name" autocomplete="off"
-                                                  placeholder=" نام کتوگری  " name="name" value="{{ old('name') }}">
-                                          </div>
-
-                                          <div class="form-group">
-                                              <label for="link">لینک کتوگری</label>
-                                              <input type="text" class="form-control" id="link" autocomplete="off"
-                                                  placeholder=" لینک کتوگری  " name="link" value="{{ old('link') }}">
+                                              <label for="title">عنوان</label>
+                                              <input type="text" class="form-control" id="title" autocomplete="off"
+                                                  placeholder=" عنوان  " name="title" value="{{ old('title') }}">
                                           </div>
 
 
                                           <div class="form-group">
-                                            <label for="text"> توضیحات </label>
-                                            <textarea class="form-control" id="text" autocomplete="off"
-                                                      placeholder="توضیحات " name="text" rows="6"
-                                            >{{ old('text') }}</textarea>
-                                        </div>
-
-
-                                          <hr>
-                                          <div class="form-group" >
-                                          <label for="exampleInputUsername1"> آپلود عکس </label>
-                                          <input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
+                                              <label for="text"> متن</label>
+                                              <textarea class="form-control"  autocomplete="off"
+                                                  placeholder="متن" name="text"  id="tinymceExample" rows="8"
+                                                   >{{ old('text') }}</textarea>
                                           </div>
 
 
+
+<hr>
+<div class="form-group" >
+<label for="exampleInputUsername1"> آپلود عکس </label>
+<input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
+</div>
 
 
                                           <div class="card-footer">
-                                              <a href="{{ route('admin.form.form_category.index') }}" class="btn btn-danger">بازگشت</a>
+                                              <a href="{{ route('admin.page.index') }}" class="btn btn-danger">بازگشت</a>
                                               <button type="submit" class="btn btn-primary float-right">ثبت</button>
                                           </div>
 

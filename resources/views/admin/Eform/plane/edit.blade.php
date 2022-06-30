@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
-      'title' => 'ویرایش کتوگری فرم',
-      'tabTitle' => ' ویرایش کتوگری فرم',
-      'breadcrumb' => [['title' => 'لیست کتوگری فرم', 'url' => route('admin.form.form_category.index')], ['title' => 'ویرایش کتوگری فرم  ',
+      'title' => 'ویرایش صفحه',
+      'tabTitle' => ' ویرایش صفحه',
+      'breadcrumb' => [['title' => 'لیست صفحات سایت', 'url' => route('admin.page.index')], ['title' => 'ویرایش صفحه  ',
       'class' => 'active']],
       ])
 
@@ -18,7 +18,7 @@
                           <div class="card-body">
 
                               <div class="card-header card-header-border-bottom">
-                                  <h4>ویرایش کتوگری فرم </h4>
+                                  <h4>ویرایش صفحه </h4>
                               </div>
 
                               <br>
@@ -27,7 +27,7 @@
                               @include('admin.layouts.errors')
 
 
-                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form_category.update', $form_category) }}"
+                              <form class="forms-sample" method="POST" action="{{ route('admin.page.update', $page) }}"
                                   enctype="multipart/form-data" onsubmit="return Validate(this);">
                                   @csrf
                                   <div class="row">
@@ -35,28 +35,21 @@
                                       <div class="col-sm-12">
 
 
-                                          <div class="form-group">
-                                              <label for="name">نام کتوگری</label>
-                                              <input type="text" class="form-control" id="name" autocomplete="off"
-                                                     placeholder=" نام کتوگری  " name="name" value="{{$form_category->name}}">
-                                          </div>
 
                                           <div class="form-group">
-                                              <label for="link">لینک کتوگری</label>
-                                              <input type="text" class="form-control" id="link" autocomplete="off"
-                                                     placeholder=" لینک کتوگری  " name="link" value="{{$form_category->link}}">
+                                              <label for="title">عنوان</label>
+                                              <input type="text" class="form-control" id="title" autocomplete="off"
+                                                  placeholder=" عنوان  " name="title" value="{{$page->title}}">
                                           </div>
 
 
                                           <div class="form-group">
-                                            <label for="text"> توضیحات </label>
-                                            <textarea class="form-control" id="text" autocomplete="off"
-                                                      placeholder="توضیحات " name="text" rows="6" >{{$form_category->text}}</textarea>
-                                        </div>
-
-
-
-                                          @include('admin.layouts.table.avatarnul', [  'avatarimage' => $form_category->image , 'class'=>'profile-pic' , 'style' => 'height: 100px;width: 100px;'  ])
+                                              <label for="text"> متن</label>
+                                              <textarea class="form-control"   autocomplete="off"
+                                                  placeholder="متن" name="text" rows="8" id="tinymceExample"
+                                                   >{{$page->text}}</textarea>
+                                          </div>
+   @include('admin.layouts.table.avatarnul', [  'avatarimage' => $page->image , 'class'=>'profile-pic' , 'style' => 'height: 400px;width: 400px;'  ])
 
 
                                           <hr>
@@ -69,7 +62,7 @@
                                           @method('PUT')
 
                                           <div class="card-footer">
-                                              <a href="{{ route('admin.form.form_category.index') }}" class="btn btn-danger">بازگشت</a>
+                                              <a href="{{ route('admin.page.index') }}" class="btn btn-danger">بازگشت</a>
                                               <button type="submit" class="btn btn-primary float-right">ویرایش</button>
                                           </div>
 
