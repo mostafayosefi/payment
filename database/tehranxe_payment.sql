@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2022 at 08:04 PM
+-- Generation Time: Jul 01, 2022 at 03:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -92,7 +92,7 @@ CREATE TABLE `currencies` (
 
 INSERT INTO `currencies` (`id`, `name`, `link`, `rate`, `status`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'دلار', 'USD', '336000', 'active', '/upload/images/currencies/1656351794US-dollar-icon.png', '2022-06-27 17:43:15', '2022-06-27 17:52:01'),
-(2, 'لیر', 'TL', '25600', 'active', '/upload/images/currencies/1656352927tl.webp', '2022-06-27 18:02:07', '2022-06-27 18:02:07');
+(2, 'لیر', 'TL', '25600', 'active', '/upload/images/currencies/1656352927tl.webp', '2022-06-27 18:02:07', '2022-06-27 18:07:16');
 
 -- --------------------------------------------------------
 
@@ -138,9 +138,10 @@ CREATE TABLE `forms` (
   `subgroup` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `form_currency_id` int(11) DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `text` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `money` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_id` int(11) DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -151,8 +152,8 @@ CREATE TABLE `forms` (
 -- Dumping data for table `forms`
 --
 
-INSERT INTO `forms` (`id`, `name`, `form_subcategory_id`, `group`, `subgroup`, `link`, `status`, `price`, `money`, `currency_id`, `image`, `created_at`, `updated_at`, `form_template_id`) VALUES
-(1, '10 دلاری گوگل پلی', 2, 'group_giftcard_google', 'subgroup_giftcard_google', 'giftcard_google_10', 'active', '0', NULL, NULL, '/upload/images/forms/16562631881603684464google-play.png', '2022-06-26 17:06:28', '2022-06-26 17:06:28', 1);
+INSERT INTO `forms` (`id`, `name`, `form_subcategory_id`, `group`, `subgroup`, `link`, `status`, `form_currency_id`, `price`, `text`, `money`, `image`, `created_at`, `updated_at`, `form_template_id`) VALUES
+(1, '10 دلاری گوگل پلی', 2, 'group_giftcard_google', 'subgroup_giftcard_google', 'giftcard_google_10', 'active', 1, '49000', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '22', '/upload/images/forms/16562631881603684464google-play.png', '2022-06-26 17:06:28', '2022-07-01 13:06:26', 1);
 
 -- --------------------------------------------------------
 
@@ -165,6 +166,8 @@ CREATE TABLE `form_categories` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `text` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -173,8 +176,8 @@ CREATE TABLE `form_categories` (
 -- Dumping data for table `form_categories`
 --
 
-INSERT INTO `form_categories` (`id`, `name`, `link`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'گیفت کارتها', 'giftcards', 'active', '2022-06-26 16:51:06', '2022-06-26 17:02:06');
+INSERT INTO `form_categories` (`id`, `name`, `link`, `status`, `text`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'گیفت کارتها', 'giftcards', 'active', NULL, NULL, '2022-06-26 16:51:06', '2022-06-26 17:02:06');
 
 -- --------------------------------------------------------
 
@@ -300,6 +303,8 @@ CREATE TABLE `form_subcategories` (
   `form_category_id` bigint(20) UNSIGNED NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `text` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -308,8 +313,8 @@ CREATE TABLE `form_subcategories` (
 -- Dumping data for table `form_subcategories`
 --
 
-INSERT INTO `form_subcategories` (`id`, `name`, `form_category_id`, `link`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'گیفت کارت گوگل', 1, 'giftcard_google', 'active', '2022-06-26 17:03:02', '2022-06-26 17:03:02');
+INSERT INTO `form_subcategories` (`id`, `name`, `form_category_id`, `link`, `status`, `text`, `image`, `created_at`, `updated_at`) VALUES
+(2, 'گیفت کارت گوگل', 1, 'giftcard_google', 'active', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '/upload/images/form_subcategories/16565930771603631767google-play.png', '2022-06-26 17:03:02', '2022-06-30 12:56:48');
 
 -- --------------------------------------------------------
 
@@ -466,7 +471,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (41, '2022_06_25_161951_add_treefield_to_forms', 1),
 (42, '2022_06_25_162051_add_pricefield_to_form_data_lists', 1),
 (43, '2022_06_26_120551_create_form_templates_table', 1),
-(44, '2022_06_26_123220_add_fieldtemplate_to_forms', 1);
+(44, '2022_06_26_123220_add_fieldtemplate_to_forms', 1),
+(45, '2022_06_28_134616_add_fieldtext_to_forms', 2),
+(46, '2022_06_30_141914_add_feildformcurrencyid_table_forms', 3),
+(47, '2022_06_30_165450_add_feildimage_table_form_categories', 4),
+(48, '2022_06_30_165628_add_feildimage_table_form_subcategories', 5),
+(49, '2022_06_30_171755_add_feildtext_table_form_subcategories', 6),
+(50, '2022_06_30_171854_add_feildtext_table_form_categories', 6);
 
 -- --------------------------------------------------------
 
@@ -1100,7 +1111,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `mngfinicals`
