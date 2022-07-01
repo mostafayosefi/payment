@@ -2,18 +2,30 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
-use App\Models\Eform\FormCategory;
+use App\Models\Eform\Form;
 use Illuminate\Http\Request;
+use App\Models\Eform\Currency;
+use App\Models\Eform\FormCategory;
+use App\Models\Eform\FormTemplate;
+use App\Http\Controllers\Controller;
+use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PlaneController extends Controller
 {
 
 
-    public function index($link){
-        $planes=FormCategory::where([ [ 'link','=',$link ],   ])->first();
-        return view('admin.Eform.plane.index' , compact(['planes' , 'link'  ]));
+    public function index($link_cat){
+        $planes=FormCategory::where([ [ 'link','=',$link_cat ],   ])->first();
+        return view('admin.Eform.plane.index' , compact(['planes' , 'link_cat'  ]));
+    }
+
+
+
+    public function index_subcat($link_cat,$link_subcat){
+        $planes=FormSubcategory::where([ [ 'link','=',$link_subcat ],   ])->first();
+        $currencies=Currency::all();
+        return view('admin.Eform.plane.index_subcat' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' ]));
     }
 
 
@@ -21,9 +33,18 @@ class PlaneController extends Controller
         return view('admin.value.create' );
     }
 
-    public function edit($id){
-        $value=Value::find($id);
-        return view('admin.value.edit' , compact(['value'  ]));
+    public function edit($link_cat,$link_subcat,$link_form){
+        $planes=Form::where([ [ 'link','=',$link_form ],   ])->first();
+        $form=Form::where([ [ 'link','=',$link_form ],   ])->first();
+        $form_categories= FormCategory::all();
+        $form_subcategories= FormSubcategory::all();
+        $form_templates= FormTemplate::all();
+        $currencies = Currency::all(); 
+
+        return view('admin.Eform.plane.edit' , compact(['planes' ,'form' ,'form_categories' ,
+         'form_subcategories', 'form_templates'  , 'currencies'   ]));
+ 
+
     }
 
 

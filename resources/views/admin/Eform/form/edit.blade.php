@@ -62,93 +62,10 @@
 
                                       <div class="col-sm-12">
 
-
-
-  @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_categories ,  'input_name' => 'name'  ,  'name_select' => ' گروه فرم ' ,  'value' =>   $form->form_subcategory->form_category_id , 'required'=>'required'  , 'index_id'=>'form_category_id' ])
-  @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_subcategories ,  'input_name' => 'name'  ,  'name_select' => 'زیرگروه ' ,  'value' =>  $form->form_subcategory->id , 'required'=>'required'  , 'index_id'=>'form_subcategory_id' ])
-
-
-
-  <div class="form-group">
-    <label for="group">group</label>
-    <input type="text" class="form-control" id="group" autocomplete="off"
-        placeholder="group " name="group" value="{{$form->group}}">
-</div>
-
-<div class="form-group">
-    <label for="subgroup">subgroup</label>
-    <input type="text" class="form-control" id="subgroup" autocomplete="off"
-        placeholder="subgroup " name="subgroup" value="{{$form->subgroup}}">
-</div>
-
-<div class="form-group">
-    <label for="name">نام فرم</label>
-    <input type="text" class="form-control" id="name" autocomplete="off"
-        placeholder=" نام فرم  " name="name" value="{{$form->name}}">
-</div>
-
-<div class="form-group">
-    <label for="link">لینک فرم</label>
-    <input type="text" class="form-control" id="link" autocomplete="off"
-        placeholder=" لینک فرم  " name="link" value="{{$form->link}}"   >
-</div>
-
-
-<div class="form-group">
-    <label for="text"> توضیحات فرم</label>
-    <textarea class="form-control" id="text" autocomplete="off"
-              placeholder="توضیحات فرم" name="text" rows="6" >{{$form->text}}</textarea>
-</div>
-
-
-
-
-@include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>  $form->form_template_id , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
-@include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>  $form->form_currency_id   , 'required'=>'required'  , 'index_id'=>'form_currency_id' ])
-
-<div id="currency_name">
-
-
-
-@if($form->form_currency_id)
-@foreach ($currencies as $currency )
-@if($form->form_currency_id==$currency->id)
-
-<div class="form-group">
-    <label for="group"> هزینه براساس {{$currency->name}}</label>
-    <input type="text" class="form-control" id="money" autocomplete="off"
-     name="money" placeholder=" هزینه براساس {{$currency->name}}"  value="{{$form->money}}">
-</div>
-
-@endif
-@endforeach
-@endif
-
-</div>
-<hr>
-
-@include('admin.layouts.table.java_price')
-
-<div class="form-group">
-    <label for="price">هزینه فرم مربوطه (به ریال)</label>
-    <input type="text" class="form-control" id="price" autocomplete="off"
-           placeholder="هزینه فرم مربوطه (به ریال)" name="price" value="{{$form->price}}"
-           onkeyup="separateNum(this.value,this);"  >
-</div>
-
-
-@include('admin.layouts.table.avatarnul', [  'avatarimage' => $form->image , 'class'=>'profile-pic' , 'style' => 'height: 100px;width: 100px;'  ])
-
-
-<hr>
-<div class="form-group" >
-<label for="exampleInputUsername1"> آپلود عکس </label>
-<input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
-</div>
-
-
-
-
+ 
+@include('admin.Eform.card.form', [  'guard' =>  'admin' , 'oper' =>  'edit_plane'   ,$form ,$form_categories ,
+$form_subcategories, $form_templates  , $currencies ])
+ 
 
                                           @method('PUT')
 

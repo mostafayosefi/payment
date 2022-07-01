@@ -1,9 +1,27 @@
-  @component('admin.layouts.content', [
-      'title' => 'ویرایش صفحه',
-      'tabTitle' => ' ویرایش صفحه',
-      'breadcrumb' => [['title' => 'لیست صفحات سایت', 'url' => route('admin.page.index')], ['title' => 'ویرایش صفحه  ',
-      'class' => 'active']],
-      ])
+@if ( $planes)
+@php
+$title_name= 'مدیریت '.$planes->name;
+$breadcrumb   = [
+['title' => 'مدیریت '.$planes->form_subcategory->form_category->name, 'url' => route('admin.form.plane.index' , $planes->form_subcategory->form_category->link )],
+['title' => 'مدیریت '.$planes->form_subcategory->name, 'url' => route('admin.form.plane.index_subcat' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link ] )],
+['title' => 'ویرایش '.$planes->name, 'url' => route('admin.form.plane.edit' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link , $planes->link  ] )],
+         ['title' => '  ویرایش  ', 'class' => 'active']
+        ]  ;  @endphp
+@else
+@php
+$title_name='404';
+$breadcrumb =  [
+        ['title' => '  صفحه موردنظر وجود ندارد!  ', 'class' => 'active']
+        ]  ;  @endphp
+@endif
+
+
+
+@component('admin.layouts.content',[
+    'title'=>$title_name,
+    'tabTitle'=>$title_name,
+    'breadcrumb'=>  $breadcrumb
+    ])
 
 
 
@@ -18,7 +36,7 @@
                           <div class="card-body">
 
                               <div class="card-header card-header-border-bottom">
-                                  <h4>ویرایش صفحه </h4>
+                                  <h4>ویرایش سرویس {{$planes->name}} </h4>
                               </div>
 
                               <br>
@@ -27,42 +45,22 @@
                               @include('admin.layouts.errors')
 
 
-                              <form class="forms-sample" method="POST" action="{{ route('admin.page.update', $page) }}"
+                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form.update', $form) }}"
                                   enctype="multipart/form-data" onsubmit="return Validate(this);">
                                   @csrf
                                   <div class="row">
 
                                       <div class="col-sm-12">
 
-
-
-                                          <div class="form-group">
-                                              <label for="title">عنوان</label>
-                                              <input type="text" class="form-control" id="title" autocomplete="off"
-                                                  placeholder=" عنوان  " name="title" value="{{$page->title}}">
-                                          </div>
-
-
-                                          <div class="form-group">
-                                              <label for="text"> متن</label>
-                                              <textarea class="form-control"   autocomplete="off"
-                                                  placeholder="متن" name="text" rows="8" id="tinymceExample"
-                                                   >{{$page->text}}</textarea>
-                                          </div>
-   @include('admin.layouts.table.avatarnul', [  'avatarimage' => $page->image , 'class'=>'profile-pic' , 'style' => 'height: 400px;width: 400px;'  ])
-
-
-                                          <hr>
-                                          <div class="form-group" >
-                                          <label for="exampleInputUsername1"> آپلود عکس </label>
-                                          <input type="file"     id="exampleInputUsername1" autocomplete="off"  name="image" >
-                                          </div>
-
+ 
+@include('admin.Eform.card.form', [  'guard' =>  'admin' , 'oper' =>  'edit_plane'  ,$form ,$form_categories ,
+$form_subcategories, $form_templates  , $currencies ])
+ 
 
                                           @method('PUT')
 
                                           <div class="card-footer">
-                                              <a href="{{ route('admin.page.index') }}" class="btn btn-danger">بازگشت</a>
+                                              <a href="{{ route('admin.form.plane.index_subcat' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link ] ) }}" class="btn btn-danger">بازگشت</a>
                                               <button type="submit" class="btn btn-primary float-right">ویرایش</button>
                                           </div>
 

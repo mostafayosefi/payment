@@ -1,8 +1,9 @@
   @component('admin.layouts.content', [
       'title' => 'ویرایش قالب',
       'tabTitle' => ' ویرایش قالب',
-      'breadcrumb' => [['title' => 'لیست صفحات سایت', 'url' => route('admin.form.form_template.index')], ['title' => 'ویرایش قالب  ',
-      'class' => 'active']],
+      'breadcrumb' => [
+        ['title' => 'لیست صفحات سایت', 'url' => route('admin.form.form_template.index')],
+         ['title' => 'ویرایش قالب  ', 'class' => 'active']],
       ])
 
 

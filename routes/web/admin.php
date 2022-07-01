@@ -344,12 +344,13 @@ Route::prefix('currency')
 
 Route::prefix('plane')
 ->name('plane.')->group(function () {
-    Route::get('/indexplane/{link}', [PlaneController::class, 'index'])->name('index');
+    Route::get('/indexplane/{link_cat}', [PlaneController::class, 'index'])->name('index');
+    Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat'); 
+    Route::get('/indexplane/{link_cat}/{link_subcat}/{link_form}/edit', [PlaneController::class, 'edit'])->name('edit'); 
     Route::get('/createplane', [PlaneController::class, 'create'])->name('create');
     Route::post('/', [PlaneController::class, 'store'])->name('store');
     Route::get('/{id}/show', [PlaneController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [PlaneController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [PlaneController::class, 'update'])->name('update');
+     Route::put('/{id}', [PlaneController::class, 'update'])->name('update');
     Route::delete('/{id}', [PlaneController::class, 'destroy'])->name('destroy');
     Route::put('/{id}/status', [PlaneController::class, 'status'])->name('status');
 });
