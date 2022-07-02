@@ -56,8 +56,10 @@ class FormController extends Controller
 
         $data['price'] = str_rep_price($data['price']);
 
-       Form::create($data);
-       Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
+       $form=Form::create($data);
+        $price  = validate_price($form->id,0,$form->form_currency_id,'update_price_form');
+
+        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
         return redirect()->route('admin.form.form.index');
     }
 
@@ -90,10 +92,11 @@ class FormController extends Controller
         $data['image']  =  uploadFile($request->file('image'),'images/forms',$form->image);
         $data['price'] = str_rep_price($data['price']);
 
-
-        // dd($data);
-
         $form->update($data);
+        $price  = validate_price($form->id,0,$form->form_currency_id,'update_price_form');
+
+
+
         Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
         return back();
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\LoginuserController;
+use App\Http\Controllers\User\Payment\PlaneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,21 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
 
 
           });
+
+        Route::prefix('payment')->name('payment.')->group(function () {
+
+
+            Route::prefix('plane')->name('plane.')->group(function () {
+
+            Route::get('/indexplane/{link_cat}', [PlaneController::class, 'index'])->name('index');
+            Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat');
+
+
+
+            });
+
+
+            });
 
         });
 

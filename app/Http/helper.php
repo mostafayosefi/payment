@@ -691,3 +691,58 @@ if($myfunc=='text'){ return $messagetext; }
     }
 
 
+
+
+if(! function_exists('validate_price') ) {
+    function validate_price($form_id, $form_data_list_id , $form_currency_id , $comparison)
+    {
+
+        $form=Form::find($form_id);
+        $currencies=Currency::all();
+
+
+
+
+
+        if($form_currency_id){
+            foreach ($currencies as $currency ){
+                if($form->form_currency_id==$currency->id){
+                    if($comparison=='currency_rate') {
+                        return $currency->rate;
+                    }
+                    if($comparison=='currency_money') {
+                        return $form->money;
+                    }
+                    if($comparison=='currency_name') {
+                        return $currency->name;
+                    }
+                    if($comparison=='currency') {
+                        return '1';
+                    }
+                    if($comparison=='update_price_form') {
+                        $price = ($form->money * $currency->rate);
+                        $form->update([ 'price' => $price ]);
+                        return $price;
+                    }
+                }
+            }
+
+        }else{
+
+            if($comparison=='currency') {
+                return '0';
+            }
+
+            if($comparison=='update_price_form') {
+                $price = $form->price;
+                $form->update([ 'price' => $price ]);
+                return $price;
+            }
+        }
+
+
+
+    }
+}
+
+

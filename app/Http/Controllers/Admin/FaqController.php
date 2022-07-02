@@ -36,7 +36,11 @@ class FaqController extends Controller
         // return Verta::createGregorianDate(2021-12-19 16:59:55);
         // return Verta::getJalali(2015,12,25);
         return view('admin.faq.create' );
+
+
+
     }
+
 
     /**
      * Store a newly created resource in storage.
