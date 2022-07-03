@@ -24,9 +24,9 @@
 
                                         <p>
                                             <!--
-<?php echo mb_substr($admin->text, 0, 125, mb_detect_encoding($admin->text)).'...'; ?>
+<?php echo mb_substr($admin->short, 0, 125, mb_detect_encoding($admin->short)).'...'; ?>
                                                 -->
-                                            <?php echo $admin->text; ?>
+                                            <?php echo $admin->short; ?>
                                         </p>
                                         <hr>
 

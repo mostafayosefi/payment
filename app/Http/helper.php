@@ -704,7 +704,7 @@ if(! function_exists('validate_price') ) {
 
 
 
-        if($form_currency_id){
+        if($form_currency_id > 0 ){
             foreach ($currencies as $currency ){
                 if($form->form_currency_id==$currency->id){
                     if($comparison=='currency_rate') {
@@ -719,6 +719,9 @@ if(! function_exists('validate_price') ) {
                     if($comparison=='currency') {
                         return '1';
                     }
+                    if($comparison=='currency_exchange_price') {
+                        $price = ($form->money * $currency->rate);
+                        return $price;                    }
                     if($comparison=='update_price_form') {
                         $price = ($form->money * $currency->rate);
                         $form->update([ 'price' => $price ]);

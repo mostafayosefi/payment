@@ -101,8 +101,16 @@
 
 
                                           <div class="form-group">
+                                              <label for="short"> خلاصه توضیحات فرم</label>
+                                              <textarea class="form-control" id="short" autocomplete="off"
+                                                        placeholder="خلاصه توضیحات فرم" name="short" rows="6"
+                                              >{{ old('short') }}</textarea>
+                                          </div>
+
+
+                                          <div class="form-group">
                                               <label for="text"> توضیحات فرم</label>
-                                              <textarea class="form-control" id="text" autocomplete="off"
+                                              <textarea class="form-control" id="tinymceExample" autocomplete="off"
                                                         placeholder="توضیحات فرم" name="text" rows="6"
                                               >{{ old('text') }}</textarea>
                                           </div>

@@ -1,9 +1,9 @@
-  
-  
+
+
   @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_categories ,  'input_name' => 'name'  ,  'name_select' => ' گروه فرم ' ,  'value' =>   $form->form_subcategory->form_category_id , 'required'=>'required'  , 'index_id'=>'form_category_id' ])
   @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_subcategories ,  'input_name' => 'name'  ,  'name_select' => 'زیرگروه ' ,  'value' =>  $form->form_subcategory->id , 'required'=>'required'  , 'index_id'=>'form_subcategory_id' ])
 
- 
+
   <div class="form-group">
     <label for="group">group</label>
     <input type="text" class="form-control" id="group" autocomplete="off"
@@ -30,9 +30,16 @@
 
 
 <div class="form-group">
+    <label for="short"> خلاصه توضیحات فرم</label>
+    <textarea class="form-control" id="short" autocomplete="off"
+              placeholder="خلاصه توضیحات فرم" name="short" rows="6" >{{$form->short}}</textarea>
+</div>
+
+
+<div class="form-group">
     <label for="text"> توضیحات فرم</label>
-    <textarea class="form-control" id="text" autocomplete="off"
-              placeholder="توضیحات فرم" name="text" rows="6" >{{$form->text}}</textarea>
+    <textarea class="form-control" id="tinymceExample" autocomplete="off"
+              placeholder="توضیحات فرم" name="text" rows="8" >{{$form->text}}</textarea>
 </div>
 
 
@@ -82,6 +89,5 @@
 </div>
 
 
- 
- 
- 
+
+

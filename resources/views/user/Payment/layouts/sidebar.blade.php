@@ -26,7 +26,7 @@
 
 
           <li class="nav-item">
-              <a href="#" class="nav-link  ">
+              <a href="{{route('user.payment.plane.index', 'Money')}}" class="nav-link  ">
                   <i class="link-icon" data-feather="list"></i>
                   <span class="link-title">پی پال / اسکریل / وب مانی
 </span>

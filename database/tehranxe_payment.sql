@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2022 at 03:27 PM
+-- Generation Time: Jul 03, 2022 at 06:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -138,6 +138,7 @@ CREATE TABLE `forms` (
   `subgroup` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `short` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `form_currency_id` int(11) DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `text` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -152,8 +153,9 @@ CREATE TABLE `forms` (
 -- Dumping data for table `forms`
 --
 
-INSERT INTO `forms` (`id`, `name`, `form_subcategory_id`, `group`, `subgroup`, `link`, `status`, `form_currency_id`, `price`, `text`, `money`, `image`, `created_at`, `updated_at`, `form_template_id`) VALUES
-(1, '10 دلاری گوگل پلی', 2, 'group_giftcard_google', 'subgroup_giftcard_google', 'giftcard_google_10', 'active', 1, '49000', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '22', '/upload/images/forms/16562631881603684464google-play.png', '2022-06-26 17:06:28', '2022-07-01 13:06:26', 1);
+INSERT INTO `forms` (`id`, `name`, `form_subcategory_id`, `group`, `subgroup`, `link`, `status`, `short`, `form_currency_id`, `price`, `text`, `money`, `image`, `created_at`, `updated_at`, `form_template_id`) VALUES
+(1, '10 دلاری گوگل پلی', 2, 'group_giftcard_google', 'subgroup_giftcard_google', 'giftcard_google_10', 'active', NULL, 1, '49000', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '22', '/upload/images/forms/16562631881603684464google-play.png', '2022-06-26 17:06:28', '2022-07-01 13:06:26', 1),
+(2, 'خرید(شارژ) پی پال', 3, 'group_paypal', 'subgroup_paypal', 'buy_charge_paypal', 'active', 'شارژ یا انتقال وجه به حساب پی پال تنها در صورتی که حساب مقصد وریفای یا تایید شده باشد، امکان پذیر است.', 1, '0', '<p>شارژ یا انتقال وجه به حساب پی پال تنها در صورتی که حساب مقصد وریفای یا تایید شده باشد، امکان پذیر است. کارمزد انتقال پی پال ۳ الی ۷ درصد است که از حساب دریافت کننده کسر میشد، این مبلغ با توجه به کشور اکانت پی پال متفاوت است. درصورتی که قصد دارید مبلغ دقیقی به حساب پی پال مقصد واریز شود، هزینه کارمزد انتقال را در مبلغ نهایی محاسبه نمایید. در صورتی که قصد ریفاند کردن مبلغ را دارید، حتما با هماهنگی قبلی ایرانیکارت باشد و به هیج عنوان مبلغ ارزی را بدون هماهنگی به حساب های ما برگشت نزنید. دقت نمایید در صورت ریفاند کردن تراکنش بدون هماهنگی، ایرانیکارت مسئولیت آن را نخواهد پذیرفت. توجه داشتید باشید ممکن است برخی تراکنش ها با توجه به سیاست های شبکه پی پال از یک روز تا ۲۱ روز در اکانت گیرنده بصورت on hold نمایش داده شود و بعد از زمانی که توسط پی پال مشخص می شود قابل دسترس و استفاده است. انتقال وجه بصورت دلار و یورو انجام می شود و جهت انتقال وجه به ارز های دیگر (پوند، دلار کانادا، دلار استرالیا، &hellip;) می بایست از طریق پنل کاربری خود در سایت ایرانیکات از قسمت پشتیبانی - ارسال تیکت؛ مقدار مبلغی که قصد واریز کردن آن را دارید را اطلاع دهید پس از ثبت، درخواست شما توسط کارشناسان بخش کیف پول الکترونیک بررسی شده و معادل دلار آن به را شما اعلام می کنند. و سپس می توانید درخواست خود را ثبت نمایید درصورتی که قصد انتقال وجه به حساب پی پال از طریق لینک پی پال (PayPal.me/example) را داشته باشید می بایست در قسمت توضیحات لینک پی پالی که قصد ارسال به آن را دارید را وارد نمایید و همچنین در قسمت حساب پی پال آدرس ایمیل example@email.com را وارد نمایید کلیه درخواست های شارژ(خرید) پی پال از ایرانیکارت به صورت services item(goods and services) انجام میشود که در این روش کارمزد شبکه پی پال از گیرنده کسر خواهد شد و در صورتی که کاربری قصد انتقال مبلغ به صورت friend and family را دارد قبل از ثبت درخواست حتما از طریق تیکت از کارشناسان بخش کیف پول الکترونیک استعلام گرفته و در صورت تایید درخواست خود را ثبت بفرمایید. توجه داشته باشید که برای درخواست&zwnj;های فرند و فمیلی ۵ دلار هزینه انتقال به صورت فرند و فمیلی را به مبلغ نهایی خود اضافه کرده و حتما در قسمت توضیحات ذکر شود که به صورت فرند و فمیلی انتقال داده شود.</p>', '0', '/upload/images/forms/1656860788paypal-logo.png', '2022-07-03 15:06:28', '2022-07-03 16:07:38', 2);
 
 -- --------------------------------------------------------
 
@@ -177,7 +179,8 @@ CREATE TABLE `form_categories` (
 --
 
 INSERT INTO `form_categories` (`id`, `name`, `link`, `status`, `text`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'گیفت کارتها', 'giftcards', 'active', NULL, NULL, '2022-06-26 16:51:06', '2022-06-26 17:02:06');
+(1, 'گیفت کارتها', 'giftcards', 'active', NULL, NULL, '2022-06-26 16:51:06', '2022-06-26 17:02:06'),
+(2, 'محصولات پول الکترونیک', 'Money', 'active', 'محصولات پول الکترونیک', '/upload/images/form_categories/1656859390money.jpg', '2022-07-03 14:43:11', '2022-07-03 14:43:11');
 
 -- --------------------------------------------------------
 
@@ -314,7 +317,8 @@ CREATE TABLE `form_subcategories` (
 --
 
 INSERT INTO `form_subcategories` (`id`, `name`, `form_category_id`, `link`, `status`, `text`, `image`, `created_at`, `updated_at`) VALUES
-(2, 'گیفت کارت گوگل', 1, 'giftcard_google', 'active', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '/upload/images/form_subcategories/16565930771603631767google-play.png', '2022-06-26 17:03:02', '2022-06-30 12:56:48');
+(2, 'گیفت کارت گوگل', 1, 'giftcard_google', 'active', 'دسترسی به بیش از 1 میلیون اپلیکیشن در فروشگاه گوگل پلی. با گیفت کارت گوگل پلی میتوانید اپلیکیشن بخرید یا از پرداخت های درون برنامه ای استفاده کنید. همچنین با اعتباری که از این کارت بدست می آورید میتوانید از فروشگاه گوگل پلی فیلم یا موزیک بخرید.', '/upload/images/form_subcategories/16565930771603631767google-play.png', '2022-06-26 17:03:02', '2022-06-30 12:56:48'),
+(3, 'پی پال', 2, 'paypal', 'active', 'پی پال', '/upload/images/form_subcategories/1656860260paypal-logo.png', '2022-07-03 14:57:40', '2022-07-03 14:57:40');
 
 -- --------------------------------------------------------
 
@@ -337,7 +341,8 @@ CREATE TABLE `form_templates` (
 --
 
 INSERT INTO `form_templates` (`id`, `name`, `link`, `status`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'مدال1', 'modal1', 'active', '', '2022-06-26 16:49:52', '2022-06-26 16:49:52');
+(1, 'مدال1', 'modal1', 'active', '', '2022-06-26 16:49:52', '2022-06-26 16:49:52'),
+(2, 'پول الکترونیک', 'template_money', 'active', '', '2022-07-03 15:03:32', '2022-07-03 15:03:32');
 
 -- --------------------------------------------------------
 
@@ -477,7 +482,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2022_06_30_165450_add_feildimage_table_form_categories', 4),
 (48, '2022_06_30_165628_add_feildimage_table_form_subcategories', 5),
 (49, '2022_06_30_171755_add_feildtext_table_form_subcategories', 6),
-(50, '2022_06_30_171854_add_feildtext_table_form_categories', 6);
+(50, '2022_06_30_171854_add_feildtext_table_form_categories', 6),
+(51, '2022_07_03_201540_add_feildshort_table_forms', 7);
 
 -- --------------------------------------------------------
 
@@ -729,6 +735,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `address`, `tell`, `image`, `ip`, `status`, `referal`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'mustafa1390', NULL, NULL, NULL, NULL, 'active', NULL, 'مصطفی یوسفی', 'mustafa1390@gmail.com', NULL, '$2y$10$FqFLsBe6yop9XJozryf8a.4TbqIUQumfsuI9XpMKaLVd5ueBNFb0q', NULL, '2022-07-03 15:29:12', '2022-07-03 15:29:12');
 
 -- --------------------------------------------------------
 
@@ -1033,13 +1046,13 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `form_categories`
 --
 ALTER TABLE `form_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `form_coloumns`
@@ -1081,13 +1094,13 @@ ALTER TABLE `form_fields`
 -- AUTO_INCREMENT for table `form_subcategories`
 --
 ALTER TABLE `form_subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `form_templates`
 --
 ALTER TABLE `form_templates`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `iconfonts`
@@ -1111,7 +1124,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `mngfinicals`
@@ -1165,7 +1178,7 @@ ALTER TABLE `txtdeses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wallets`
