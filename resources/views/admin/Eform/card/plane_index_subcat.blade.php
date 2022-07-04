@@ -116,20 +116,18 @@
                                                 <p>
                                                     <!--
 <?php echo mb_substr($admin->short, 0, 125, mb_detect_encoding($admin->short)).'...'; ?>
-                                                        -->
-                                                    <?php echo $admin->short; ?>
+ -->
+<?php echo $admin->short; ?>
                                                 </p>
                                                 <hr>
 
                                             @endif
 
 @if($planes->form_category->link=='giftcards')
-
 @if (validate_price($admin->id,0,$admin->form_currency_id,'currency')=='1')
 <h3 class="text-center font-weight-light">
     {{number_format($admin->price,0)}}  ریال
 </h3>
-
 <h6 class="text-muted text-center mb-4 font-weight-normal">
 {{validate_price($admin->id,0,$admin->form_currency_id,'currency_money')}} {{validate_price($admin->id,0,$admin->form_currency_id,'currency_name')}}
 </h6>
@@ -149,8 +147,7 @@
 
 
  @if($planes->form_category->link=='Money')
- <a href="#" class="btn btn-primary d-block btn-lg   rounded-pill mx-auto mt-4">ثبت سفارش  <i data-feather="check-circle"></i> &nbsp; </a>
-
+ <a href="{{route('user.payment.plane.index_form' , [ $admin->form_subcategory->form_category->link , $admin->form_subcategory->link , $admin->link ]  )}}" class="btn btn-primary d-block btn-lg   rounded-pill mx-auto mt-4">ثبت سفارش  <i data-feather="check-circle"></i>  </a>
 @endif
 
 

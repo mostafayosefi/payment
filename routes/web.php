@@ -92,6 +92,7 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
 
             Route::get('/indexplane/{link_cat}', [PlaneController::class, 'index'])->name('index');
             Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat');
+            Route::get('/indexplane/{link_cat}/{link_subcat}/{link_form}', [PlaneController::class, 'index_form'])->name('index_form');
 
 
 

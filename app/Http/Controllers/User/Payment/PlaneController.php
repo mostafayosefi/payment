@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Eform\Currency;
+use App\Models\Eform\Form;
 use App\Models\Eform\FormCategory;
 use App\Models\Eform\FormSubcategory;
 use Illuminate\Http\Request;
@@ -22,6 +23,13 @@ class PlaneController extends Controller
         $planes=FormSubcategory::where([ [ 'link','=',$link_subcat ],   ])->first();
         $currencies=Currency::all();
         return view('user.Payment.plane.index_subcat' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' ]));
+    }
+
+
+    public function index_form($link_cat,$link_subcat,$link_form){
+        $planes=Form::where([ [ 'link','=',$link_form ],   ])->first();
+        $currencies=Currency::all();
+        return view('user.Payment.plane.index_form' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' , 'link_form' ]));
     }
 
 
