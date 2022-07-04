@@ -3,8 +3,8 @@
 $title_name= 'مشاهده '.$planes->name;
 $breadcrumb   = [
 ['title' => 'مشاهده '.$planes->form_subcategory->form_category->name, 'url' => route('user.payment.plane.index' , $planes->form_subcategory->form_category->link )],
-['title' => 'مشاهده '.$planes->form_subcategory->name, 'url' => route('user.payment.plane.index' , $planes->form_subcategory->link )],
-['title' => 'مشاهده '.$planes->name, 'url' => route('user.payment.plane.index_subcat' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link ] )],
+['title' => 'مشاهده '.$planes->form_subcategory->name, 'url' => route('user.payment.plane.index_subcat' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link ] )],
+['title' => 'مشاهده '.$planes->name, 'url' => route('user.payment.plane.index_form' , [$planes->form_subcategory->form_category->link  , $planes->form_subcategory->link  , $planes->link ] )],
          ['title' => '  ثبت سفارش  ', 'class' => 'active']
         ]  ;  @endphp
 @else
