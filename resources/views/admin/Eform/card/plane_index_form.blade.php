@@ -80,7 +80,8 @@
 
 
 
-                    <form method="post" class="forms-sample"   enctype="multipart/form-data"  onsubmit="return Validate(this);"   action="#">
+                    <form method="post" class="forms-sample"   enctype="multipart/form-data"  onsubmit="return Validate(this);"  
+                    onchange="totalIt()"  action="#">
 
 
                     <div class="row">
@@ -103,11 +104,7 @@
                             @endif
 
                                 </div>
-
-
-
-
-
+ 
                     <div class="col-sm-6">
 
 
@@ -116,7 +113,7 @@
                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">نام کاربری</label>
                      <div class="col-sm-8">
                     <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="نام کاربری" name="name"
-                     value=""  required >
+                     value="{{$user->username}}"  required >
                      </div>
                      </div>
 
@@ -125,7 +122,7 @@
                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">تلفن همراه</label>
                      <div class="col-sm-8">
                     <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="تلفن همراه" name="name"
-                     value=""  required >
+                     value="{{$user->tell}}"  required >
                      </div>
                      </div>
 
@@ -134,7 +131,7 @@
                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ایمیل</label>
                      <div class="col-sm-8">
                     <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder=" ایمیل " name="name"
-                     value=""  required >
+                     value="{{$user->email}}"  required >
                      </div>
                      </div>
 
@@ -219,6 +216,86 @@
 
 
 
+                     
+
+                     <div class="form-group row" >
+
+                        <div class="col-md-12">
+                            <label for="view_mycategorybrand">  واحد    </label>
+                            <select name="currency"    class="js-example-basic-single w-100"    
+                            placeholder=""   aria-required="true"      style="font-size: 18px;"
+                            id="view_mycategorybrand"       onchange="myFunction()" 
+                               >
+
+
+                            @foreach ($currencies as $currency  )
+
+                                 <option value="{{$currency->id}}"   data-var1="1250"
+                                     {{old('currency')?'selected':null}}>{{$currency->name}}</option>
+
+                                 @endforeach
+
+
+
+                        </select>
+                        </div>
+
+                        </div>
+ 
+
+                        <div class="form-group row">
+                            <label for="exampleInputUsername2" class="col-sm-4 col-form-label">قیمت سرویس
+                           </label>
+                            <div class="col-sm-7">
+                           <input type="text" class="form-control" id="money"  autocomplete="off"    placeholder="مقدار" name="name"
+                           value="0"  required onkeyup="calc()" >
+                            </div>
+                            </div>
+
+<select id="dropdown_test" onchange="calc()">
+    <option   data-one="1200" >1200</option>
+    <option   data-one="800" >800</option> 
+</select>
+
+
+<input type="text" id="resultBox" readonly="true" class="form-control" value="0"  />
+
+<script>
+    
+  function calc(){ 
+    var select1_control4 = 10;
+    var money = document.getElementById('money').value;
+ var myselecte = $('#dropdown_test').change(function () {
+    var select1_control = 1;
+    var str = select1_control * $(this).find('option:selected').data('one')   * money;
+
+  var  rate=$(this).find('option:selected').data('one');
+  // return str;
+   // alert(str);
+
+   
+
+
+$('#resultBox').val(str);
+
+
+}); 
+
+   var str = document.getElementById('dropdown_test').value*money;   
+   $('#resultBox').val(str);   
+
+  }
+</script>
+
+
+
+
+ 
+
+
+ 
+
+
                      <div class="form-group">
                      <h4 class="card-title">توضیحات</h4>
                      <textarea class="form-control" name="des" id="tinymceExample" rows="10"  ></textarea>
@@ -273,6 +350,11 @@
 
 
                     </div>
+
+
+              
+ 
+     
                     
 
 @endif

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\User\Payment;
 
-use App\Http\Controllers\Controller;
-use App\Models\Eform\Currency;
 use App\Models\Eform\Form;
-use App\Models\Eform\FormCategory;
-use App\Models\Eform\FormSubcategory;
 use Illuminate\Http\Request;
+use App\Models\Eform\Currency;
+use App\Models\Eform\FormCategory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PlaneController extends Controller
@@ -29,7 +30,10 @@ class PlaneController extends Controller
     public function index_form($link_cat,$link_subcat,$link_form){
         $planes=Form::where([ [ 'link','=',$link_form ],   ])->first();
         $currencies=Currency::all();
-        return view('user.Payment.plane.index_form' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' , 'link_form' ]));
+        $user = Auth::guard('user')->user();
+ 
+
+        return view('user.Payment.plane.index_form' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' , 'link_form'  , 'user' ]));
     }
 
 
