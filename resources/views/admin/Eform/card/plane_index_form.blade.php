@@ -12,19 +12,12 @@
 
                     <div class="container">
 
-
-
                         @if($planes->form_subcategory->form_category->link=='Money')
-
 
                         <div class="page-content">
 
-
-
                             <div class="row">
                               <div class="col-12 col-xl-12 stretch-card">
-
-
 
 
                                 <div class="row flex-grow">
@@ -80,7 +73,7 @@
 
 
 
-                    <form method="post" class="forms-sample"   enctype="multipart/form-data"  onsubmit="return Validate(this);"  
+                    <form method="post" class="forms-sample"   enctype="multipart/form-data"  onsubmit="return Validate(this);"
                     onchange="totalIt()"  action="#">
 
 
@@ -104,7 +97,7 @@
                             @endif
 
                                 </div>
- 
+
                     <div class="col-sm-6">
 
 
@@ -216,15 +209,15 @@
 
 
 
-                     
+
 
                      <div class="form-group row" >
 
                         <div class="col-md-12">
                             <label for="view_mycategorybrand">  واحد    </label>
-                            <select name="currency"    class="js-example-basic-single w-100"    
+                            <select name="currency"    class="js-example-basic-single w-100"
                             placeholder=""   aria-required="true"      style="font-size: 18px;"
-                            id="view_mycategorybrand"       onchange="myFunction()" 
+                            id="view_mycategorybrand"       onchange="myFunction()"
                                >
 
 
@@ -241,7 +234,7 @@
                         </div>
 
                         </div>
- 
+
 
                         <div class="form-group row">
                             <label for="exampleInputUsername2" class="col-sm-4 col-form-label">قیمت سرویس
@@ -254,15 +247,15 @@
 
 <select id="dropdown_test" onchange="calc()">
     <option   data-one="1200" >1200</option>
-    <option   data-one="800" >800</option> 
+    <option   data-one="800" >800</option>
 </select>
 
 
 <input type="text" id="resultBox" readonly="true" class="form-control" value="0"  />
 
 <script>
-    
-  function calc(){ 
+
+  function calc(){
     var select1_control4 = 10;
     var money = document.getElementById('money').value;
  var myselecte = $('#dropdown_test').change(function () {
@@ -273,16 +266,12 @@
   // return str;
    // alert(str);
 
-   
-
-
 $('#resultBox').val(str);
 
+});
 
-}); 
-
-   var str = document.getElementById('dropdown_test').value*money;   
-   $('#resultBox').val(str);   
+   var str = document.getElementById('dropdown_test').value*money;
+   $('#resultBox').val(str);
 
   }
 </script>
@@ -290,10 +279,10 @@ $('#resultBox').val(str);
 
 
 
- 
 
 
- 
+
+
 
 
                      <div class="form-group">
@@ -352,9 +341,9 @@ $('#resultBox').val(str);
                     </div>
 
 
-              
- 
-     
-                    
+
+
+
+
 
 @endif

@@ -61,10 +61,8 @@
 
 
 
-                                        @if ($form_data_list->form)
-                                        @foreach ($form_data_list->form->form_coloumns as $admin)
-
-                                        {{-- @php dd($admin->form_field->name); @endphp --}}
+                                        @if ($form_coloumns)
+                                        @foreach ($form_coloumns as $admin)
 
 
 
@@ -76,8 +74,6 @@
                                         @endif
                                         @endforeach
                                         @endif
-
-                                        @include('admin.Eform.card.coloumns' , [ 'guard' =>   ] )
 
                                         @if ($admin->form_field->name=='input')
                                         <div class="form-group">
@@ -97,8 +93,95 @@
 
 
 
-                                        @endforeach
+                                        @if ($admin->form_field->name=='password')
+                                        <div class="form-group">
+                                            <label for="name"> {{$admin->name}} </label>
+                                            <input type="password" class="form-control" id="{{$admin->form_field->name}}{{$admin->id}}" autocomplete="off"
+                                                   placeholder=" {{$admin->name}} " name="{{$admin->form_field->name}}{{$admin->id}}"
+                                                    value="{{$mydata}}">
+                                        </div>
                                         @endif
+
+                                        @if ($admin->form_field->name=='checkbox')
+<hr>
+                                        <div class="form-group">
+                                            <label for="name"> {{$admin->name}} </label>
+                                        </div>
+									<div class="form-group">
+                                        @foreach ($admin->form_coloumn_mults as $mult )
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-check-input"  id="{{$admin->form_field->name}}{{$admin->id}}"
+                                                name="{{$admin->form_field->name}}{{$admin->id}}"
+                                                value="{{$mult->id}}"  {{($mult->id == $mydata ? 'checked' : '')}}   >
+												 {{$mult->name}}
+											</label>
+										</div>
+                                        @endforeach
+                                        </div>
+                                        @endif
+
+
+                                        @if ($admin->form_field->name=='radiobox')
+<hr>
+                                        <div class="form-group">
+                                            <label for="name"> {{$admin->name}} </label>
+                                        </div>
+									<div class="form-group">
+                                        @foreach ($admin->form_coloumn_mults as $mult )
+										<div class="form-check">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input"  id="{{$admin->form_field->name}}{{$admin->id}}"
+                                                name="{{$admin->form_field->name}}{{$admin->id}}"   value="{{$mult->id}}"  {{($mult->id == $mydata   ? 'checked' : '')}}   >
+												 {{$mult->name}}
+											</label>
+										</div>
+                                        @endforeach
+                                        </div>
+                                        @endif
+
+
+
+                                        @if ($admin->form_field->name=='textaria')
+									<div class="form-group">
+										<label for="{{$admin->form_field->name}}{{$admin->id}}">{{$admin->name}}   </label>
+										<textarea class="form-control" id="{{$admin->form_field->name}}{{$admin->id}}"
+                                             name="{{$admin->form_field->name}}{{$admin->id}}" placeholder=" {{$admin->place}} "
+											rows="5">{{$mydata}}</textarea>
+									</div>
+                                        @endif
+
+
+
+                                        @if ($admin->form_field->name=='datepersian')
+
+                                        @slot('style')
+                                        <link rel="stylesheet" href="{{ asset('template/assets/css/persian-datepicker-0.4.5.min.css') }}">
+                                        <link rel="stylesheet" href="{{ asset('template/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+                                        @endslot
+
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{$admin->name}}  </h6>
+                                        <div class="input-group date datepicker">
+
+                                            <input type="text" class="form-control tarikh" id="{{$admin->form_field->name}}{{$admin->id}}"
+                                            name="{{$admin->form_field->name}}{{$admin->id}}"  value="{{$mydata}}"><span class="input-group-addon"><i
+                                                    data-feather="calendar"></i></span>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        @endif
+
+
+
+                                        @endforeach
+
+
+
+                                        @endif
+
 
 
 

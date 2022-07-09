@@ -30,6 +30,16 @@ class FormDataController extends Controller
 
          $form_coloumns = FormColoumn::where([  ['form_id' , '=' , $form_data_list->form_id  ], ])->get();
 
+
+        //  dd($form_data_list->form_datas);
+
+        // dd($form_data_list->form);
+
+
+//         foreach ($form_data_list->form_datas as $admin){
+// echo $admin->id;
+//         }
+
         return view('admin.Eform.form_data.edit' , compact(['form_data' , 'form_data_list' , 'form_coloumns' , 'id' ]));
     }
 
