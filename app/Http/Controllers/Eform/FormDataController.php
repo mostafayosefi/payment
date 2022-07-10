@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Eform;
 
 use Illuminate\Http\Request;
+use App\Models\Eform\Currency;
 use App\Models\Eform\FormData;
+use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormDataList;
 use App\Http\Controllers\Controller;
-use App\Models\Eform\FormColoumn;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormDataController extends Controller
@@ -27,20 +28,14 @@ class FormDataController extends Controller
          $count=FormData::where([ ['form_data_list_id','=' , $id], ])->count();
          $form_data=FormData::where([ ['form_data_list_id','=' , $id], ])->get();
          $form_data_list=FormDataList::where([ ['id','=' , $id], ])->first();
+         $currencies=Currency::all();
 
          $form_coloumns = FormColoumn::where([  ['form_id' , '=' , $form_data_list->form_id  ], ])->get();
 
 
-        //  dd($form_data_list->form_datas);
 
-        // dd($form_data_list->form);
-
-
-//         foreach ($form_data_list->form_datas as $admin){
-// echo $admin->id;
-//         }
-
-        return view('admin.Eform.form_data.edit' , compact(['form_data' , 'form_data_list' , 'form_coloumns' , 'id' ]));
+        return view('admin.Eform.form_data.edit' , compact(['form_data' , 'form_data_list' ,
+        'form_coloumns' , 'id' , 'currencies']));
     }
 
 
@@ -81,24 +76,21 @@ class FormDataController extends Controller
 
             if(($form_field_name=='input')||($form_field_name=='password')||($form_field_name=='textaria')||($form_field_name=='datepersian')){
                 $mydata = $request->$m;
+                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
                }
 
             if(($form_field_name=='select')||($form_field_name=='checkbox')||($form_field_name=='radiobox')){
                 foreach($admin->form_coloumn_mults as $mult){
                     if($request->$m==$mult->id) {
                     $mydata=$mult->id;
+                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
                     }
 
                 }
             }
 
 
-        $newUser = FormData::updateOrCreate([
-            'form_data_list_id'   => $id,
-            'form_coloumn_id'   => $form_coloumn_id,
-        ],[
-            'data'     => $mydata,
-        ]);
+
 
 
         }

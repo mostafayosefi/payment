@@ -1,28 +1,30 @@
 <?php
 
-use App\Models\Course\Course;
 use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Wallet;
-use App\Models\Eform\FormColoumn;
-
 use App\Models\Setting;
-
 use App\Rules\Uniqemail;
+
+use App\Models\Eform\Form;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
+use App\Models\Course\Course;
 
 
 use App\Models\Loginhistorie;
 use App\Models\Course\Teacher;
 use App\Models\Eform\Currency;
-use App\Models\Eform\Form;
+use App\Models\Eform\FormData;
+use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
-use App\Models\Eform\FormColoumnMult;
-use App\Models\Eform\FormSubcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Eform\FormColoumnMult;
+use App\Models\Eform\FormDataMult;
+use App\Models\Eform\FormSubcategory;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
@@ -749,3 +751,74 @@ if(! function_exists('validate_price') ) {
 }
 
 
+if(! function_exists('updateorcreate') ) {
+    function updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata)
+    {
+
+
+        if($form_field_name=='input'){
+            $newUser = FormData::updateOrCreate([
+                'form_data_list_id'   => $id,
+                'form_coloumn_id'   => $form_coloumn_id,
+            ],[
+                'data'     => $mydata,
+            ]);
+            // dd($mydata);
+        }
+
+        if($form_field_name=='radiobox'){
+
+            $newUser = FormData::updateOrCreate([
+                'form_data_list_id'   => $id,
+                'form_coloumn_id'   => $form_coloumn_id,
+            ],[
+                'data'     => $mydata,
+            ]);
+
+            $query=FormDataMult::query()->where([
+                'form_data_list_id'   => $id,
+                'form_coloumn_id'   => $form_coloumn_id,
+            ]);
+
+            $count=$query->count();
+            if($count=='0'){
+                FormDataMult::create([
+                    'form_data_list_id'   => $id,
+                    'form_coloumn_id'   => $form_coloumn_id,
+                    'form_coloumn_mult_id'   => $mydata,
+                    'data'   => $mydata,
+                ]);
+
+            }else{
+                $query->update([
+                    'form_coloumn_mult_id'   => $mydata,
+                    'data'   => $mydata,
+                ]);
+            }
+
+
+
+        }
+
+
+
+    }
+}
+
+
+if(! function_exists('mydata') ) {
+    function mydata($form_data , $admin)
+    {
+
+         $mydata='';
+         if($form_data){
+         foreach ($form_data as $medata ){
+         if ($medata->form_coloumn_id==$admin->id){
+         $mydata=$medata->data;
+         }
+        }
+    }
+
+
+    }
+}

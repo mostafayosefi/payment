@@ -1,4 +1,5 @@
 
+
                                         @if ($coloumn->form_field->name=='input')
                                         <div class="form-group">
                                             <label for="{{$coloumn->form_field->name}}{{$coloumn->id}}"> {{$coloumn->name}} </label>
@@ -6,6 +7,8 @@
                                                    placeholder=" {{$coloumn->place}} " name="{{$coloumn->form_field->name}}{{$coloumn->id}}"
                                                     value="{{$mydata}}">
                                         </div>
+
+
                                         @endif
 
 
@@ -71,7 +74,7 @@
 										<label for="{{$coloumn->form_field->name}}{{$coloumn->id}}">{{$coloumn->name}}   </label>
 										<textarea class="form-control" id="{{$coloumn->form_field->name}}{{$coloumn->id}}"
                                              name="{{$coloumn->form_field->name}}{{$coloumn->id}}" placeholder=" {{$coloumn->place}} "
-											rows="5">{{$mydata}}</textarea>
+											rows="10">{{$mydata}}</textarea>
 									</div>
                                         @endif
 
@@ -97,3 +100,4 @@
                                         </div>
                                         </div>
                                         @endif
+

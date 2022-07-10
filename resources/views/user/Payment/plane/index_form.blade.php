@@ -36,7 +36,7 @@ $breadcrumb =  [
 @include('admin.errors.404')
 @elseif($planes != Null)
 
-    @include('admin.Eform.card.plane_index_form', [  'guard'=>'user' ,  $planes , $currencies   ])
+    @include('admin.Eform.card.plane_index_form', [  'guard'=>'user' ,  $planes , $currencies , $user  ])
 
 
 @endif

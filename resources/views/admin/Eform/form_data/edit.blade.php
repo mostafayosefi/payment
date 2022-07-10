@@ -32,111 +32,51 @@
 
 
 
+<div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
 
-      <div class="row">
-          <div class="col-12 col-xl-12 stretch-card">
-              <div class="row flex-grow">
+                        <div class="card-header card-header-border-bottom">
+                            <h4>ویرایش درخواست کاربر </h4>
+                        </div>
+                        <br>
+                        @include('admin.layouts.errors')
 
-
-                  <div class="col-md-12 grid-margin stretch-card">
-                      <div class="card">
-                          <div class="card-body">
-
-                              <div class="card-header card-header-border-bottom">
-                                  <h4>ویرایش درخواست کاربر </h4>
-                              </div>
-
-                              <br>
-
-
-                              @include('admin.layouts.errors')
-
-
-                              <form class="forms-sample" method="POST" action="{{ route('admin.form.form_data.update', $form_data_list->id) }}"
-                                  enctype="multipart/form-data" onsubmit="return Validate(this);">
-                                  @csrf
-                                  <div class="row">
-
-                                      <div class="col-sm-12">
+                            <div class="row">
 
 
 
-                                        @if ($form_data_list->form)
-                                        @foreach ($form_data_list->form->form_coloumns as $admin)
-
-                                        {{-- @php dd($admin->form_field->name); @endphp --}}
-
-
-
-                                        @php $mydata=''; @endphp
-                                        @if($form_data)
-                                        @foreach ($form_data as $medata )
-                                        @if ($medata->form_coloumn_id==$admin->id)
-                                        @php $mydata=$medata->data; @endphp
-                                        @endif
-                                        @endforeach
-                                        @endif
-
-                                        @include('admin.Eform.card.coloumns' , [ 'guard' =>   ] )
-
-                                        @if ($admin->form_field->name=='input')
-                                        <div class="form-group">
-                                            <label for="{{$admin->form_field->name}}{{$admin->id}}"> {{$admin->name}} </label>
-                                            <input type="text" class="form-control" id="{{$admin->form_field->name}}{{$admin->id}}" autocomplete="off"
-                                                   placeholder=" {{$admin->place}} " name="{{$admin->form_field->name}}{{$admin->id}}"
-                                                    value="{{$mydata}}">
-                                        </div>
-                                        @endif
-
-
-                                        @if ($admin->form_field->name=='select')
-                                        @include('admin.layouts.table.selectbox', [ 'allforeachs' => $admin->form_coloumn_mults ,  'input_name' => 'name'  ,  'name_select' => $admin->name ,
-                                         'value' =>  $mydata, 'required'=>'required'  , 'index_id'=> $admin->form_field->name.$admin->id ])
-                                        @endif
-
-
-
-
-                                        @endforeach
-                                        @endif
+                                <div class="col-sm-12">
+                                    @include('admin.Eform.card.template' , ['guard' => 'admin' , 'form'=> $form_data_list->form
+                                     , 'user'=>$form_data_list->user , $currencies  , $form_data_list ] )
+                                </div>
 
 
 
 
 
 
-                                          @method('PUT')
-
-                                          <div class="card-footer">
-                                              <a href="{{ route('admin.form.form_category.index') }}" class="btn btn-danger">بازگشت</a>
-                                              <button type="submit" class="btn btn-primary float-right">ویرایش</button>
-                                          </div>
-
-
-                                      </div>
-
-
-                                  </div>
-
-                              </form>
-
-
-
-                          </div>
-                      </div>
-                  </div>
-
-
-
-
-              </div>
-          </div>
-      </div>
+</div>
 
 
 
 
 
+
+
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
 
 
 
