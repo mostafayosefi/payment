@@ -7,6 +7,7 @@ use SweetAlert;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\Eform\FormDataList;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,7 +19,9 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-       // return view('admin.dashboard');
+       // return view('admin.dashboard');+
+ 
+
        return view('admin.index');
     }
     public function admindemo()

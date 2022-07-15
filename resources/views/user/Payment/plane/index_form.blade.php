@@ -36,7 +36,17 @@ $breadcrumb =  [
 @include('admin.errors.404')
 @elseif($planes != Null)
 
-    @include('admin.Eform.card.plane_index_form', [  'guard'=>'user' ,  $planes , $currencies , $user  ])
+    {{-- @include('admin.Eform.card.plane_index_form', [  'guard'=>'user' ,  $planes , $currencies , $user  ]) --}}
+
+
+
+    <div class="col-sm-12">
+        @include('admin.Eform.card.template' , ['guard' => 'user' , 'form'=> $planes
+         , 'user'=>$user , $currencies  , 'form_data_list' => null  , 'form_data' => null ,
+         'route'=> route('user.payment.order.store' ,[  'form'=> $planes ] ) , 'method' => 'insert' ] )
+    </div>
+
+
 
 
 @endif

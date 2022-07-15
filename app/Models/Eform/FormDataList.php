@@ -10,7 +10,9 @@ class FormDataList extends Model
 {
 
     protected $fillable = [
-        'user_id','form_id','price','status',
+        'user_id','form_id',
+        // 'price',
+        'status','price_id',
     ];
 
     public function user(){
@@ -30,6 +32,13 @@ class FormDataList extends Model
     public function form_data_mult(){
         return $this->hasOne(FormDataMult::class , 'form_data_list_id');
     }
+
+
+
+    public function price(){
+        return $this->belongsTo(Price::class);
+    }
+
 
 
 }

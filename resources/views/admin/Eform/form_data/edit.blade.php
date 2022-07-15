@@ -1,7 +1,7 @@
   @component('admin.layouts.content', [
-      'title' => 'ویرایش درخواست کاربر',
-      'tabTitle' => ' ویرایش درخواست کاربر',
-      'breadcrumb' => [['title' => 'لیست درخواست کاربر  ', 'url' => route('admin.form.form_data_list.index')], ['title' => 'ویرایش درخواست کاربر  ',
+      'title' => 'ویرایش درخواست کاربر'.'('.$form_data_list->form->name.')',
+      'tabTitle' => ' ویرایش درخواست کاربر'.'('.$form_data_list->form->name.')',
+      'breadcrumb' => [['title' => 'لیست درخواست کاربر  ', 'url' => route('admin.form.form_data_list.index')], ['title' => 'ویرایش درخواست کاربر  '.'('.$form_data_list->form->name.')',
       'class' => 'active']],
       ])
 
@@ -51,7 +51,8 @@
 
                                 <div class="col-sm-12">
                                     @include('admin.Eform.card.template' , ['guard' => 'admin' , 'form'=> $form_data_list->form
-                                     , 'user'=>$form_data_list->user , $currencies  , $form_data_list ] )
+                                     , 'user'=>$form_data_list->user , $currencies  , $form_data_list ,
+                                      'route'=> route('admin.form.form_data.update', $form_data_list->id) , 'method' => 'update' ] )
                                 </div>
 
 

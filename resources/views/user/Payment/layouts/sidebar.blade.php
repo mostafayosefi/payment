@@ -80,7 +80,7 @@
               <div class="collapse  " id="visacrtfsc">
                   <ul class="nav sub-menu">
                       <li class="nav-item">
-                          <a href="#" class="nav-link  ">ویزا کارت فیزیکی</a>
+                          <a href="{{route('user.payment.plane.index', 'VisaMasterCard')}}" class="nav-link  ">ویزا کارت فیزیکی</a>
                       </li>
 
                   </ul>
@@ -108,3 +108,18 @@
               </a>
           </li>
 
+
+          <li class="nav-item  {{ isActive(['user.payment.order.index' , 'user.payment.order.index'])}}   ">
+            <a class="nav-link" data-toggle="collapse" href="#order" role="button" aria-expanded="false" aria-controls="order">
+              <i class="link-icon" data-feather="list"></i>
+              <span class="link-title">مدیریت سفارشها</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse  {{ isShow(['user.payment.order.index' , 'user.payment.order.index'])}}     "  id="order">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+ <a href="{{ route('user.payment.order.index') }}" class="nav-link   {{ isActive(['user.payment.order.index']) }}  ">مشاهده سفارشها</a>
+                </li>
+              </ul>
+            </div>
+          </li>

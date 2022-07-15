@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormDataTable extends Migration
+class CreatePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFormDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_data', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('form_coloumn_id')->constrained('form_coloumns')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('form_data_list_id')->constrained('form_data_lists')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('money')->default('0');
+            $table->string('currency')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateFormDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_data');
+        Schema::dropIfExists('prices');
     }
 }

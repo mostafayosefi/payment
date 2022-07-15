@@ -7,6 +7,7 @@ use App\Models\Eform\FormCategory;
 use App\Models\Eform\FormDataList;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormSubcategory;
+use App\Models\Eform\Price;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,7 +16,7 @@ class FormDataListController extends Controller
 
 
     public function index(){
-        $form_data_lists= FormDataList::all();
+        $form_data_lists= FormDataList::orderby('id','desc')->get();
         return view('admin.Eform.form_data_list.index' , compact(['form_data_lists'  ]));
     }
 
@@ -25,7 +26,6 @@ class FormDataListController extends Controller
         $form_subcategories= FormSubcategory::all();
         $users= User::all();
         return view('admin.Eform.form_data_list.create' , compact(['form_categories' , 'form_subcategories'  , 'users' ] ));
-
     }
 
     public function edit($id){
@@ -42,6 +42,10 @@ class FormDataListController extends Controller
         ]);
         $data = $request->all();
 
+      $price =  currency_form_data($data['form_id']);
+
+
+      $data['price_id']=$price->id;
        FormDataList::create($data);
        Alert::success('با موفقیت ثبت شد', 'اطلاعات جدید با موفقیت ثبت شد');
         return redirect()->route('admin.form.form_data_list.index');

@@ -8,6 +8,7 @@ use App\Models\Eform\FormData;
 use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormDataList;
 use App\Http\Controllers\Controller;
+use App\Models\Eform\Price;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormDataController extends Controller
@@ -29,9 +30,7 @@ class FormDataController extends Controller
          $form_data=FormData::where([ ['form_data_list_id','=' , $id], ])->get();
          $form_data_list=FormDataList::where([ ['id','=' , $id], ])->first();
          $currencies=Currency::all();
-
          $form_coloumns = FormColoumn::where([  ['form_id' , '=' , $form_data_list->form_id  ], ])->get();
-
 
 
         return view('admin.Eform.form_data.edit' , compact(['form_data' , 'form_data_list' ,
@@ -62,39 +61,8 @@ class FormDataController extends Controller
 
     public function update(Request $request, $id  ){
 
-        $form_data_list=FormDataList::find($id);
-        $form_data=FormData::where([ [ 'form_data_list_id','=', $id ] ])->get();
-        $count=FormData::where([ [ 'form_data_list_id','=', $id ] ])->count();
 
-
-
-        foreach($form_data_list->form->form_coloumns as $admin){
-            $form_field_name = $admin->form_field->name;
-            $form_coloumn_id = $admin->id;
-
-            $m=$form_field_name.$form_coloumn_id;
-
-            if(($form_field_name=='input')||($form_field_name=='password')||($form_field_name=='textaria')||($form_field_name=='datepersian')){
-                $mydata = $request->$m;
-                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
-               }
-
-            if(($form_field_name=='select')||($form_field_name=='checkbox')||($form_field_name=='radiobox')){
-                foreach($admin->form_coloumn_mults as $mult){
-                    if($request->$m==$mult->id) {
-                    $mydata=$mult->id;
-                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
-                    }
-
-                }
-            }
-
-
-
-
-
-        }
-
+        updata_form_data( $request, $id );
         Alert::success('با موفقیت ویرایش شد', 'اطلاعات درخواست کاربر موفقیت ویرایش شد');
         return back();
     }

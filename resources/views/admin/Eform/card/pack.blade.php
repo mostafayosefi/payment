@@ -20,9 +20,9 @@
 
 
 @if($name_pack=='sans_textaria')
-
-@if ($form_data_list->form)
-@foreach ($form_data_list->form->form_coloumns as $key => $admin)
+@php $form = form_or_date($form_data_list , $form); @endphp
+@if ($form)
+@foreach ($form->form_coloumns as $key => $admin)
   @php $mydata = mydata($form_data , $admin); @endphp
   @if($admin->form_field->name!='textaria')
 {{-- <div class="col-sm-12"> --}}
@@ -39,8 +39,9 @@
 
 @if($name_pack=='only_textaria')
 
-@if ($form_data_list->form)
-@foreach ($form_data_list->form->form_coloumns as $key => $admin)
+@php $form = form_or_date($form_data_list , $form); @endphp
+@if ($form)
+@foreach ($form->form_coloumns as $key => $admin)
   @php $mydata = mydata($form_data , $admin); @endphp
   @if($admin->form_field->name=='textaria')
 {{-- <div class="col-sm-12"> --}}
@@ -59,12 +60,21 @@
 
 @if($name_pack=='price')
 
+@php
+  $currency =   my_list( $form ,$form_data_list , 'currency' );
+  $money =   my_list( $form ,$form_data_list , 'money' );
+  $rate =   my_list( $form ,$form_data_list , 'rate' );
+  $price =   my_list( $form ,$form_data_list , 'price' );
+
+
+@endphp
+
 <div class="form-group row">
     <label for="exampleInputUsername2" class="col-sm-2 col-form-label">مبلغ
    </label>
     <div class="col-sm-9">
-   <input type="text" class="form-control" id="money"  autocomplete="off"    placeholder="مقدار" name="name"
-   value="{{$price}}"  required onkeyup="calc()"  {{$disable_price}}  >
+   <input type="text" class="form-control" id="money"  autocomplete="off"    placeholder="مقدار" name="money"
+   value="{{$money}}"  required onkeyup="calc()"  {{$disable_money}}   >
     </div>
     </div>
 
@@ -74,9 +84,9 @@
         <label for="exampleInputUsername2" class="col-sm-2 col-form-label">نوع ارز
        </label>
         <div class="col-sm-9">
-<select id="dropdown_test" onchange="calc()">
-@foreach ($currencies as $currency  )
-<option  value="{{$currency->rate}}"  data-one="{{$currency->rate}}" >{{$currency->name}}</option>
+<select id="dropdown_test" onchange="calc()" name="currency"  {{$disable_currency}} >
+@foreach ($currencies as $mecurrency  )
+<option  value="{{$mecurrency->rate}}"  data-one="{{$mecurrency->rate}}" {{($mecurrency->id  == $currency ? 'selected' : '')}}  >{{$mecurrency->name}}</option>
 @endforeach
 </select>
         </div>
@@ -89,23 +99,28 @@
     <label for="exampleInputUsername2" class="col-sm-2 col-form-label">مبلغ ارز
    </label>
     <div class="col-sm-9">
-<input type="text" class="form-control"  id="Myrate" readonly="true" class="form-control" value="0"  />
+<input type="text" class="form-control"  id="Myrate" readonly="true"
+class="form-control"     value="{{number_format($rate)}} ريال"  />
     </div>
     </div>
 
+    @include('admin.layouts.table.java_price')
 
 <div class="form-group row">
     <label for="exampleInputUsername2" class="col-sm-2 col-form-label">مبلغ نهایی
    </label>
     <div class="col-sm-9">
-<input type="text" class="form-control"  id="resultBox" readonly="true" class="form-control" value="0"  />
+<input type="text" class="form-control"  id="resultBox" readonly="true" class="form-control"
+ value="{{number_format($price)}} ريال"  style="color: #4ea201"     />
     </div>
     </div>
+
+
 
 <script>
 
 function calc(){
-var select1_control4 = 10;
+ var select1_control4 = 10;
 var money = document.getElementById('money').value;
 var myselecte = $('#dropdown_test').change(function () {
 var select1_control = 1;
@@ -119,16 +134,18 @@ $('#resultBox').val(str);
 
 });
 
+
+
 var str = document.getElementById('dropdown_test').value*money +" ریال ";
-$('#resultBox').val(str);
+ $('#resultBox').val(str);
 
-
-var myrate = 0;
+ var myrate = 0;
 var myrate=document.getElementById('dropdown_test').value +" ریال ";
 $('#Myrate').val(myrate);
 
 }
 </script>
+
 
 
 
@@ -178,7 +195,7 @@ $('#Myrate').val(myrate);
 <div class="form-group row">
     <label for="exampleInputUsername2" class="col-sm-4 col-form-label">نام و نام خانوادگی </label>
     <div class="col-sm-7">
-   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="نام و نام خانوادگی " name="name"
+   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="نام و نام خانوادگی " name="username"
     value="{{$user->name}}"    >
     </div>
     </div>
@@ -189,7 +206,7 @@ $('#Myrate').val(myrate);
 <div class="form-group row">
     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">تلفن همراه</label>
     <div class="col-sm-8">
-   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="تلفن همراه" name="name"
+   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder="تلفن همراه" name="tell"
     value="{{$user->tell}}"    >
     </div>
     </div>
@@ -201,7 +218,7 @@ $('#Myrate').val(myrate);
 <div class="form-group row">
     <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ایمیل</label>
     <div class="col-sm-8">
-   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder=" ایمیل " name="name"
+   <input type="text" class="form-control" id="name" disabled="" autocomplete="off" placeholder=" ایمیل " name="email"
     value="{{$user->email}}"    >
     </div>
     </div>

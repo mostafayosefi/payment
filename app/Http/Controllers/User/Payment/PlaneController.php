@@ -31,7 +31,7 @@ class PlaneController extends Controller
         $planes=Form::where([ [ 'link','=',$link_form ],   ])->first();
         $currencies=Currency::all();
         $user = Auth::guard('user')->user();
- 
+
 
         return view('user.Payment.plane.index_form' , compact(['planes' , 'link_cat' , 'link_subcat', 'currencies' , 'link_form'  , 'user' ]));
     }

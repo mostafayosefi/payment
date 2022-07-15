@@ -1,8 +1,8 @@
-@component('admin.layouts.content',[
-    'title'=>'مشاهده درخواستهای کاربران',
-    'tabTitle'=>'مشاهده درخواستهای کاربران ',
+@component('user.layouts.content',[
+    'title'=>'مشاهده درخواستهای من',
+    'tabTitle'=>'مشاهده درخواستهای من ',
     'breadcrumb'=>[
-            ['title'=>'مشاهده درخواستهای کاربران','class' => 'active']
+            ['title'=>'مشاهده درخواستهای من','class' => 'active']
     ]])
 
 
@@ -17,7 +17,7 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">لیست درخواستهای کاربران</h6>
+          <h6 class="card-title">لیست درخواستهای من</h6>
           <div class="table-responsive">
 
 @if($form_data_lists)
@@ -25,7 +25,7 @@
               <thead>
                 <tr>
                   <th>ردیف</th>
-                  <th>نام فرم</th>
+                  <th>نام سفارش</th>
                   <th>نام کاربر</th>
                   <th>تاریخ ایجاد</th>
                    <th>ویرایش درخواست</th>
@@ -44,12 +44,12 @@
 <td>{{ date_frmat($admin->created_at) }}</td>
 
  <td>
-<a href="{{ route('admin.form.form_data.edit', $admin) }}">
+<a href="{{ route('user.payment.order.edit', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="edit"></i></span>
 </a>
 </td>
  <td>
-<a href="{{ route('admin.form.form_data.show', $admin) }}">
+<a href="{{ route('user.payment.order.edit', $admin) }}">
 <span class="btn btn-primary" >  <i data-feather="eye"></i></span>
 </a>
 </td>

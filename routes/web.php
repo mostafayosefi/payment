@@ -9,6 +9,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\LoginuserController;
+use App\Http\Controllers\User\Payment\OrderController;
 use App\Http\Controllers\User\Payment\PlaneController;
 
 /*
@@ -93,6 +94,17 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
             Route::get('/indexplane/{link_cat}', [PlaneController::class, 'index'])->name('index');
             Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat');
             Route::get('/indexplane/{link_cat}/{link_subcat}/{link_form}', [PlaneController::class, 'index_form'])->name('index_form');
+
+            });
+
+
+            Route::prefix('order')->name('order.')->group(function () {
+
+                Route::post('/{form}', [OrderController::class, 'store'])->name('store');
+                Route::get('/indexorder', [OrderController::class, 'index'])->name('index');
+                Route::get('/editorder/{id}', [OrderController::class, 'edit'])->name('edit');
+                Route::put('/{id}', [OrderController::class, 'update'])->name('update');
+
 
 
 

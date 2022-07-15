@@ -32,7 +32,7 @@ class Form extends Model
 
 
     public function currency(){
-        return $this->belongsTo(Currency::class);
+        return $this->belongsTo(Currency::class, 'form_currency_id');
     }
 
     public function form_template(){

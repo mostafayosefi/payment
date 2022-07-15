@@ -8,22 +8,24 @@ use App\Rules\Uniqemail;
 
 use App\Models\Eform\Form;
 
+use App\Models\Eform\Price;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Morilog\Jalali\Jalalian;
+
+
 use App\Models\Course\Course;
-
-
 use App\Models\Loginhistorie;
 use App\Models\Course\Teacher;
 use App\Models\Eform\Currency;
 use App\Models\Eform\FormData;
 use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
+use App\Models\Eform\FormDataList;
+use App\Models\Eform\FormDataMult;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Eform\FormColoumnMult;
-use App\Models\Eform\FormDataMult;
 use App\Models\Eform\FormSubcategory;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -756,14 +758,15 @@ if(! function_exists('updateorcreate') ) {
     {
 
 
-        if($form_field_name=='input'){
+
+        if(($form_field_name=='input')||($form_field_name=='textaria')){
             $newUser = FormData::updateOrCreate([
                 'form_data_list_id'   => $id,
                 'form_coloumn_id'   => $form_coloumn_id,
             ],[
                 'data'     => $mydata,
             ]);
-            // dd($mydata);
+
         }
 
         if($form_field_name=='radiobox'){
@@ -817,8 +820,130 @@ if(! function_exists('mydata') ) {
          $mydata=$medata->data;
          }
         }
+
+        return $mydata;
+
     }
 
 
     }
+}
+
+if(! function_exists('currency_id') ) {
+    function currency_id($rate)
+    {
+
+
+        $currencies = Currency::all();
+
+        foreach($currencies as $currency){
+            if($currency->rate==$rate){
+                $currency_id = $currency->id;
+            }
+        }
+
+return $currency_id;
+
+    }
+}
+
+
+
+
+if(! function_exists('my_list') ) {
+    function my_list($form , $form_data_list , $oper )
+    {
+
+
+
+        if($form_data_list){
+        $currency = $form_data_list->price->currency;
+        $money = $form_data_list->price->money;
+        }else{
+        $currency = $form->currency->id;
+        $money = $form->money;
+        }
+
+        $model_currency=Currency::find($currency);
+        $rate = $model_currency->rate;
+        $price = $money*$rate;
+
+        if($oper=='currency'){ return $currency; }
+        if($oper=='money'){ return $money; }
+        if($oper=='rate'){ return $rate; }
+        if($oper=='price'){ return $price; }
+
+
+
+    }
+}
+
+
+
+
+
+
+if(! function_exists('currency_form_data') ) {
+    function currency_form_data($form_id )
+    {
+        $form=Form::find($form_id);
+        $currency = $form->currency->id;
+        $money = $form->money;
+        $price = Price::create([ 'currency' => $currency , 'money' => $money ]);
+        return $price;
+
+    }
+}
+
+
+if(! function_exists('updata_form_data') ) {
+    function updata_form_data(Request $request, $id)
+    {
+
+        $form_data_list=FormDataList::find($id);
+        $form_data=FormData::where([ [ 'form_data_list_id','=', $id ] ])->get();
+        $count=FormData::where([ [ 'form_data_list_id','=', $id ] ])->count();
+
+$price=Price::find($form_data_list->price_id);
+$currency_id = currency_id($request->currency);
+$price->update([ 'currency'=>$currency_id , 'money'=>$request->money  ]);
+
+        foreach($form_data_list->form->form_coloumns as $admin){
+            $form_field_name = $admin->form_field->name;
+            $form_coloumn_id = $admin->id;
+            $m=$form_field_name.$form_coloumn_id;
+            if(($form_field_name=='input')||($form_field_name=='password')||($form_field_name=='textaria')||($form_field_name=='datepersian')){
+                $mydata = $request->$m;
+                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
+               }
+            if(($form_field_name=='select')||($form_field_name=='checkbox')||($form_field_name=='radiobox')){
+                foreach($admin->form_coloumn_mults as $mult){
+                    if($request->$m==$mult->id) {
+                    $mydata=$mult->id;
+                updateorcreate($id , $form_coloumn_id , $form_field_name , $mydata );
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+
+
+
+if(! function_exists('form_or_date') ) {
+    function form_or_date($form_data_list , $form)
+    {
+
+        if($form_data_list){
+            return $form_data_list->form;
+        }else{
+            return $form;
+        }
+
+
+    }
+
 }
