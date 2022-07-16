@@ -345,8 +345,8 @@ Route::prefix('currency')
 Route::prefix('plane')
 ->name('plane.')->group(function () {
     Route::get('/indexplane/{link_cat}', [PlaneController::class, 'index'])->name('index');
-    Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat'); 
-    Route::get('/indexplane/{link_cat}/{link_subcat}/{link_form}/edit', [PlaneController::class, 'edit'])->name('edit'); 
+    Route::get('/indexplane/{link_cat}/{link_subcat}', [PlaneController::class, 'index_subcat'])->name('index_subcat');
+    Route::get('/indexplane/{link_cat}/{link_subcat}/{link_form}/edit', [PlaneController::class, 'edit'])->name('edit');
     Route::get('/createplane', [PlaneController::class, 'create'])->name('create');
     Route::post('/', [PlaneController::class, 'store'])->name('store');
     Route::get('/{id}/show', [PlaneController::class, 'show'])->name('show');
@@ -371,7 +371,7 @@ Route::prefix('fetch')
     Route::get('/form_coloumn/{value}', [FetchController::class, 'form_coloumn'])->name('form_coloumn');
     Route::get('/form_fetch/{value}', [FetchController::class, 'form_fetch'])->name('form_fetch');
     Route::get('/form_currency/{value}', [FetchController::class, 'form_currency'])->name('form_currency');
-
+ 
 });
 
 

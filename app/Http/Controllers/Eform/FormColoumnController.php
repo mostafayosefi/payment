@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Eform;
 
-use App\Http\Controllers\Controller;
 use App\Models\Eform\Form;
-use App\Models\Eform\FormColoumn;
-use App\Models\Eform\FormField;
 use Illuminate\Http\Request;
+use App\Models\Eform\FormField;
+use App\Models\Eform\FormColoumn;
+use App\Models\Eform\FormCategory;
+use App\Http\Controllers\Controller;
+use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormColoumnController extends Controller
@@ -35,7 +37,12 @@ class FormColoumnController extends Controller
     public function create(){
         $forms= Form::all();
         $form_fields= FormField::all();
-        return view('admin.Eform.form_coloumn.create' , compact(['forms' , 'form_fields'  ]));
+
+
+        $form_categories= FormCategory::all();
+        $form_subcategories= FormSubcategory::all();
+
+        return view('admin.Eform.form_coloumn.create' , compact(['forms' , 'form_fields' , 'form_categories' , 'form_subcategories'  ]));
     }
 
     public function edit($id){

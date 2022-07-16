@@ -18,7 +18,7 @@ class FormController extends Controller
 
 
     public function index(){
-        $forms= Form::all();
+        $forms= Form::orderby('id' , 'desc')->get();
         return view('admin.Eform.form.index' , compact(['forms'  ]));
     }
 

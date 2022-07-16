@@ -7,6 +7,29 @@
 
       @slot('style')
 
+
+<script>
+    function fetch_myselect_4(vall){
+        var vall = document.getElementById("form_category_id").value;$.ajax({
+            type: 'get',
+            url: '../../../admin/fetch/form_subcategory/'+vall+'',
+        data: {get_option:vall},
+        success: function (response) {document.getElementById("form_subcategory_id").innerHTML=response;}
+    });
+        }
+</script>
+
+<script>
+    function fetch_form_fetch(valle){
+        var vall = document.getElementById("form_subcategory_id").value;$.ajax({
+            type: 'get',
+            url: '../../../admin/fetch/form_fetch/'+valle+'',
+        data: {get_option:valle},
+        success: function (response) {document.getElementById("form_id").innerHTML=response;}
+    });
+        }
+</script>
+
           <script>
               function fetch_form(val){
                   var vall = document.getElementById("form_id").value;$.ajax({
@@ -61,8 +84,11 @@
 
                                       <div class="col-sm-12">
 
+ @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_categories ,  'input_name' => 'name'  ,  'name_select' => ' گروه فرم ' ,  'value' =>   old('form_category_id') , 'required'=>'required'  , 'index_id'=>'form_category_id' ])
+ @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => 'زیرگروه ' ,  'value' =>   old('form_subcategory_id') , 'required'=>'required'  , 'index_id'=>'form_subcategory_id' ])
 
-@include('admin.layouts.table.selectbox', [ 'allforeachs' => $forms ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
+
+@include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
 @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => '  فیلد   ' ,  'value' =>   old('form_coloumn_id') , 'required'=>'required'  , 'index_id'=>'form_coloumn_id' ])
 
      @include('admin.Eform.form_coloumn_mult.create_table', [ 'guard' =>   'admin' ])

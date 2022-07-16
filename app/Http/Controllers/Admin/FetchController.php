@@ -21,8 +21,10 @@ class FetchController extends Controller
         $form_subcategories= FormSubcategory::where([ ['form_category_id' ,$value], ])->get();
         return view('admin.Eform.fetch.form_subcategory' , compact(['value' , 'form_categories' , 'form_subcategories'  ]));
 
-
     }
+ 
+
+
     public function form(  $value  , $multi ){
 
         $forms= Form::find($value);

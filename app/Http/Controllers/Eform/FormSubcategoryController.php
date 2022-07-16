@@ -13,8 +13,8 @@ class FormSubcategoryController extends Controller
 
 
     public function index(){
-        $form_categories= FormCategory::all();
-        $form_subcategories= FormSubcategory::all();
+        $form_categories= FormCategory::orderby('id' , 'desc')->get();
+        $form_subcategories= FormSubcategory::orderby('id' , 'desc')->get();
         return view('admin.Eform.form_subcategory.index' , compact(['form_subcategories'  ,'form_categories'    ]));
     }
 

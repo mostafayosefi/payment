@@ -12,7 +12,7 @@ class FormCategoryController extends Controller
 
 
     public function index(){
-        $form_categories= FormCategory::all();
+        $form_categories= FormCategory::orderby('id' , 'desc')->get();
         return view('admin.Eform.form_category.index' , compact(['form_categories'  ]));
     }
 

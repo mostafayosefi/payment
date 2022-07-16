@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Eform;
 use App\Models\Eform\Form;
 use Illuminate\Http\Request;
 use App\Models\Eform\FormColoumn;
+use App\Models\Eform\FormCategory;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormColoumnMult;
+use App\Models\Eform\FormSubcategory;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormColoumnMultController extends Controller
@@ -31,7 +33,11 @@ class FormColoumnMultController extends Controller
         $forms= Form::all();
         $form_coloumns= FormColoumn::all();
 
-        return view('admin.Eform.form_coloumn_mult.create', compact(['forms' , 'form_coloumns' ] ));
+
+        $form_categories= FormCategory::all();
+        $form_subcategories= FormSubcategory::all();
+
+        return view('admin.Eform.form_coloumn_mult.create', compact(['forms' , 'form_coloumns' , 'form_categories' , 'form_subcategories'  ] ));
     }
 
     public function edit($id){

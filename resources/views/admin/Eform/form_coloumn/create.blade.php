@@ -6,6 +6,56 @@
       ])
 
 
+@slot('style')
+
+
+<script>
+    function fetch_myselect_4(vall){
+        var vall = document.getElementById("form_category_id").value;$.ajax({
+            type: 'get',
+            url: '../../../admin/fetch/form_subcategory/'+vall+'',
+        data: {get_option:vall},
+        success: function (response) {document.getElementById("form_subcategory_id").innerHTML=response;}
+    });
+        }
+</script>
+
+<script>
+    function fetch_form_fetch(valle){
+        var vall = document.getElementById("form_subcategory_id").value;$.ajax({
+            type: 'get',
+            url: '../../../admin/fetch/form_fetch/'+valle+'',
+        data: {get_option:valle},
+        success: function (response) {document.getElementById("form_id").innerHTML=response;}
+    });
+        }
+</script>
+
+          <script>
+              function fetch_form(val){
+                  var vall = document.getElementById("form_id").value;$.ajax({
+                      type: 'get',
+                      url: '../../../admin/fetch/form/'+val+'/1'+'',
+                      data: {get_option:val},
+                      success: function (response) {document.getElementById("form_coloumn_id").innerHTML=response;}
+                  });
+              }
+          </script>
+          <script>
+              function fetch_form_coloumn(vall){
+                  var vall = document.getElementById("form_coloumn_id").value;$.ajax({
+                      type: 'get',
+                      url: '../../../admin/fetch/form_coloumn/'+vall+'',
+                      data: {get_option:vall},
+                      success: function (response) {document.getElementById("form_coloumn_mults").innerHTML=response;}
+                  });
+              }
+          </script>
+
+      @endslot
+
+
+
       <div class="row">
           <div class="col-3 col-xl-3 stretch-card"></div>
           <div class="col-6 col-xl-6 stretch-card">
@@ -37,7 +87,14 @@
                                       <div class="col-sm-12">
 
 
-@include('admin.layouts.table.selectbox', [ 'allforeachs' => $forms ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
+
+                                        @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_categories ,  'input_name' => 'name'  ,  'name_select' => ' گروه فرم ' ,  'value' =>   old('form_category_id') , 'required'=>'required'  , 'index_id'=>'form_category_id' ])
+                                        @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => 'زیرگروه ' ,  'value' =>   old('form_subcategory_id') , 'required'=>'required'  , 'index_id'=>'form_subcategory_id' ])
+
+
+                                       @include('admin.layouts.table.selectbox', [ 'allforeachs' => '' ,  'input_name' => 'name'  ,  'name_select' => '  فرم   ' ,  'value' =>   old('form_id') , 'required'=>'required'  , 'index_id'=>'form_id' ])
+
+
 @include('admin.Eform.form_coloumn.create_table', [ 'guard' =>   'admin' ])
 @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_fields ,  'input_name' => 'name'  ,  'name_select' => '  نوع فیلد   ' ,  'value' =>   old('form_field_id') , 'required'=>'required'  , 'index_id'=>'form_field_id' ])
 
