@@ -1,39 +1,40 @@
 <?php
 
 
-use App\Http\Controllers\Eform\FormTemplateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PageController;
-
-
 use App\Http\Controllers\Admin\UserController;
+
+
 use App\Http\Controllers\Eform\FormController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ComidController;
 use App\Http\Controllers\Admin\FetchController;
+use App\Http\Controllers\Eform\PlaneController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\WalletController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TextdesController;
 use App\Http\Controllers\Admin\SpotliteController;
+use App\Http\Controllers\Eform\CurrencyController;
+use App\Http\Controllers\Eform\FormDataController;
 use App\Http\Controllers\Admin\Exam\ExamController;
+use App\Http\Controllers\Eform\FormFieldController;
+use App\Http\Controllers\Eform\FormColoumnController;
+use App\Http\Controllers\Eform\FormSettingController;
 use App\Http\Controllers\Eform\FormCategoryController;
+use App\Http\Controllers\Eform\FormDataListController;
+use App\Http\Controllers\Eform\FormTemplateController;
 use App\Http\Controllers\Admin\Course\CourseController;
 use App\Http\Controllers\Admin\GetwaypaymentController;
 use App\Http\Controllers\Admin\Course\TeacherController;
+use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormSubcategoryController;
 use App\Http\Controllers\Admin\Course\CourseFileController;
 use App\Http\Controllers\Admin\Course\CourseTypeController;
-use App\Http\Controllers\Eform\CurrencyController;
-use App\Http\Controllers\Eform\FormSettingController;
-use App\Http\Controllers\Eform\FormColoumnController;
-use App\Http\Controllers\Eform\FormColoumnMultController;
-use App\Http\Controllers\Eform\FormFieldController;
-use App\Http\Controllers\Eform\FormDataListController;
-use App\Http\Controllers\Eform\FormDataController;
-use App\Http\Controllers\Eform\PlaneController;
+use App\Http\Controllers\Notification\SettingSmsController;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -360,6 +361,23 @@ Route::prefix('plane')
 
 
 
+
+
+Route::prefix('notification')->name('notification.')->group(function () {
+
+    Route::prefix('settingsms')
+    ->name('settingsms.')->group(function () {
+
+        Route::get('/smssetting', [SettingSmsController::class, 'index'])->name('getway_payment');
+        Route::get('/smssetting/{id}/edit', [SettingSmsController::class, 'edit'])->name('getway_payment_edit');
+        Route::put('/smssetting/{id}', [SettingSmsController::class, 'update'])->name('getway_payment_update');
+        Route::put('/smssetting/statuse/{status}/{id}', [SettingSmsController::class, 'status'])->name('getway_payment_status');
+    
+
+    });
+    
+
+});
 
 
 

@@ -33,6 +33,11 @@ class Setting extends Model
         return $this->hasMany(Getwaypayment::class, 'setting_id');
     }
 
+    public function settingsms()
+    {
+        return $this->hasMany(SettingSms::class, 'setting_id');
+    }
+
 
 
 
