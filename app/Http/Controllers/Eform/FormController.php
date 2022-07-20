@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Eform;
 
 use App\Models\Eform\Form;
 use Illuminate\Http\Request;
+use App\Models\Eform\Currency;
 use App\Models\Eform\FormField;
 use App\Models\Eform\FormColoumn;
 use App\Models\Eform\FormCategory;
-use App\Models\Eform\Currency;
+use App\Models\Eform\FormTemplate;
+use App\Models\Eform\Typeserveice;
 use App\Http\Controllers\Controller;
 use App\Models\Eform\FormSubcategory;
-use App\Models\Eform\FormTemplate;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormController extends Controller
@@ -28,9 +29,12 @@ class FormController extends Controller
         $form_categories= FormCategory::all();
         $form_subcategories= FormSubcategory::all();
         $form_templates= FormTemplate::all();
-        $currencies = Currency::all();
-        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' , 'form_templates'  , 'currencies' ]));
-    }
+        $currencies = Currency::all(); 
+        $typeservices=Typeserveice::all();
+
+        return view('admin.Eform.form.create' , compact(['form_categories' , 'form_subcategories' ,
+         'form_templates'  , 'currencies' , 'typeservices' ]));   
+     }
 
     public function edit($id){
         $form=Form::find($id);
@@ -38,7 +42,9 @@ class FormController extends Controller
         $form_subcategories= FormSubcategory::all();
         $form_templates= FormTemplate::all();
         $currencies = Currency::all();
-        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 'form_subcategories', 'form_templates'  , 'currencies'   ]));
+        $typeservices=Typeserveice::all();
+        return view('admin.Eform.form.edit' , compact(['form' ,'form_categories' , 
+        'form_subcategories', 'form_templates'  , 'currencies'  , 'typeservices'  ]));
     }
 
 

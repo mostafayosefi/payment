@@ -116,6 +116,10 @@
                                           </div>
 
 
+                                          @include('admin.layouts.table.selectbox', [ 'allforeachs' => $typeservices ,  'input_name' => 'name'  ,  'name_select' => 'نوع خدمات' ,  'value' =>   old('typeservice') , 'required'=>'required'  , 'index_id'=>'typeservice' ])
+
+
+
                                           @include('admin.layouts.table.selectbox', [ 'allforeachs' => $form_templates ,  'input_name' => 'name'  ,  'name_select' => ' قالب فرم ' ,  'value' =>   old('form_template_id') , 'required'=>'required'  , 'index_id'=>'form_template_id' ])
                                           @include('admin.layouts.table.selectbox', [ 'allforeachs' => $currencies ,  'input_name' => 'name'  ,  'name_select' => 'ارز' ,  'value' =>   old('form_currency_id') , 'required'=>'required'  , 'index_id'=>'form_currency_id' ])
 
