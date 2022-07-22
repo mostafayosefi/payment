@@ -37,6 +37,18 @@ class FormDataController extends Controller
         'form_coloumns' , 'id' , 'currencies']));
     }
 
+    public function show($id){
+         $count=FormData::where([ ['form_data_list_id','=' , $id], ])->count();
+         $form_data=FormData::where([ ['form_data_list_id','=' , $id], ])->get();
+         $form_data_list=FormDataList::where([ ['id','=' , $id], ])->first();
+         $currencies=Currency::all();
+         $form_coloumns = FormColoumn::where([  ['form_id' , '=' , $form_data_list->form_id  ], ])->get();
+
+
+        return view('admin.Eform.form_data.show' , compact(['form_data' , 'form_data_list' ,
+        'form_coloumns' , 'id' , 'currencies']));
+    }
+
 
     public function store(Request $request)
     {
@@ -52,10 +64,6 @@ class FormDataController extends Controller
         return redirect()->route('admin.form.form_data.index');
     }
 
-    public function show($id)
-    {
-        //
-    }
 
 
 

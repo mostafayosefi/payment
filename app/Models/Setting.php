@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Law;
 use App\Models\Mngfinical;
 use App\Models\Getwaypayment;
+use App\Models\Notification\SettingSms;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -33,7 +34,7 @@ class Setting extends Model
         return $this->hasMany(Getwaypayment::class, 'setting_id');
     }
 
-    public function settingsms()
+    public function setting_sms()
     {
         return $this->hasMany(SettingSms::class, 'setting_id');
     }

@@ -120,6 +120,10 @@
  @if($planes->form_category->link=='VisaMasterCard')
  <a href="{{route('user.payment.plane.index_form' , [ $admin->form_subcategory->form_category->link , $admin->form_subcategory->link , $admin->link ]  )}}" class="btn btn-primary d-block btn-lg   rounded-pill mx-auto mt-4">ثبت سفارش  <i data-feather="check-circle"></i>  </a>
 @endif
+
+ @if($planes->form_category->link=='Internet_payments')
+ <a href="{{route('user.payment.plane.index_form' , [ $admin->form_subcategory->form_category->link , $admin->form_subcategory->link , $admin->link ]  )}}" class="btn btn-primary d-block btn-lg   rounded-pill mx-auto mt-4">ثبت سفارش  <i data-feather="check-circle"></i>  </a>
+@endif
 <hr>
 
 <p style="color : rgba(81,81,81,.5) " >

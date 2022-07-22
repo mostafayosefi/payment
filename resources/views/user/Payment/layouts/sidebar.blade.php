@@ -88,14 +88,34 @@
           </li>
 
 
-
-
-          <li class="nav-item">
-              <a href="#" class="nav-link  ">
+          <li class="nav-item ">
+              <a class="nav-link" data-toggle="collapse" href="#Internet_payments" role="button" aria-expanded="false" aria-controls="Internet_payments">
                   <i class="link-icon" data-feather="list"></i>
-                  <span class="link-title">پرداخت در سایتهای خارجی</span>
+                  <span class="link-title">  پرداخت های اینترنتی    </span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
               </a>
+              <div class="collapse  " id="Internet_payments">
+                  <ul class="nav sub-menu">
+                      <li class="nav-item">
+                          <a href="{{route('user.payment.plane.index', 'Internet_payments')}}" class="nav-link  ">پرداخت در سایتهای خارجی    </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link  "> خرید و تحویل از آمازون انگلیس </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link  "> خرید و تحویل از آمازون امارات </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="#" class="nav-link  "> خرید و تحویل از ترندیول ترکیه </a>
+                      </li>
+
+                  </ul>
+              </div>
           </li>
+
+
+
+ 
 
 
 

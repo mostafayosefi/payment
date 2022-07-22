@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Notification;
 
-use App\Http\Controllers\Controller;
+use App\Models\Setting;
+use App\Models\Notification\SettingSms;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SettingSmsController extends Controller
@@ -13,10 +15,8 @@ class SettingSmsController extends Controller
     public function index()
     {
         $setting=Setting::find(1);
-        // $getwaypayments=Setting::all();
-        $getwaypayments=$setting->getwaypayments()->get();
-        return view('admin.notification.index' , compact(['getwaypayments'  ]));
-
+        $setting_sms=$setting->setting_sms()->get();
+        return view('admin.notification.setting.index' , compact(['setting_sms'  ]));
 
     }
 
@@ -24,28 +24,25 @@ class SettingSmsController extends Controller
 
     public function edit($id)
     {
-        $getwaypayments=Getwaypayment::find($id);
-        return view('admin.notification.edit' , compact(['getwaypayments'  ]));
+        $setting_sms=SettingSms::find($id);
+        return view('admin.notification.setting.edit' , compact(['setting_sms'  ]));
     }
 
     public function update(Request $request, $id )
     {
 
-Getwaypayment::where('id', $id)
+        SettingSms::where('id', $id)
 ->update(['token' => $request->token   ]);
-
 Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
 return redirect()->back();
 
     }
     public function status(Request $request, $status , $id )
   {
-    Getwaypayment::where('id', '<>' , '11')
+    SettingSms::where('id', '<>' , '11')
     ->update(['status' => 'inactive'   ]);
-
-Getwaypayment::where('id', $id)
+    SettingSms::where('id', $id)
 ->update(['status' => 'active'    ]);
-
     Alert::success('با موفقیت ویرایش شد', 'اطلاعات با موفقیت ویرایش شد');
     return redirect()->back();
 

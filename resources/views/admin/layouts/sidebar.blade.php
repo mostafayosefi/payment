@@ -150,6 +150,27 @@
           </li>
 
 
+          <li class="nav-item  {{ isActive(['admin.notification.settingsms.index' , 'admin.notification.list.index'])}}  ">
+            <a class="nav-link" data-toggle="collapse" href="#notification" role="button" aria-expanded="false" aria-controls="notification">
+              <i class="link-icon" data-feather="list"></i>
+              <span class="link-title">اطلاع رسانی   </span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse  {{ isShow(['admin.notification.settingsms.index' , 'admin.notification.list.index'])}}   "  id="notification">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+ <a href="{{ route('admin.notification.settingsms.index') }}" class="nav-link   {{ isActive(['admin.notification.settingsms.index']) }}  ">تنظیمات اطلاع رسانی</a>
+                </li>
+                <li class="nav-item">
+ <a href="{{ route('admin.notification.list.index') }}" class="nav-link   {{ isActive(['admin.notification.list.index']) }}  "> مدیریت متنهای پیش فرض </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
+
+
 @include('admin.Eform.layouts.sidebar' )
 
 

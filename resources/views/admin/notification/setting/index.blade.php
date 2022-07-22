@@ -1,8 +1,8 @@
 @component('admin.layouts.content',[
-    'title'=>' مدیریت درگاههای پرداخت',
-    'tabTitle'=>'مدیریت درگاههای پرداخت',
+    'title'=>' مدیریت درگاههای پیامک',
+    'tabTitle'=>'مدیریت درگاههای پیامک',
     'breadcrumb'=>[
-            ['title'=>'مدیریت درگاههای پرداخت','class' => 'active']
+            ['title'=>'مدیریت درگاههای پیامک','class' => 'active']
     ]])
 
 
@@ -12,21 +12,21 @@
 @endslot
 
 
-<span style="color: #db24cd">دقت نمایید شما فقط یک درگاه پرداخت برای سیستم می توانید فعال نمایید  </span>
+<span style="color: #db24cd">دقت نمایید شما فقط یک درگاه پیامک برای سیستم می توانید فعال نمایید  </span>
 
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">لیست درگاههای پرداخت </h6>
+          <h6 class="card-title">لیست درگاههای پیامک </h6>
           <div class="table-responsive">
 
-@if($getwaypayments)
+@if($setting_sms)
             <table id="dataTableExample" class="table">
               <thead>
                 <tr>
                     <th>ردیف</th>
-                    <th>نام درگاه پرداخت</th>
+                    <th>نام درگاه پیامک</th>
                     <th>تاریخ ایجاد</th>
                     <th>مشاهده</th>
                 </tr>
@@ -34,17 +34,17 @@
               <tbody>
 
 
-@foreach($getwaypayments as $key => $admin)
+@foreach($setting_sms as $key => $admin)
                 <tr>
  <td>{{ $key + 1 }}</td>
 <td>
-    <a href="{{ route('admin.setting.getway_payment_edit' , $admin ) }}" >
+    <a href="{{ route('admin.notification.settingsms.edit' , $admin ) }}" >
         {{$admin->name}}
     </a></td>
 <td>{{ date_frmat($admin->created_at) }}</td>
 
 <td>
-@include('admin.layouts.table.status', [$admin ,'class'=> ''   , 'route' =>  route('admin.setting.getway_payment_status' , ['id' => $admin->id , 'status'=>$admin->status]) , 'myname' => 'درگاه پرداخت '.$admin->name ])
+@include('admin.layouts.table.status', [$admin ,'class'=> ''   , 'route' =>  route('admin.notification.settingsms.status' , ['id' => $admin->id , 'status'=>$admin->status]) , 'myname' => 'درگاه پیامک '.$admin->name ])
 </td>
 
                 </tr>

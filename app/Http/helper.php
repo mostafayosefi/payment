@@ -30,6 +30,7 @@ use App\Models\Eform\FormSubcategory;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Notification\NotificationList;
 
 
 
@@ -247,6 +248,12 @@ if(! function_exists('Change_status') ) {
         if($table=='currencies'){
             $table= Currency::find($id);
             Alert::success('تغییر وضعیت ارز با موفقیت انجام شد', 'تغییرات وضعیت ارز با موفقیت انجام شد');
+        }
+
+
+        if($table=='notification_lists'){
+            $table= NotificationList::find($id);
+            Alert::success('تغییر وضعیت متن پیش فرض با موفقیت انجام شد', 'تغییرات وضعیت متن پیش فرض با موفقیت انجام شد');
         }
 
 

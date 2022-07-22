@@ -34,6 +34,7 @@ use App\Http\Controllers\Eform\FormColoumnMultController;
 use App\Http\Controllers\Eform\FormSubcategoryController;
 use App\Http\Controllers\Admin\Course\CourseFileController;
 use App\Http\Controllers\Admin\Course\CourseTypeController;
+use App\Http\Controllers\Notification\NotificationListController;
 use App\Http\Controllers\Notification\SettingSmsController;
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -367,15 +368,24 @@ Route::prefix('notification')->name('notification.')->group(function () {
 
     Route::prefix('settingsms')
     ->name('settingsms.')->group(function () {
-
-        Route::get('/smssetting', [SettingSmsController::class, 'index'])->name('getway_payment');
-        Route::get('/smssetting/{id}/edit', [SettingSmsController::class, 'edit'])->name('getway_payment_edit');
-        Route::put('/smssetting/{id}', [SettingSmsController::class, 'update'])->name('getway_payment_update');
-        Route::put('/smssetting/statuse/{status}/{id}', [SettingSmsController::class, 'status'])->name('getway_payment_status');
-    
-
+        Route::get('/smssetting', [SettingSmsController::class, 'index'])->name('index');
+        Route::get('/smssetting/{id}/edit', [SettingSmsController::class, 'edit'])->name('edit');
+        Route::put('/smssetting/{id}', [SettingSmsController::class, 'update'])->name('update');
+        Route::put('/smssetting/statuse/{status}/{id}', [SettingSmsController::class, 'status'])->name('status');
     });
-    
+
+
+    Route::prefix('list')
+    ->name('list.')->group(function () {
+        Route::get('/index', [NotificationListController::class, 'index'])->name('index');
+        Route::get('/{id}/type', [NotificationListController::class, 'type'])->name('type');
+        Route::get('/{id}/type/edit', [NotificationListController::class, 'edit'])->name('edit');
+        Route::put('/{id}/type/update', [NotificationListController::class, 'update'])->name('update');
+        Route::put('/{id}/status', [NotificationListController::class, 'status'])->name('status');
+
+     });
+
+
 
 });
 
@@ -389,7 +399,7 @@ Route::prefix('fetch')
     Route::get('/form_coloumn/{value}', [FetchController::class, 'form_coloumn'])->name('form_coloumn');
     Route::get('/form_fetch/{value}', [FetchController::class, 'form_fetch'])->name('form_fetch');
     Route::get('/form_currency/{value}', [FetchController::class, 'form_currency'])->name('form_currency');
- 
+
 });
 
 
