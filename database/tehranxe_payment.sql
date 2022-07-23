@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2022 at 10:40 PM
+-- Generation Time: Jul 23, 2022 at 03:17 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -59,8 +59,10 @@ CREATE TABLE `authentications` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_code_verify` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
   `tell` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tell_code_verify` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tell_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
   `tells` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tells_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
@@ -68,11 +70,21 @@ CREATE TABLE `authentications` (
   `cardmelli_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
   `selfi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `selfi_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
+  `passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `passport_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
   `document` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `document_verify` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `authentications`
+--
+
+INSERT INTO `authentications` (`id`, `user_id`, `email`, `email_code_verify`, `email_verify`, `tell`, `tell_code_verify`, `tell_verify`, `tells`, `tells_verify`, `cardmelli`, `cardmelli_verify`, `selfi`, `selfi_verify`, `passport`, `passport_verify`, `document`, `document_verify`, `created_at`, `updated_at`, `status`) VALUES
+(1, 1, 'mustafa1390@gmail.com', NULL, 'inactive', NULL, NULL, 'inactive', NULL, 'inactive', NULL, 'inactive', NULL, 'inactive', NULL, 'inactive', NULL, 'inactive', '2022-07-23 12:40:38', '2022-07-23 12:40:38', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -84,6 +96,25 @@ CREATE TABLE `banks` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank_accounts`
+--
+
+CREATE TABLE `bank_accounts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `card` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shaba` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inactive',
+  `default` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `bank_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -678,7 +709,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (64, '2022_07_20_171919_add_setting_id_to_setting_sms', 11),
 (65, '2022_07_21_123435_add_text_default_notification_lists_table', 12),
 (66, '2022_07_22_130957_create_authentications_table', 13),
-(67, '2022_07_22_134919_create_banks_table', 13);
+(67, '2022_07_22_134919_create_banks_table', 13),
+(68, '2022_07_23_152801_create_bank_accounts_table', 14),
+(69, '2022_07_23_172657_add_status_to_authentications', 15),
+(70, '2022_07_23_173904_add_multifield_to_authentications', 16);
 
 -- --------------------------------------------------------
 
@@ -1154,6 +1188,14 @@ ALTER TABLE `banks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `bank_accounts`
+--
+ALTER TABLE `bank_accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bank_accounts_user_id_foreign` (`user_id`),
+  ADD KEY `bank_accounts_bank_id_foreign` (`bank_id`);
+
+--
 -- Indexes for table `comids`
 --
 ALTER TABLE `comids`
@@ -1450,12 +1492,18 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `authentications`
 --
 ALTER TABLE `authentications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `banks`
 --
 ALTER TABLE `banks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bank_accounts`
+--
+ALTER TABLE `bank_accounts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -1564,7 +1612,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `mngfinicals`
@@ -1677,6 +1725,13 @@ ALTER TABLE `wallets`
 --
 ALTER TABLE `authentications`
   ADD CONSTRAINT `authentications_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `bank_accounts`
+--
+ALTER TABLE `bank_accounts`
+  ADD CONSTRAINT `bank_accounts_bank_id_foreign` FOREIGN KEY (`bank_id`) REFERENCES `banks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bank_accounts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `forms`

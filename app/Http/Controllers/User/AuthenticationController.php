@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Authentication;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthenticationController extends Controller
 {
 
 
-    public function index(){
-        $values= Value::all();
-        return view('admin.value.index' , compact(['values'  ]));
+    public function index(){  
+        $user = Auth::guard('user')->user();
+        $authentication= Authentication::where([ ['user_id' , '=' , $user->id  ], ])->orderby('id','desc')->first();
+        $authentication=  count_auth($user,$authentication); 
+
+       // return view('user.authentication.index' , compact(['authentication'  ]));
     }
 
 

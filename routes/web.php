@@ -11,6 +11,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\LoginuserController;
 use App\Http\Controllers\User\Payment\OrderController;
 use App\Http\Controllers\User\Payment\PlaneController;
+use App\Http\Controllers\User\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,11 @@ Route::namespace('Auth')->prefix('admin')->group(function () {
 
 
 
+            Route::prefix('authentication')->name('authentication.')->group(function () {
+
+                Route::get('/', [AuthenticationController::class, 'index'])->name('index');
+
+            });
 
         Route::prefix('ticket')->name('ticket.')->group(function () {
             Route::get('/indexticket', [TicketController::class, 'index'])->name('index');

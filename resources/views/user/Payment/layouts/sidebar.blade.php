@@ -4,7 +4,7 @@
 
 
 <li class="nav-item">
-              <a href="#" class="nav-link  ">
+              <a href="{{route('user.authentication.index')}}" class="nav-link  ">
                   <i class="link-icon" data-feather="user-check"></i>
                   <span class="link-title">تایید مدارک</span>
               </a>

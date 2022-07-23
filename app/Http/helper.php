@@ -16,6 +16,7 @@ use Morilog\Jalali\Jalalian;
 
 use App\Models\Course\Course;
 use App\Models\Loginhistorie;
+use App\Models\Authentication;
 use App\Models\Course\Teacher;
 use App\Models\Eform\Currency;
 use App\Models\Eform\FormData;
@@ -521,6 +522,8 @@ if(! function_exists('priority') ) {
 //git merge
 //        git reset --hard
 
+// https://appdividend.com/2022/02/28/laravel-dropzone-image-upload/
+
 
     }
 
@@ -951,6 +954,27 @@ if(! function_exists('form_or_date') ) {
         }
 
 
+    }
+
+}
+
+
+if(! function_exists('count_auth') ) {
+    function count_auth($user , $authentication)
+    {
+
+        if($authentication){
+
+        }else{
+            Authentication::create([ 'user_id' =>$user->id , 'email' =>$user->email , 
+            'tell' => $user->tell  ]);
+        }
+
+        $authentication= Authentication::where([ ['user_id' , '=' , $user->id  ], ])->orderby('id','desc')->first();
+
+        return $authentication;
+
+ 
     }
 
 }
