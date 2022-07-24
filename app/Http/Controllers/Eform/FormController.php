@@ -62,7 +62,7 @@ class FormController extends Controller
         $data['group'] = "group_".$data['link'];
         $data['subgroup'] = "subgroup_".$data['link'];
         $data['short'] =  $data['name'];
-        $data['text'] =  $data['name'];
+        $data['text']  =   $data['name'];
 
         $data['image']  =  uploadFile($request->file('image'),'images/forms','');
 

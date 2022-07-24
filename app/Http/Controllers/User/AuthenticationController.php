@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\BankAccount;
 use Illuminate\Http\Request;
 use App\Models\Authentication;
 use App\Http\Controllers\Controller;
@@ -16,8 +17,10 @@ class AuthenticationController extends Controller
         $user = Auth::guard('user')->user();
         $authentication= Authentication::where([ ['user_id' , '=' , $user->id  ], ])->orderby('id','desc')->first();
         $authentication=  count_auth($user,$authentication); 
+        $bank_accounts= BankAccount::where([ ['user_id' , '=' , $user->id  ], ])->orderby('id','desc')->get();
 
-       // return view('user.authentication.index' , compact(['authentication'  ]));
+
+        return view('user.authentication.index' , compact(['authentication' , 'bank_accounts' ]));
     }
 
 

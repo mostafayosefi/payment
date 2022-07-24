@@ -19,36 +19,12 @@
  
  <div class="page-content">
 
+  
+  @include('admin.alert.activition', [ $authentication , 'oper'=>'email_verify' , 'guard' => 'user' ])
+  @include('admin.alert.activition', [ $authentication , 'oper'=>'tell_verify' , 'guard' => 'user' ])
+  @include('admin.alert.activition', [ $authentication , 'oper'=>'document_verify' , 'guard' => 'user' ])
 
-  @if(Session::get('verfyemail')!='1')		             
-   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong><b>فعالسازی ایمیل </b> !</strong>  <br> 
-         <span> جهت فعال کردن ایمیل  <a href="#">لطفا کلیک نمایید</a></span><br>   
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  @endif
-  
-  @if(Session::get('verfytell')!='1')		             
-   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong><b>فعالسازی تلفن</b> !</strong> <br>     
-       <span> جهت فعال کردن تلفن همراه  <a href="#">لطفا کلیک نمایید</a></span><br>   
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  @endif
-  
-  @if(Session::get('verfydoc')!='1')		             
-   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong><b>احرازهویت و تایید مدارک</b>!</strong> <br>    
-       <span><b>جهت احرازهویت و ارسال و تایید مدارک </b><a href="#">لطفا کلیک نمایید</a></span><br>   
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  @endif
+
   
   
           <div class="profile-page tx-13">
@@ -56,118 +32,9 @@
   
   
             <div class="row profile-body">
-              <!-- left wrapper start -->
+           
               
-              
-              
-              <!-- left wrapper end -->
-              
-              
-              
-              
-              
-              <!--  
-              
-              <div class="col-md-4 col-xl-3 left-wrapper">
-                <div class="card rounded">
-                  <div class="card-body">
-  
-  <div class="d-flex align-items-center justify-content-between mb-2">
-  
-  <h6 class="card-title mb-0">اطلاعات پروفایل</h6>
-  
-  <div class="dropdown">
-   <button class="btn p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i> </button>
-   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-   <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm ml-2"></i> <span class="">ویرایش پروفایل</span></a>
-   <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="git-branch" class="icon-sm ml-2"></i> <span class="">به روز رسانی</span></a>
-   <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm ml-2"></i> <span class="">مشاهده همه</span></a>
-                        </div>
-                      </div>
-                    </div>
-  
-  
-   
-  
-   <div class="mt-3">
-   <label class="tx-11 font-weight-bold mb-0 text-uppercase">نام و نام خانوادگی : </label>
-   <p class="text-muted">
-     
-   @if($authentication->status=='active')             
-  <span class="badge badge-success"><i data-feather="check-circle"></i> &nbsp; {{$admin->user_name}} </span>
-  @elseif($authentication->status=='inactive') 
-  <span class="badge badge-warning"><i data-feather="x-circle"></i> &nbsp; {{$admin->user_name}} </span> 
-  @endif
-   </p> 
-   </div>
-   
-  
-  
-   <div class="mt-3">
-   <label class="tx-11 font-weight-bold mb-0 text-uppercase">ایمیل : </label>
-   <p class="text-muted">
-     
-   @if($admin->user_emailactive=='1')             
-  <span class="badge badge-success"><i data-feather="check-circle"></i> &nbsp; {{$admin->user_email}} </span>
-  @elseif($admin->user_emailactive=='0') 
-  <span class="badge badge-warning"><i data-feather="x-circle"></i> &nbsp; {{$admin->user_email}} </span> 
-  @endif
-   </p> 
-   </div>
-   
-    <div class="mt-3">
-   <label class="tx-11 font-weight-bold mb-0 text-uppercase">تلفن : </label>
-   <p class="text-muted">
-   @if($admin->user_tellactive=='1')             
-  <span class="badge badge-success"><i data-feather="check-circle"></i> &nbsp; {{$admin->user_tell}} </span>
-  @elseif($admin->user_tellactive=='0') 
-  <span class="badge badge-warning"><i data-feather="x-circle"></i> &nbsp; {{$admin->user_tell}} </span> 
-  @endif  
-   </p> 
-   </div>
-   
-  
-  <div class="mt-3">
-  <label class="tx-11 font-weight-bold mb-0 text-uppercase">آدرس : </label>
-  <p class="text-muted">{{$admin->user_adres}}</p></div>
-  
-  
-  <div class="mt-3">
-  <label class="tx-11 font-weight-bold mb-0 text-uppercase">تاریخ ثبت نام : </label>
-  <p class="text-muted">{{jDate::forge($admin->user_createdatdate)->format('Y/m/d ساعت H:i a')}}</p></div>
-  
-  
-  
-  <div class="mt-3">
-  <label class="tx-11 font-weight-bold mb-0 text-uppercase">تاریخ آخرین ورود : </label>
-  <p class="text-muted">{{jDate::forge($admin->user_loginatdate)->format('Y/m/d ساعت H:i a')}}</p></div>
-  
-   
-   
-   
-                    <div class="mt-3 d-flex social-links">
-                      <a href="javascript:;"
-                        class="btn d-flex align-items-center justify-content-center border ml-2 btn-icon github">
-                        <i data-feather="github" data-toggle="tooltip"
-                          title="github.com/example"></i>
-                      </a>
-                      <a href="javascript:;"
-                        class="btn d-flex align-items-center justify-content-center border ml-2 btn-icon twitter">
-                        <i data-feather="twitter" data-toggle="tooltip"
-                          title="twitter.com/example"></i>
-                      </a>
-                      <a href="javascript:;"
-                        class="btn d-flex align-items-center justify-content-center border ml-2 btn-icon instagram">
-                        <i data-feather="instagram" data-toggle="tooltip"
-                          title="instagram.com/example"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              -->
-              <!-- middle wrapper start -->
-              <div class="col-md-8  col-xl-12  ">
+              <div class="col-md-12  col-xl-12  ">
                
                 
                 
@@ -204,243 +71,13 @@
   <div class="tab-content" id="myTabContent2">
   
   <div class="tab-pane pt-3 fade    @if((empty(Session::get('errus')))||(Session::get('errus')=='1')) show active @endif" id="icon-home" role="tabpanel" aria-labelledby="icon-home-tab">
-  
-  <div class="row"> 
-  
-  <div class="col-md-12 grid-margin">
-   <div class="card rounded">
-   <div class="card-body">
-   <h6 class="card-title">وریفای ایمیل</h6>
-   
-   
-   
-   
-  
-  @if ($admin->user_emailactive == '0')  
-   
-   
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-  <i data-feather="mail"></i>
-   <div class="mr-2">
-   <p>{{$admin->user_email}}</p> 
-   </div>
-   </div>
-  
-    
-  <form class="forms-sample"  method="POST" action="#"    >
-  
-  @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-   @endif
-     
-    <input  type="hidden" class="form-control" name="email" value="{{$admin->user_email}}" maxlength="44"    />
-    <button  class="btn btn-success btn-block"><i data-feather="send"></i>ارسال کد وریفای به ایمیل</button> 
-  
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </form>
-   
-  
-  </div> 
-  
-  
-   
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-  <i data-feather="alert-circle"></i>
-   <div class="mr-2">
-   <p>جهت فعالسازی ایمیل لطفا اقدام نمایید</p> 
-   </div>
-   </div>
-  
-    
-  <form class="forms-sample"  method="POST" action="#"    >
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
-     
-  <div class="input-group">
-                      <div class="input-group-btn">
-                        <button   class="btn btn-primary btn-block btn-flat">فعالسازی ایمیل</button>
-                      </div><!-- /btn-group -->
-   <input  type="text"  name="codemail"  class="form-control" placeholder="کدفعالسازی">
-                    </div> 
-  
-  
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </form>
-   
-  
-  </div> 
-  
-  
-  @elseif ($admin->user_emailactive == '1')  
-   
-  
-  
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-        
-   <div class="alert alert-success alert-dismissible fade show" role="alert">
-     
-   <strong><b> <i data-feather="check-circle"></i> &nbsp; {{$admin->user_email}}  </b>  </strong> <br>     
-   <span>     ایمیل من قبلا فعال شده است  <i data-feather="mail"></i> </span><br>   
-   
-  </div> 
-   </div>  
-  </div> 
-  
-  @endif
-  
-  
-   
-  
-  
-                 
-   </div>
-   </div>									
-                        
-                          </div>
-                          </div>
-                          </div>
+    @include('user.authentication.email', [ $authentication ,  'guard' => 'user' ])
+ </div>
   
   <div class="tab-pane pt-3 fade  @if(Session::get('errus')=='2') show active @endif" id="icon-secret" role="tabpanel" aria-labelledby="icon-secret-tab">
     
-  
-  <div class="row"> 
-  
-  <div class="col-md-12 grid-margin">
-   <div class="card rounded">
-   <div class="card-body">
-   <h6 class="card-title">وریفای تلفن</h6>
-   
-   
-   
-   
-  
-  @if ($admin->user_tellactive == '0')  
-   
-   
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-  <i data-feather="phone"></i>
-   <div class="mr-2">
-   <p>{{$admin->user_tell}}</p> 
-   </div>
-   </div>
-  
-    
-  <form class="forms-sample"  method="POST" action="{{env('APP_URL')}}/user/activition/telluseractivitionverfy"    >
-  
-  @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-   @endif
-     
-    <input  type="hidden" class="form-control" name="tell" value="{{$admin->user_tell}}" maxlength="44"    />
-    <button  class="btn btn-success btn-block"><i data-feather="send"></i>ارسال کد وریفای به تلفن همراه </button> 
-  
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </form>
-   
-  
-  </div> 
-  
-  
-   
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-  <i data-feather="alert-circle"></i>
-   <div class="mr-2">
-   <p>جهت فعالسازی تلفن همراه لطفا اقدام نمایید</p> 
-   </div>
-   </div>
-  
-    
-  <form class="forms-sample"  method="POST" action="{{env('APP_URL')}}/user/activition/telluseractivition"    >
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
-     
-  <div class="input-group">
-                      <div class="input-group-btn">
-   <button   class="btn btn-primary btn-block btn-flat">فعالسازی تلفن همراه</button>
-                      </div><!-- /btn-group -->
-   <input  type="text"  name="codtell"  class="form-control" placeholder="کدفعالسازی">
-                    </div> 
-  
-  
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </form>
-   
-  
-  </div> 
-  
-  
-  @elseif ($admin->user_tellactive == '1')  
-   
-  
-  
-   <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-   <div class="d-flex align-items-center hover-pointer">
-        
-   <div class="alert alert-success alert-dismissible fade show" role="alert">
-     
-   <strong><b> <i data-feather="check-circle"></i> &nbsp; {{$admin->user_tell}}  </b>  </strong> <br>     
-   <span>     تلفن همراه من قبلا فعال شده است   <i data-feather="phone"></i> </span><br>   
-   
-  </div> 
-   </div>  
-  </div> 
-  
-  @endif
-  
-  
-   
-  
-  
-                 
-   </div>
-   </div>									
-                        
-                          </div>
-                          </div>
-  
+    @include('user.authentication.tell', [ $authentication ,  'guard' => 'user' ])
+
     
   </div>
   
@@ -512,22 +149,10 @@
   
   
    @if ($authentication->status=='inactive') 
-   @if (empty($admin->user_uploadpassport))	
+   @if (empty($authentication->passport_verify))	
   <form class="form-horizontal" method="POST" action="verificationdoc/post/1"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
-             
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
+    @include('admin.layouts.errors')
   
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
@@ -560,11 +185,13 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
    
    
-   @elseif($admin->user_uploadpassport)	
+   @elseif($authentication->passport_verify)	
   
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -613,7 +240,7 @@
    <div class="d-flex align-items-center hover-pointer">
   <i data-feather="alert-circle"></i>
    <div class="mr-2">
-   <p>توضیحات : {{$admin->user_autdes}}</p> 
+   <p>توضیحات : text</p> 
    </div>
    </div>
    </div> 
@@ -621,25 +248,13 @@
   
   <form class="form-horizontal" method="POST" action="verificationdoc/post/1"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
-             
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
+    @include('admin.layouts.errors')
   
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
   
   <div class="form-group" > 
-  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($admin->user_name) value="{{$admin->user_name}}"@else value="{{ old('name') }}" @endif  required> 
+  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($authentication->user->name) value="{{$authentication->user->name}}"@else value="{{ old('name') }}" @endif  required> 
   </div>	
   
   
@@ -670,7 +285,9 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
   
   
@@ -689,12 +306,10 @@
    </div>
     
    
-   @if ($admin->user_uploadpassport)
-  
-   <div>
-  <img src="{{env('APP_URL')}}/public/images/{{$admin->user_uploadpassport}}"  width="240"  height="160"  /> 
-   </div>
+   @if ($authentication->passport_verify) 
    
+@include('admin.layouts.table.avatarnul', [  'avatarimage' => $authentication->passport , 'class'=>'' , 'style' => 'height: 160px;width: 240px;'  ])
+
   @else
    
   
@@ -776,23 +391,11 @@
     
   
   
-   @if ($admin->user_authselfi=='0') 
-   @if (empty($admin->user_selfi))	
+   @if ($authentication->selfi_verify=='active') 
+   @if (empty($authentication->selfi))	
   <form class="form-horizontal" method="POST" action="verificationdoc/post/2"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
-             
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
+    @include('admin.layouts.errors')
   
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
@@ -825,11 +428,13 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
    
    
-   @elseif($admin->user_selfi)	
+   @elseif($authentication->selfi)	
   
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -845,7 +450,7 @@
    
    
    
-   @if ($admin->user_authselfi=='1') 
+   @if ($authentication->selfi_verify=='active') 
    
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -860,7 +465,7 @@
    
    
    
-   @if ($admin->user_authselfi=='2') 
+   @if ($authentication->selfi_verify=='active') 
    
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -878,7 +483,7 @@
    <div class="d-flex align-items-center hover-pointer">
   <i data-feather="alert-circle"></i>
    <div class="mr-2">
-   <p>توضیحات : {{$admin->user_authselfides}}</p> 
+   <p>توضیحات : text</p> 
    </div>
    </div>
    </div> 
@@ -886,25 +491,13 @@
   
   <form class="form-horizontal" method="POST" action="verificationdoc/post/2"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
-             
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
+    @include('admin.layouts.errors')
   
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
   
   <div class="form-group" > 
-  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($admin->user_name) value="{{$admin->user_name}}"@else value="{{ old('name') }}" @endif  required> 
+  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($authentication->user->name) value="{{$authentication->user->name}}"@else value="{{ old('name') }}" @endif  required> 
   </div>	
   
   
@@ -935,7 +528,9 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
   
   
@@ -954,12 +549,9 @@
    </div>
     
    
-   @if ($admin->user_selfi)
-  
-   <div>
-  <img src="{{env('APP_URL')}}/public/images/{{$admin->user_selfi}}"  width="240"  height="160"  /> 
-   </div>
-   
+   @if ($authentication->selfi)
+   @include('admin.layouts.table.avatarnul', [  'avatarimage' => $authentication->selfi , 'class'=>'' , 'style' => 'height: 160px;width: 240px;'  ])
+
   @else
    
   
@@ -1042,24 +634,11 @@
     
   
   
-   @if ($admin->user_authdoc=='0') 
-   @if (empty($admin->user_filedoc))	
+   @if ($authentication->document_verify=='active') 
+   @if (empty($authentication->document))	
   <form class="form-horizontal" method="POST" action="verificationdoc/post/3"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
-             
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
-  
+    @include('admin.layouts.errors')
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
   
@@ -1091,11 +670,13 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
    
    
-   @elseif($admin->user_filedoc)	
+   @elseif($authentication->document)	
   
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -1111,7 +692,7 @@
    
    
    
-   @if ($admin->user_authdoc=='1') 
+   @if ($authentication->document_verify=='active') 
    
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -1126,7 +707,7 @@
    
    
    
-   @if ($admin->user_authdoc=='2') 
+   @if ($authentication->document_verify=='reject') 
    
    
    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
@@ -1144,7 +725,7 @@
    <div class="d-flex align-items-center hover-pointer">
   <i data-feather="alert-circle"></i>
    <div class="mr-2">
-   <p>توضیحات : {{$admin->user_authdocdes}}</p> 
+   <p>توضیحات : text</p> 
    </div>
    </div>
    </div> 
@@ -1153,24 +734,13 @@
   <form class="form-horizontal" method="POST" action="verificationdoc/post/3"   enctype="multipart/form-data"  onsubmit="return Validate(this);" >
                     
              
-          @if(count($errors))
-        <div class="alert alert-danger">
-      
-          <strong>اخطار!</strong> لطفا بررسی نمایید
-          <br/>
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      @endif  
+    @include('admin.layouts.errors')
   
    <div class="d-flex align-items-center hover-pointer"> 
    <div class="mr-2">
   
   <div class="form-group" > 
-  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($admin->user_name) value="{{$admin->user_name}}"@else value="{{ old('name') }}" @endif  required> 
+  <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="نام و نام خانوادگی" name="name" @if ($authentication->user->name) value="{{$authentication->user->name}}"@else value="{{ old('name') }}" @endif  required> 
   </div>	
   
   
@@ -1201,7 +771,9 @@
   
   
   
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
   </form>
   
   
@@ -1220,11 +792,9 @@
    </div>
     
    
-   @if ($admin->user_filedoc)
-  
-   <div>
-  <img src="{{env('APP_URL')}}/public/images/{{$admin->user_filedoc}}"  width="240"  height="160"  /> 
-   </div>
+   @if ($authentication->document)
+   @include('admin.layouts.table.avatarnul', [  'avatarimage' => $authentication->document , 'class'=>'' , 'style' => 'height: 160px;width: 240px;'  ])
+
    
   @else
    
@@ -1318,10 +888,12 @@
   
    
     
-   <input type="hidden" name="nameuser" value="{{$admin->user_name}}">
+   <input type="hidden" name="nameuser" value="{{$authentication->user->name}}">
    
    
-   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+   
+    @method('PUT')
+    @csrf
      
      
       <hr>
@@ -1361,7 +933,7 @@
   
                   <div class="table-responsive">
                   
-  @if($wallets)
+  @if($bank_accounts)
                     <table id="dataTableExample" class="table">
                       <thead>
                           <tr>
@@ -1373,18 +945,17 @@
                           </tr>
                       </thead>
                       <tbody>
-                      
-  <?php $i=1; ?>       
-  @foreach($wallets as $admin)
+                         
+  @foreach($bank_accounts as $key => $bank_account)
   
   
   
    <tr>
-   <td>{{$i++}}</td> 
-   <td>{{$admin->wallet_name}} </td>
-   <td>{{$admin->wallet_numbercard}} </td>  
-   <td>{{$admin->wallet_numbershaba}} </td>
-   <td>{{jDate::forge($admin->wallet_createdatdate)->format('l d F Y ساعت H:i a')}}</td> 
+   <td>{{ $key + 1 }}</td> 
+   <td>{{$bank_account->name}} </td>
+   <td>{{$bank_account->card}} </td>  
+   <td>{{$bank_account->shaba}} </td>
+   <td>{{ date_frmat($bank_account->created_at) }}</td> 
    </tr> 
   
    
