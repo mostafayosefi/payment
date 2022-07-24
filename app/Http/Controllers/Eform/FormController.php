@@ -52,12 +52,18 @@ class FormController extends Controller
     {
         $request->validate([
             'form_subcategory_id' => 'required',
-            'group' => 'required',
-            'subgroup' => 'required',
+            // 'group' => 'required',
+            // 'subgroup' => 'required',
             'name' => 'required',
             'link' => 'required',
         ]);
         $data = $request->all();
+        
+        $data['group'] = "group_".$data['link'];
+        $data['subgroup'] = "subgroup_".$data['link'];
+        $data['short'] =  $data['name'];
+        $data['text'] =  $data['name'];
+
         $data['image']  =  uploadFile($request->file('image'),'images/forms','');
 
         $data['price'] = str_rep_price($data['price']);

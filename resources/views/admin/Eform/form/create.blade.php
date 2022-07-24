@@ -74,7 +74,7 @@
 
 
 
-
+{{-- 
                                           <div class="form-group">
                                               <label for="group">group</label>
                                               <input type="text" class="form-control" id="group" autocomplete="off"
@@ -85,7 +85,7 @@
                                               <label for="subgroup">subgroup</label>
                                               <input type="text" class="form-control" id="subgroup" autocomplete="off"
                                                   placeholder="subgroup " name="subgroup" value="{{ old('subgroup') }}">
-                                          </div>
+                                          </div> --}}
 
                                           <div class="form-group">
                                               <label for="name">نام فرم</label>
@@ -99,7 +99,7 @@
                                                   placeholder=" لینک فرم  " name="link" value="{{ old('link') }}"   >
                                           </div>
 
-
+{{-- 
                                           <div class="form-group">
                                               <label for="short"> خلاصه توضیحات فرم</label>
                                               <textarea class="form-control" id="short" autocomplete="off"
@@ -113,7 +113,7 @@
                                               <textarea class="form-control" id="tinymceExample" autocomplete="off"
                                                         placeholder="توضیحات فرم" name="text" rows="6"
                                               >{{ old('text') }}</textarea>
-                                          </div>
+                                          </div> --}}
 
 
                                           @include('admin.layouts.table.selectbox', [ 'allforeachs' => $typeservices ,  'input_name' => 'name'  ,  'name_select' => 'نوع خدمات' ,  'value' =>   old('typeservice') , 'required'=>'required'  , 'index_id'=>'typeservice' ])
